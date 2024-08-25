@@ -28,6 +28,7 @@ router:
             port: 6343
       snmp:
         listen-address: 192.168.32.1
+        location: MCI
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
     custom-config: |
       delete policy prefix-list6 CERNET-0
@@ -312,6 +313,7 @@ router:
             port: 6343
       snmp:
         listen-address: 2602:f93b:151::1
+        location: TYO
         encrypted-password: a2bf3a51b0a6021cc33bb2606aec5c8d95de642a
     custom-config: |
       delete policy prefix-list6 Tunnel-Endpoints
@@ -482,6 +484,7 @@ router:
             port: 6343
       snmp:
         listen-address: 2602:f93b:141::1
+        location: TPE
         encrypted-password: a4ab5a99dfdfdb23d925bdc74b59ba103789c2aa
     protocols:
       rpki:
