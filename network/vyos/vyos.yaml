@@ -164,6 +164,22 @@ router:
             local-pref: 125
             update-source: br5
         peer:
+          - asn: 714
+            description: Apple SIX
+            neighbor-address: 206.81.80.204
+            update-source: eth3.2
+          - asn: 714
+            description: Apple SIX
+            neighbor-address: 2001:504:16::205:0:2ca
+            update-source: eth3.2
+          - asn: 714
+            description: Apple SIX
+            neighbor-address: 206.81.80.205
+            update-source: eth3.2
+          - asn: 714
+            description: Apple SIX
+            neighbor-address: 2001:504:16::2ca
+            update-source: eth3.2
           - asn: 1828
             description: Unitas Global KCIX
             neighbor-address: 206.51.7.54
