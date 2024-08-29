@@ -297,8 +297,8 @@ router:
             update-source: eth6
           - asn: 212232
             description: BGP Tools
-            neighbor-address: 185.230.223.56
-            update-source: 23.175.184.1
+            neighbor-address: 2a0c:2f07:9459::b12
+            update-source: 2602:f93b:131::1
             multihop: 255
           - asn: 215575
             neighbor-address: 2602:f93b:ffff:131::21:5575:1
