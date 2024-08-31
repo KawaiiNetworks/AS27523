@@ -494,7 +494,7 @@ router:
           port: 5000
       sflow:
         agent-address: 2602:f93b:141::1
-        interface: [eth1]
+        interface: [eth1, wg10001]
         server:
           - address: 2602:f93b:131:32::200
             port: 6343
