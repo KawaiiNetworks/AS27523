@@ -422,7 +422,12 @@ router:
                 match: as-path AS-Except-China
         routeserver: []
         peer: []
-        downstream: []
+        downstream:
+          - asn: 212232
+            description: BGP Tools
+            neighbor-address: 2a0c:2f07:9459::b9
+            update-source: 2602:f93b:151::1
+            multihop: 255
 
   - name: edge.zj.atlas.projectk.org
     protocols:
