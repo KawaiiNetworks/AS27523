@@ -373,12 +373,16 @@ router:
             update-source: tun20
             post-export-accept:
               - action: deny
+                match: as-path AS-CERNET
+              - action: deny
                 match: as-path AS-Except-China
           - description: BGP Tunnel to MCI
             neighbor-address: 2602:f93b:ffff:ffff:3:1:0:1
             update-source: tun20
             simple-out: true
             post-import-accept:
+              - action: deny
+                match: as-path AS-CERNET
               - action: deny
                 match: ipv6 address prefix-list Tunnel-Endpoints
           - description: BGP Tunnel to Home
