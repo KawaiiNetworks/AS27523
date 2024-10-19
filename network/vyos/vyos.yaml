@@ -376,7 +376,7 @@ router:
               - action: deny
                 match: as-path AS-CERNET
               - action: deny
-                match: ipv4 address prefix-list IPv4-PKUCU
+                match: ip address prefix-list IPv4-PKUCU
               - action: deny
                 match: as-path AS-Except-China
           - description: BGP Tunnel to MCI
