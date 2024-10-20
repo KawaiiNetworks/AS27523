@@ -33,6 +33,9 @@ router:
         location: MCI
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
     custom-config: |
+      delete policy prefix-list6 BACKBONE-TunnelEndpoint
+      set policy prefix-list6 BACKBONE-TunnelEndpoint rule 10 action permit
+      set policy prefix-list6 BACKBONE-TunnelEndpoint rule 10 prefix 2602:f93b:f31::/48
       delete policy prefix-list6 CERNET-0
       set policy prefix-list6 CERNET-0 rule 10 action permit
       set policy prefix-list6 CERNET-0 rule 10 prefix 240c:c000::/20
@@ -78,21 +81,30 @@ router:
               - action: deny
                 match: as-path AS1299
           - asn: 945
+            post-export-accept:
+              - action: deny
+                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::160
             local-pref: 99
             update-source: eth2
           - asn: 6939
+            description: HE KCIX Upstream
             # example
             # prepend: "27523 27523 27523"
             # post-import-accept:
             #   - action: permit
             #     match: ipv6 address prefix-list CERNET-0
             #     set: "local-preference '500'"
-            description: HE KCIX Upstream
+            post-export-accept:
+              - action: deny
+                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::5
             update-source: eth2
           - asn: 6939
             description: HE SIX Upstream
+            post-export-accept:
+              - action: deny
+                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:16::1b1b
             metric: "+10"
             update-source: eth3.2
@@ -105,6 +117,9 @@ router:
             neighbor-address: 74.80.181.233
             update-source: eth0
           - asn: 13737
+            post-export-accept:
+              - action: deny
+                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2620:11f:700f:1::8
             update-source: eth0
         routeserver:
