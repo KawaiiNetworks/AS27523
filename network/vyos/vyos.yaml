@@ -26,6 +26,8 @@ router:
         server:
           - address: 192.168.32.200
             port: 6343
+          - address: 162.159.65.1
+            port: 6343
       snmp:
         listen-address: 192.168.32.1
         location: MCI
@@ -324,6 +326,8 @@ router:
         server:
           - address: 2602:f93b:131:32::200
             port: 6343
+          - address: 162.159.65.1
+            port: 6343
       snmp:
         listen-address: 2602:f93b:151::1
         location: TYO
@@ -342,7 +346,7 @@ router:
       set policy prefix-list IPv4-PKUUSER rule 20 prefix '222.68.0.0/16'
       delete policy as-path-list AS-PKUUSER
       set policy as-path-list AS-PKUUSER rule 10 action permit
-      set policy as-path-list AS-PKUUSER rule 10 regex '^([0-9]+_)*(4808)(_[0-9]+)*$'
+      set policy as-path-list AS-PKUUSER rule 10 regex '^([0-9]+_)*(4808|17621)(_[0-9]+)*$'
       delete policy as-path-list AS-PassGFW
       set policy as-path-list AS-PassGFW rule 10 action permit
       set policy as-path-list AS-PassGFW rule 10 description "Edgecast"
@@ -517,6 +521,8 @@ router:
         interface: [eth1, wg10001]
         server:
           - address: 2602:f93b:131:32::200
+            port: 6343
+          - address: 162.159.65.1
             port: 6343
       snmp:
         listen-address: 2602:f93b:141::1
