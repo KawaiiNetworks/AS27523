@@ -58,6 +58,7 @@ router:
             neighbor-address: 169.254.20.5
             simple-out: true
             local-pref: 180
+            shutdown: true
             update-source: tun20
           - description: BGP Tunnel to TYO
             neighbor-address: 2602:f93b:ffff:ffff:5:1:0:1
@@ -273,6 +274,7 @@ router:
             neighbor-address: 2001:504:16::6444
             update-source: eth3.2
           - asn: 44324
+            passive: true
             neighbor-address: 206.51.7.208
             update-source: eth2
           - asn: 44324
@@ -287,11 +289,14 @@ router:
         downstream:
           - asn: 142551
             neighbor-address: 2602:f93b:ffff:131::14:2551:1
+            passive: true
             update-source: eth6
           - asn: 199310
+            passive: true
             neighbor-address: 2602:f93b:ffff:131::19:9310:1
             update-source: eth6
           - asn: 203023
+            passive: true
             neighbor-address: 2602:f93b:ffff:131::20:3023:1
             update-source: eth6
           - asn: 212232
@@ -382,6 +387,7 @@ router:
           - description: BGP Tunnel to MCI
             neighbor-address: 169.254.20.6
             update-source: tun20
+            shutdown: true
             post-export-accept:
               - action: deny
                 match: as-path AS-CERNET
