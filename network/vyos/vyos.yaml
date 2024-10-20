@@ -130,6 +130,9 @@ router:
             update-source: eth3.2
           - asn: 33108
             description: SIX IPv6 RS2
+            post-export-accept:
+              - action: deny
+                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:16::2
             metric: "+10"
             update-source: eth3.2
@@ -140,6 +143,9 @@ router:
             update-source: eth3.2
           - asn: 33108
             description: SIX IPv6 RS3
+            post-export-accept:
+              - action: deny
+                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:16::3
             metric: "+10"
             update-source: eth3.2
@@ -169,6 +175,9 @@ router:
             update-source: eth2
           - asn: 40542
             description: KCIX IPv6 RS
+            post-export-accept:
+              - action: deny
+                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::126
             update-source: eth2
           - asn: 40115
