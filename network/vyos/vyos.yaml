@@ -61,7 +61,6 @@ router:
             neighbor-address: 169.254.20.5
             simple-out: true
             local-pref: 180
-            shutdown: true
             update-source: tun20
           - description: BGP Tunnel to TYO
             neighbor-address: 2602:f93b:ffff:ffff:5:1:0:1
@@ -426,8 +425,8 @@ router:
         ibgp:
           - description: BGP Tunnel to MCI
             neighbor-address: 169.254.20.6
+            simple-out: true
             update-source: tun20
-            shutdown: true
             post-export-accept:
               - action: deny
                 match: as-path AS-CERNET
