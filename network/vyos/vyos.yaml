@@ -291,6 +291,22 @@ router:
             neighbor-address: 2001:504:16::69:0:3b41
             password: jutran7dEbUwr6c9
             update-source: eth3.2
+          - asn: 16509
+            description: Amazon KCIX
+            neighbor-address: 206.51.7.131
+            update-source: eth2
+          - asn: 16509
+            description: Amazon KCIX
+            neighbor-address: 2001:504:1b:1::131
+            update-source: eth2
+          - asn: 16509
+            description: Amazon KCIX
+            neighbor-address: 206.51.7.194
+            update-source: eth2
+          - asn: 16509
+            description: Amazon KCIX
+            neighbor-address: 2001:504:1b:1::194
+            update-source: eth2
           - asn: 25668
             neighbor-address: 206.81.80.103
             update-source: eth3.2
