@@ -291,6 +291,10 @@ router:
           #   passive: true
           #   neighbor-address: 2602:f93b:ffff:131::20:3023:1
           #   update-source: eth6
+          - asn: 203888
+            neighbor-address: 2602:f93b:ffff:131:1::2
+            update-source: 2602:f93b:ffff:131:1::1
+            passive: true
           - asn: 212232
             description: BGP Tools
             neighbor-address: 2a0c:2f07:9459::b12
