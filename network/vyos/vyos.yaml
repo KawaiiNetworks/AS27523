@@ -66,7 +66,7 @@ router:
             neighbor-address: 2602:f93b:ffff:ffff:5:1:0:1
             simple-out: true
             local-pref: 180
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: ipv6 address prefix-list Tunnel-Endpoints
             update-source: tun20
@@ -74,13 +74,13 @@ router:
           - asn: 945
             neighbor-address: 206.51.7.160
             update-source: eth2
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS7018
               - action: deny
                 match: as-path AS1299
           - asn: 945
-            post-export-accept:
+            pre-export-accept:
               - action: deny
                 match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::160
@@ -90,18 +90,18 @@ router:
             description: HE KCIX Upstream
             # example
             # prepend: "27523 27523 27523"
-            # post-import-accept:
+            # pre-import-accept:
             #   - action: permit
             #     match: ipv6 address prefix-list CERNET-0
             #     set: "local-preference '500'"
-            post-export-accept:
+            pre-export-accept:
               - action: deny
                 match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::5
             update-source: eth2
           - asn: 6939
             description: HE SIX Upstream
-            post-export-accept:
+            pre-export-accept:
               - action: deny
                 match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:16::1b1b
@@ -116,7 +116,7 @@ router:
             neighbor-address: 74.80.181.233
             update-source: eth0
           - asn: 13737
-            post-export-accept:
+            pre-export-accept:
               - action: deny
                 match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2620:11f:700f:1::8
@@ -131,7 +131,7 @@ router:
             update-source: eth3.2
           - asn: 33108
             description: SIX IPv6 RS
-            post-export-accept:
+            pre-export-accept:
               - action: deny
                 match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address:
@@ -159,7 +159,7 @@ router:
             update-source: eth2
           - asn: 40542
             description: KCIX IPv6 RS
-            post-export-accept:
+            pre-export-accept:
               - action: deny
                 match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::126
@@ -384,7 +384,7 @@ router:
             neighbor-address: 169.254.20.6
             simple-out: true
             update-source: tun20
-            post-export-accept:
+            pre-export-accept:
               - action: deny
                 match: as-path AS-CERNET
               - action: deny
@@ -397,7 +397,7 @@ router:
             neighbor-address: 2602:f93b:ffff:ffff:3:1:0:1
             update-source: tun20
             simple-out: true
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS-CERNET
               - action: deny
@@ -405,7 +405,7 @@ router:
           - description: BGP Tunnel to Home
             neighbor-address: 169.254.11.2
             update-source: wg1151
-            post-export-accept:
+            pre-export-accept:
               - action: permit
                 match: as-path AS-PassGFW
                 on-match-next: false
@@ -414,7 +414,7 @@ router:
           - description: BGP Tunnel to Home
             neighbor-address: 2602:f93b:151:ffff::2
             update-source: wg1151
-            post-export-accept:
+            pre-export-accept:
               - action: permit
                 match: as-path AS-PassGFW
                 on-match-next: false
@@ -425,7 +425,7 @@ router:
             neighbor-address: 10.1.52.253
             update-source: 103.27.185.43
             multihop: 2
-            post-import-accept:
+            pre-import-accept:
               - action: permit
                 match: as-path AS-PassGFW
                 on-match-next: false
@@ -435,7 +435,7 @@ router:
             neighbor-address: 2403:ad80:8f:ffff::253
             update-source: 2403:ad80:88:44fd::9c38
             multihop: 2
-            post-import-accept:
+            pre-import-accept:
               - action: permit
                 match: as-path AS-PassGFW
                 on-match-next: false
@@ -489,7 +489,7 @@ router:
             neighbor-address: 103.203.242.1
             update-source: eth0
             soft-reconfiguration-inbound: false
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS-ALL
           - asn: 955
@@ -497,7 +497,7 @@ router:
             multihop: 255
             neighbor-address: 2401:4020:1:1::1
             update-source: eth0
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS-ALL
         routeserver: []
@@ -542,7 +542,7 @@ router:
             description: HE Upstream
             neighbor-address: 2a0f:5707:ffe3::30
             update-source: eth1
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS-ALL
         routeserver:
@@ -553,7 +553,7 @@ router:
               - 103.158.187.2
             update-source: eth1
             soft-reconfiguration-inbound: false
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS-Tier1
           - asn: 38855
@@ -562,7 +562,7 @@ router:
               - 2a0f:5707:ffe3::1
               - 2a0f:5707:ffe3::2
             update-source: eth1
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS-Tier1
         peer:
@@ -571,7 +571,7 @@ router:
             neighbor-address: 103.158.187.30
             update-source: eth1
             soft-reconfiguration-inbound: false
-            post-import-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AS-ALL
           - asn: 13335
