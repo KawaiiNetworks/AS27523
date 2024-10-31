@@ -2,7 +2,7 @@ local-asn: 27523
 
 as-set:
   member-limit: 250
-  prefix-limit: 250
+  prefix-limit: 100
   limit-violation: accept # accept, deny
 
 router:
