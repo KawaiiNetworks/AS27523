@@ -33,23 +33,23 @@ router:
         location: MCI
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
     custom-config: |
-      delete policy prefix-list6 BACKBONE-TunnelEndpoint
-      set policy prefix-list6 BACKBONE-TunnelEndpoint rule 10 action permit
-      set policy prefix-list6 BACKBONE-TunnelEndpoint rule 10 prefix 2602:f93b:f31::/48
-      delete policy prefix-list6 CERNET-0
-      set policy prefix-list6 CERNET-0 rule 10 action permit
-      set policy prefix-list6 CERNET-0 rule 10 prefix 240c:c000::/20
-      set policy prefix-list6 CERNET-0 rule 10 le 128
-      delete policy prefix-list6 Tunnel-Endpoints
-      set policy prefix-list6 Tunnel-Endpoints rule 10 action permit
-      set policy prefix-list6 Tunnel-Endpoints rule 10 prefix 2403:ad80:88:44fd::9c38/128
-      set policy prefix-list6 Tunnel-Endpoints rule 10 le 128
-      delete policy as-path-list AS7018
-      set policy as-path-list AS7018 rule 10 action permit
-      set policy as-path-list AS7018 rule 10 regex _7018_
-      delete policy as-path-list AS1299
-      set policy as-path-list AS1299 rule 10 action permit
-      set policy as-path-list AS1299 rule 10 regex _1299_
+      delete policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint
+      set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 action permit
+      set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 prefix 2602:f93b:f31::/48
+      delete policy prefix-list6 AUTOGEN-CERNET-0
+      set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 action permit
+      set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 prefix 240c:c000::/20
+      set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 le 128
+      delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
+      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
+      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2403:ad80:88:44fd::9c38/128
+      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
+      delete policy as-path-list AUTOGEN-AS7018
+      set policy as-path-list AUTOGEN-AS7018 rule 10 action permit
+      set policy as-path-list AUTOGEN-AS7018 rule 10 regex _7018_
+      delete policy as-path-list AUTOGEN-AS1299
+      set policy as-path-list AUTOGEN-AS1299 rule 10 action permit
+      set policy as-path-list AUTOGEN-AS1299 rule 10 regex _1299_
     protocols:
       rpki:
         - server: 192.168.32.2
@@ -68,7 +68,7 @@ router:
             local-pref: 180
             pre-import-accept:
               - action: deny
-                match: ipv6 address prefix-list Tunnel-Endpoints
+                match: ipv6 address prefix-list AUTOGEN-Tunnel-Endpoints
             update-source: tun20
         upstream:
           - asn: 945
@@ -76,13 +76,13 @@ router:
             update-source: eth2
             pre-import-accept:
               - action: deny
-                match: as-path AS7018
+                match: as-path AUTOGEN-AS7018
               - action: deny
-                match: as-path AS1299
+                match: as-path AUTOGEN-AS1299
           - asn: 945
             pre-export-accept:
               - action: deny
-                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
+                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::160
             local-pref: 99
             update-source: eth2
@@ -92,18 +92,18 @@ router:
             # prepend: "27523 27523 27523"
             # pre-import-accept:
             #   - action: permit
-            #     match: ipv6 address prefix-list CERNET-0
+            #     match: ipv6 address prefix-list AUTOGEN-CERNET-0
             #     set: "local-preference '500'"
             pre-export-accept:
               - action: deny
-                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
+                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::5
             update-source: eth2
           - asn: 6939
             description: HE SIX Upstream
             pre-export-accept:
               - action: deny
-                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
+                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:16::1b1b
             metric: "+10"
             update-source: eth3.2
@@ -118,7 +118,7 @@ router:
           - asn: 13737
             pre-export-accept:
               - action: deny
-                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
+                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2620:11f:700f:1::8
             update-source: eth0
         routeserver:
@@ -133,7 +133,7 @@ router:
             description: SIX IPv6 RS
             pre-export-accept:
               - action: deny
-                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
+                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address:
               - 2001:504:16::2
               - 2001:504:16::3
@@ -161,7 +161,7 @@ router:
             description: KCIX IPv6 RS
             pre-export-accept:
               - action: deny
-                match: ipv6 address prefix-list BACKBONE-TunnelEndpoint
+                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::126
             update-source: eth2
           - asn: 40115
@@ -334,45 +334,45 @@ router:
         location: TYO
         encrypted-password: a2bf3a51b0a6021cc33bb2606aec5c8d95de642a
     custom-config: |
-      delete policy prefix-list6 Tunnel-Endpoints
-      set policy prefix-list6 Tunnel-Endpoints rule 10 action permit
-      set policy prefix-list6 Tunnel-Endpoints rule 10 prefix 2602:f93b:131::1/128
-      set policy prefix-list6 Tunnel-Endpoints rule 10 le 128
-      delete policy prefix-list IPv4-PKUUSER
-      set policy prefix-list IPv4-PKUUSER rule 10 action 'permit'
-      set policy prefix-list IPv4-PKUUSER rule 10 le '24'
-      set policy prefix-list IPv4-PKUUSER rule 10 prefix '111.205.0.0/16'
-      set policy prefix-list IPv4-PKUUSER rule 20 action 'permit'
-      set policy prefix-list IPv4-PKUUSER rule 20 le '24'
-      set policy prefix-list IPv4-PKUUSER rule 20 prefix '222.68.0.0/16'
-      delete policy as-path-list AS-PKUUSER
-      set policy as-path-list AS-PKUUSER rule 10 action permit
-      set policy as-path-list AS-PKUUSER rule 10 regex '^([0-9]+_)*(4808|17621)(_[0-9]+)*$'
-      delete policy as-path-list AS-PassGFW
-      set policy as-path-list AS-PassGFW rule 10 action permit
-      set policy as-path-list AS-PassGFW rule 10 description "Edgecast"
-      set policy as-path-list AS-PassGFW rule 10 regex '15133$'
-      set policy as-path-list AS-PassGFW rule 20 action permit
-      set policy as-path-list AS-PassGFW rule 20 description "Fastly"
-      set policy as-path-list AS-PassGFW rule 20 regex '54113$'
-      set policy as-path-list AS-PassGFW rule 30 action permit
-      set policy as-path-list AS-PassGFW rule 30 description "Google"
-      set policy as-path-list AS-PassGFW rule 30 regex '(15169|16550|16591|19527|36040|43515|139070|139190|396982)$'
-      set policy as-path-list AS-PassGFW rule 40 action permit
-      set policy as-path-list AS-PassGFW rule 40 description "Telegram"
-      set policy as-path-list AS-PassGFW rule 40 regex '(62014|62041|59930)$'
-      set policy as-path-list AS-PassGFW rule 50 action permit
-      set policy as-path-list AS-PassGFW rule 50 description "Twitter"
-      set policy as-path-list AS-PassGFW rule 50 regex '(13414|35995|63179)$'
-      set policy as-path-list AS-PassGFW rule 60 action permit
-      set policy as-path-list AS-PassGFW rule 60 description "Cloudflare"
-      set policy as-path-list AS-PassGFW rule 60 regex '13335$'
-      set policy as-path-list AS-PassGFW rule 70 action permit
-      set policy as-path-list AS-PassGFW rule 70 description "IDC Frontier"
-      set policy as-path-list AS-PassGFW rule 70 regex '4694$'
-      set policy as-path-list AS-PassGFW rule 80 action permit
-      set policy as-path-list AS-PassGFW rule 80 description "Amazon for docker"
-      set policy as-path-list AS-PassGFW rule 80 regex '(14618|16509)$'
+      delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
+      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
+      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2602:f93b:131::1/128
+      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
+      delete policy prefix-list AUTOGEN-IPv4-PKUUSER
+      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 10 action 'permit'
+      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 10 le '24'
+      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 10 prefix '111.205.0.0/16'
+      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 20 action 'permit'
+      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 20 le '24'
+      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 20 prefix '222.68.0.0/16'
+      delete policy as-path-list AUTOGEN-AS-PKUUSER
+      set policy as-path-list AUTOGEN-AS-PKUUSER rule 10 action permit
+      set policy as-path-list AUTOGEN-AS-PKUUSER rule 10 regex '^([0-9]+_)*(4808|17621)(_[0-9]+)*$'
+      delete policy as-path-list AUTOGEN-AS-PassGFW
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 10 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 10 description "Edgecast"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 10 regex '15133$'
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 20 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 20 description "Fastly"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 20 regex '54113$'
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 30 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 30 description "Google"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 30 regex '(15169|16550|16591|19527|36040|43515|139070|139190|396982)$'
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 40 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 40 description "Telegram"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 40 regex '(62014|62041|59930)$'
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 50 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 50 description "Twitter"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 50 regex '(13414|35995|63179)$'
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 60 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 60 description "Cloudflare"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 60 regex '13335$'
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 70 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 70 description "IDC Frontier"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 70 regex '4694$'
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 80 action permit
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 80 description "Amazon for docker"
+      set policy as-path-list AUTOGEN-AS-PassGFW rule 80 regex '(14618|16509)$'
     protocols:
       rpki:
         - server: rtr.rpki.cloudflare.com
@@ -386,40 +386,40 @@ router:
             update-source: tun20
             pre-export-accept:
               - action: deny
-                match: as-path AS-CERNET
+                match: as-path AUTOGEN-AS-CERNET
               - action: deny
-                match: as-path AS-PKUUSER
+                match: as-path AUTOGEN-AS-PKUUSER
               - action: deny
-                match: ip address prefix-list IPv4-PKUUSER
+                match: ip address prefix-list AUTOGEN-IPv4-PKUUSER
               - action: deny
-                match: as-path AS-Except-China
+                match: as-path AUTOGEN-AS-Except-China
           - description: BGP Tunnel to MCI
             neighbor-address: 2602:f93b:ffff:ffff:3:1:0:1
             update-source: tun20
             simple-out: true
             pre-import-accept:
               - action: deny
-                match: as-path AS-CERNET
+                match: as-path AUTOGEN-AS-CERNET
               - action: deny
-                match: ipv6 address prefix-list Tunnel-Endpoints
+                match: ipv6 address prefix-list AUTOGEN-Tunnel-Endpoints
           - description: BGP Tunnel to Home
             neighbor-address: 169.254.11.2
             update-source: wg1151
             pre-export-accept:
               - action: permit
-                match: as-path AS-PassGFW
+                match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AS-ALL
+                match: as-path AUTOGEN-AS-ALL
           - description: BGP Tunnel to Home
             neighbor-address: 2602:f93b:151:ffff::2
             update-source: wg1151
             pre-export-accept:
               - action: permit
-                match: as-path AS-PassGFW
+                match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AS-ALL
+                match: as-path AUTOGEN-AS-ALL
         upstream:
           - asn: 134835
             neighbor-address: 10.1.52.253
@@ -427,20 +427,20 @@ router:
             multihop: 2
             pre-import-accept:
               - action: permit
-                match: as-path AS-PassGFW
+                match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AS-Except-China
+                match: as-path AUTOGEN-AS-Except-China
           - asn: 134835
             neighbor-address: 2403:ad80:8f:ffff::253
             update-source: 2403:ad80:88:44fd::9c38
             multihop: 2
             pre-import-accept:
               - action: permit
-                match: as-path AS-PassGFW
+                match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AS-Except-China
+                match: as-path AUTOGEN-AS-Except-China
         routeserver: []
         peer: []
         downstream:
@@ -491,7 +491,7 @@ router:
             soft-reconfiguration-inbound: false
             pre-import-accept:
               - action: deny
-                match: as-path AS-ALL
+                match: as-path AUTOGEN-AS-ALL
           - asn: 955
             description: LSHIY Upstream
             multihop: 255
@@ -499,7 +499,7 @@ router:
             update-source: eth0
             pre-import-accept:
               - action: deny
-                match: as-path AS-ALL
+                match: as-path AUTOGEN-AS-ALL
         routeserver: []
         peer: []
         downstream: []
@@ -544,7 +544,7 @@ router:
             update-source: eth1
             pre-import-accept:
               - action: deny
-                match: as-path AS-ALL
+                match: as-path AUTOGEN-AS-ALL
         routeserver:
           - asn: 38855
             description: STUIX IPv4 RS
@@ -555,7 +555,7 @@ router:
             soft-reconfiguration-inbound: false
             pre-import-accept:
               - action: deny
-                match: as-path AS-Tier1
+                match: as-path AUTOGEN-AS-Tier1
           - asn: 38855
             description: STUIX IPv6 RS
             neighbor-address:
@@ -564,7 +564,7 @@ router:
             update-source: eth1
             pre-import-accept:
               - action: deny
-                match: as-path AS-Tier1
+                match: as-path AUTOGEN-AS-Tier1
         peer:
           - asn: 6939
             description: HE Peer
@@ -573,7 +573,7 @@ router:
             soft-reconfiguration-inbound: false
             pre-import-accept:
               - action: deny
-                match: as-path AS-ALL
+                match: as-path AUTOGEN-AS-ALL
           - asn: 13335
             neighbor-address:
               - 103.158.187.34
