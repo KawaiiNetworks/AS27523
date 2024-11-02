@@ -16,10 +16,6 @@ router:
           mirror: false
           address: 192.168.32.200
           port: 10179
-        - target: openbmp
-          mirror: true
-          address: 192.168.32.200
-          port: 5000
       sflow:
         agent-address: 192.168.32.1
         interface: [eth0, eth1.200, eth2, eth3.2, eth3.3, br5, tun10]
@@ -317,10 +313,6 @@ router:
           mirror: false
           address: 2602:f93b:131:32::200
           port: 10179
-        - target: openbmp
-          mirror: true
-          address: 2602:f93b:131:32::200
-          port: 5000
       sflow:
         agent-address: 2602:f93b:151::1
         interface: [eth0]
@@ -514,10 +506,6 @@ router:
           mirror: false
           address: 2602:f93b:131:32::200
           port: 10179
-        - target: openbmp
-          mirror: true
-          address: 2602:f93b:131:32::200
-          port: 5000
       sflow:
         agent-address: 2602:f93b:141::1
         interface: [eth1, wg10001]
