@@ -273,35 +273,42 @@ router:
             update-source: eth3.2
         downstream:
           - asn: 55223
-            neighbor-address: 2602:f93b:ffff:131::5:5223:1
-            update-source: eth6
-          - asn: 142551
-            neighbor-address: 2602:f93b:ffff:131::14:2551:1
             passive: true
+            neighbor-address: 2602:f93b:131:ffff::5:5223:1
             update-source: eth6
-          - asn: 199310
+          - asn: 140915
             passive: true
-            neighbor-address: 2602:f93b:ffff:131::19:9310:1
+            neighbor-address: 2602:f93b:131:ffff::14:915:1
             update-source: eth6
           # - asn: 203023
           #   passive: true
-          #   neighbor-address: 2602:f93b:ffff:131::20:3023:1
+          #   neighbor-address: 2602:f93b:131:ffff::20:3023:1
           #   update-source: eth6
           - asn: 203888
+            passive: true
             neighbor-address: 2602:f93b:ffff:131:1::2
             update-source: 2602:f93b:ffff:131:1::1
+          - asn: 208223
             passive: true
+            neighbor-address: 2602:f93b:131:ffff::20:8223:1
+            update-source: eth6
+          - asn: 215575
+            passive: true
+            neighbor-address: 2602:f93b:ffff:131::21:5575:1
+            update-source: eth6
+          - asn: 215750
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::21:5750:1
+            update-source: eth6
+          - asn: 401009
+            passive: true
+            neighbor-address: 2602:f93b:ffff:131::40:1009:1
+            update-source: eth6
           - asn: 212232
             description: BGP Tools
             neighbor-address: 2a0c:2f07:9459::b12
             update-source: 2602:f93b:131::1
             multihop: 255
-          - asn: 215575
-            neighbor-address: 2602:f93b:ffff:131::21:5575:1
-            update-source: eth6
-          - asn: 401009
-            neighbor-address: 2602:f93b:ffff:131::40:1009:1
-            update-source: eth6
 
   - name: core.tyo.atlas.projectk.org
     src:
