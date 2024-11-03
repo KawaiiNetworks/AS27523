@@ -300,6 +300,10 @@ router:
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:5750:1
             update-source: eth6
+          - asn: 216299
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::21:6299:1
+            update-source: eth6
           - asn: 401009
             passive: true
             neighbor-address: 2602:f93b:ffff:131::40:1009:1
