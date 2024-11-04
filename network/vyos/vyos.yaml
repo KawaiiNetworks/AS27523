@@ -227,7 +227,7 @@ router:
             metric: "+5"
             password: jutran7dEbUwr6c9
             update-source: eth3.2
-            pre-export-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AUTOGEN-AS-ALL
           - asn: 15169
@@ -237,7 +237,7 @@ router:
               - 2001:504:16::69:0:3b41
             password: jutran7dEbUwr6c9
             update-source: eth3.2
-            pre-export-accept:
+            pre-import-accept:
               - action: deny
                 match: as-path AUTOGEN-AS-ALL
           - asn: 16509
@@ -250,6 +250,7 @@ router:
             update-source: eth2
           - asn: 16509
             description: Amazon SIX
+            metric: "+10"
             neighbor-address:
               - 206.81.80.147
               - 206.81.80.248
