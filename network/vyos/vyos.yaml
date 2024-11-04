@@ -227,6 +227,9 @@ router:
             metric: "+5"
             password: jutran7dEbUwr6c9
             update-source: eth3.2
+            pre-export-accept:
+              - action: deny
+                match: as-path AUTOGEN-AS-ALL
           - asn: 15169
             description: Google SIX
             neighbor-address:
@@ -234,6 +237,9 @@ router:
               - 2001:504:16::69:0:3b41
             password: jutran7dEbUwr6c9
             update-source: eth3.2
+            pre-export-accept:
+              - action: deny
+                match: as-path AUTOGEN-AS-ALL
           - asn: 16509
             description: Amazon KCIX
             neighbor-address:
