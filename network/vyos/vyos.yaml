@@ -34,11 +34,6 @@ router:
           rule:
             - action: permit
               prefix: 2602:f93b:f31::/48
-        - name: AUTOGEN-CERNET-0
-          rule:
-            - action: permit
-              prefix: 240c:c000::/20
-              le: 128
         - name: AUTOGEN-Tunnel-Endpoints
           rule:
             - action: permit
@@ -57,24 +52,6 @@ router:
       - action: permit
         match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
         set: large-community add 27523:1101:1972
-    # custom-config: |
-    #   delete policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint
-    #   set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 action permit
-    #   set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 prefix 2602:f93b:f31::/48
-    #   delete policy prefix-list6 AUTOGEN-CERNET-0
-    #   set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 action permit
-    #   set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 prefix 240c:c000::/20
-    #   set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 le 128
-    #   delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
-    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
-    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2403:ad80:88:44fd::9c38/128
-    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
-    #   delete policy as-path-list AUTOGEN-AS7018
-    #   set policy as-path-list AUTOGEN-AS7018 rule 10 action permit
-    #   set policy as-path-list AUTOGEN-AS7018 rule 10 regex _7018_
-    #   delete policy as-path-list AUTOGEN-AS1299
-    #   set policy as-path-list AUTOGEN-AS1299 rule 10 action permit
-    #   set policy as-path-list AUTOGEN-AS1299 rule 10 regex _1299_
     protocols:
       rpki:
         - server: 192.168.32.2
@@ -354,46 +331,45 @@ router:
         listen-address: 2602:f93b:151::1
         location: TYO
         encrypted-password: a2bf3a51b0a6021cc33bb2606aec5c8d95de642a
-    custom-config: |
-      delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
-      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
-      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2602:f93b:131::1/128
-      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
-      delete policy prefix-list AUTOGEN-IPv4-PKUUSER
-      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 10 action 'permit'
-      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 10 le '24'
-      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 10 prefix '111.205.0.0/16'
-      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 20 action 'permit'
-      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 20 le '24'
-      set policy prefix-list AUTOGEN-IPv4-PKUUSER rule 20 prefix '222.68.0.0/16'
-      delete policy as-path-list AUTOGEN-AS-PKUUSER
-      set policy as-path-list AUTOGEN-AS-PKUUSER rule 10 action permit
-      set policy as-path-list AUTOGEN-AS-PKUUSER rule 10 regex '^([0-9]+_)*(4808|17621)(_[0-9]+)*$'
-      delete policy as-path-list AUTOGEN-AS-PassGFW
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 10 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 10 description "Edgecast"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 10 regex '15133$'
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 20 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 20 description "Fastly"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 20 regex '54113$'
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 30 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 30 description "Google"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 30 regex '(15169|16550|16591|19527|36040|43515|139070|139190|396982)$'
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 40 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 40 description "Telegram"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 40 regex '(62014|62041|59930)$'
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 50 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 50 description "Twitter"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 50 regex '(13414|35995|63179)$'
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 60 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 60 description "Cloudflare"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 60 regex '13335$'
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 70 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 70 description "IDC Frontier"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 70 regex '4694$'
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 80 action permit
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 80 description "Amazon for docker"
-      set policy as-path-list AUTOGEN-AS-PassGFW rule 80 regex '(14618|16509)$'
+    policy:
+      prefix-list6:
+        - name: AUTOGEN-Tunnel-Endpoints
+          rule:
+            - action: permit
+              prefix: 2602:f93b:131::1/128
+              le: 128
+      as-path-list:
+        - name: AUTOGEN-AS-PassGFW
+          rule:
+            - action: permit
+              description: Edgecast
+              regex: "15133$"
+            - action: permit
+              description: Fastly
+              regex: "54113$"
+            - action: permit
+              description: Google
+              regex: "(15169|16550|16591|19527|36040|43515|139070|139190|396982)$"
+            - action: permit
+              description: Telegram
+              regex: "(62014|62041|59930)$"
+            - action: permit
+              description: Twitter
+              regex: "(13414|35995|63179)$"
+            - action: permit
+              description: Cloudflare
+              regex: "13335$"
+            - action: permit
+              description: IDC Frontier
+              regex: "4694$"
+            - action: permit
+              description: Amazon for docker
+              regex: "(14618|16509)$"
+    # custom-config: |
+    #   delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
+    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
+    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2602:f93b:131::1/128
+    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
     protocols:
       rpki:
         - server: rtr.rpki.cloudflare.com
@@ -408,10 +384,6 @@ router:
             pre-export-accept:
               - action: deny
                 match: as-path AUTOGEN-AS-CERNET
-              - action: deny
-                match: as-path AUTOGEN-AS-PKUUSER
-              - action: deny
-                match: ip address prefix-list AUTOGEN-IPv4-PKUUSER
               - action: deny
                 match: as-path AUTOGEN-AS-Except-China
           - description: BGP Tunnel to MCI
