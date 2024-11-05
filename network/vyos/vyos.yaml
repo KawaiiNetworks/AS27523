@@ -519,6 +519,16 @@ router:
         listen-address: 2602:f93b:141::1
         location: TPE
         encrypted-password: a4ab5a99dfdfdb23d925bdc74b59ba103789c2aa
+    policy:
+      prefix-list6:
+        - name: AUTOGEN-BACKBONE-TunnelEndpoint
+          rule:
+            - action: permit
+              prefix: 2602:f93b:f41::/48
+    redistribute:
+      - action: permit
+        match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
+        set: large-community add 27523:1101:21167
     protocols:
       rpki:
         - server: rtr.rpki.cloudflare.com
