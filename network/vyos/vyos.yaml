@@ -28,24 +28,53 @@ router:
         listen-address: 192.168.32.1
         location: MCI
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
-    custom-config: |
-      delete policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint
-      set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 action permit
-      set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 prefix 2602:f93b:f31::/48
-      delete policy prefix-list6 AUTOGEN-CERNET-0
-      set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 action permit
-      set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 prefix 240c:c000::/20
-      set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 le 128
-      delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
-      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
-      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2403:ad80:88:44fd::9c38/128
-      set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
-      delete policy as-path-list AUTOGEN-AS7018
-      set policy as-path-list AUTOGEN-AS7018 rule 10 action permit
-      set policy as-path-list AUTOGEN-AS7018 rule 10 regex _7018_
-      delete policy as-path-list AUTOGEN-AS1299
-      set policy as-path-list AUTOGEN-AS1299 rule 10 action permit
-      set policy as-path-list AUTOGEN-AS1299 rule 10 regex _1299_
+    policy:
+      prefix-list6:
+        - name: AUTOGEN-BACKBONE-TunnelEndpoint
+          rule:
+            - action: permit
+              prefix: 2602:f93b:f31::/48
+        - name: AUTOGEN-CERNET-0
+          rule:
+            - action: permit
+              prefix: 240c:c000::/20
+              le: 128
+        - name: AUTOGEN-Tunnel-Endpoints
+          rule:
+            - action: permit
+              prefix: 2403:ad80:88:44fd::9c38/128
+              le: 128
+      as-path-list:
+        - name: AUTOGEN-AS7018
+          rule:
+            - action: permit
+              regex: _7018_
+        - name: AUTOGEN-AS1299
+          rule:
+            - action: permit
+              regex: _1299_
+    redistribute:
+      - action: permit
+        match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
+        set: large-community add 27523:1101:1972
+    # custom-config: |
+    #   delete policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint
+    #   set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 action permit
+    #   set policy prefix-list6 AUTOGEN-BACKBONE-TunnelEndpoint rule 10 prefix 2602:f93b:f31::/48
+    #   delete policy prefix-list6 AUTOGEN-CERNET-0
+    #   set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 action permit
+    #   set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 prefix 240c:c000::/20
+    #   set policy prefix-list6 AUTOGEN-CERNET-0 rule 10 le 128
+    #   delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
+    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
+    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2403:ad80:88:44fd::9c38/128
+    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
+    #   delete policy as-path-list AUTOGEN-AS7018
+    #   set policy as-path-list AUTOGEN-AS7018 rule 10 action permit
+    #   set policy as-path-list AUTOGEN-AS7018 rule 10 regex _7018_
+    #   delete policy as-path-list AUTOGEN-AS1299
+    #   set policy as-path-list AUTOGEN-AS1299 rule 10 action permit
+    #   set policy as-path-list AUTOGEN-AS1299 rule 10 regex _1299_
     protocols:
       rpki:
         - server: 192.168.32.2
@@ -76,9 +105,6 @@ router:
               - action: deny
                 match: as-path AUTOGEN-AS1299
           - asn: 945
-            pre-export-accept:
-              - action: deny
-                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::160
             local-pref: 99
             update-source: eth2
@@ -90,16 +116,10 @@ router:
             #   - action: permit
             #     match: ipv6 address prefix-list AUTOGEN-CERNET-0
             #     set: "local-preference '500'"
-            pre-export-accept:
-              - action: deny
-                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::5
             update-source: eth2
           - asn: 6939
             description: HE SIX Upstream
-            pre-export-accept:
-              - action: deny
-                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:16::1b1b
             metric: "+10"
             update-source: eth3.2
@@ -112,9 +132,6 @@ router:
             neighbor-address: 74.80.181.233
             update-source: eth0
           - asn: 13737
-            pre-export-accept:
-              - action: deny
-                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2620:11f:700f:1::8
             update-source: eth0
         routeserver:
@@ -127,9 +144,6 @@ router:
             update-source: eth3.2
           - asn: 33108
             description: SIX IPv6 RS
-            pre-export-accept:
-              - action: deny
-                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address:
               - 2001:504:16::2
               - 2001:504:16::3
@@ -155,9 +169,6 @@ router:
             update-source: eth2
           - asn: 40542
             description: KCIX IPv6 RS
-            pre-export-accept:
-              - action: deny
-                match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
             neighbor-address: 2001:504:1b:1::126
             update-source: eth2
           - asn: 40115
