@@ -138,6 +138,8 @@ router:
             neighbor-address:
               - 206.81.82.2
               - 206.81.82.3
+              - 149.112.96.2
+              - 149.112.96.3
             metric: "+5"
             update-source: eth3.3
           - asn: 33108
