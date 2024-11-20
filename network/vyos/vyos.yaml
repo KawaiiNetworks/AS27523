@@ -203,6 +203,9 @@ router:
           - asn: 6939
             neighbor-address: 206.51.7.5
             update-source: eth2
+          - asn: 13150
+            neighbor-address: 206.81.81.46
+            update-source: eth3.2
           - asn: 13335
             neighbor-address:
               - 206.51.7.34
