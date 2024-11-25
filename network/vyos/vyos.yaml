@@ -197,7 +197,9 @@ router:
             metric: "+5"
             update-source: eth3.2
           - asn: 6939
-            neighbor-address: 206.81.82.40
+            neighbor-address:
+              - 206.81.82.40
+              - 149.112.96.40
             metric: "+10"
             update-source: eth3.3
           - asn: 6939
