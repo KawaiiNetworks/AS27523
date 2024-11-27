@@ -629,10 +629,16 @@ router:
             update-source: eth1
         routeserver:
           - asn: 202409
-            neighbor-address: 185.1.166.100
+            neighbor-address:
+              - 185.1.166.100
+              - 185.1.166.200
+              - 185.1.166.254
             update-source: eth1
           - asn: 202409
-            neighbor-address: 2001:7f8:f2:e1::babe:1
+            neighbor-address:
+              - 2001:7f8:f2:e1::babe:1
+              - 2001:7f8:f2:e1::dead:1
+              - 2001:7f8:f2:e1::be5a
             update-source: eth1
         peer:
           - asn: 13335
