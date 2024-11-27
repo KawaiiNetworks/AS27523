@@ -641,6 +641,9 @@ router:
               - 2001:7f8:f2:e1::be5a
             update-source: eth1
         peer:
+          - asn: 6939
+            neighbor-address: 185.1.167.69
+            update-source: eth1
           - asn: 13335
             neighbor-address:
               - 185.1.166.3
