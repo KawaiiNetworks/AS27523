@@ -593,3 +593,48 @@ router:
               - 2a0f:5707:ffe3::45
             update-source: eth1
         downstream: []
+
+  - name: core.fra.atlas.projectk.org
+    src:
+      ipv4: 179.61.138.168
+      ipv6: 2602:f93b:161::1
+    service:
+      bmp:
+        - target: akvorado
+          mirror: false
+          address: 2602:f93b:131:32::200
+          port: 10179
+      sflow:
+        agent-address: 2602:f93b:161::1
+        interface: [eth0, eth1, eth2]
+        server:
+          - address: 2602:f93b:131:32::200
+            port: 6343
+          - address: 162.159.65.1
+            port: 6343
+      snmp:
+        listen-address: 2602:f93b:161::1
+        location: FRA
+        encrypted-password: a4a5bb9f81f9ecb16e33d22e173c414c3c384f63
+    protocols:
+      rpki:
+        - server: rtr.rpki.cloudflare.com
+          port: 8282
+          preference: 10
+      bgp:
+        ibgp: []
+        upstream:
+          - asn: 6939
+            neighbor-address: 2001:7f8:f2:e1::6939:1
+            update-source: eth1
+        routeserver:
+          - asn: 202409
+            neighbor-address:
+              - 185.1.166.100
+            update-source: eth1
+          - asn: 202409
+            neighbor-address:
+              - 2001:7f8:f2:e1::babe:1
+            update-source: eth1
+        peer: []
+        downstream: []
