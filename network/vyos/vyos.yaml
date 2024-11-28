@@ -81,6 +81,7 @@ router:
             update-source: tun20
         upstream:
           - asn: 945
+            prepend: "27523"
             neighbor-address: 206.51.7.160
             update-source: eth2
             pre-import-accept:
