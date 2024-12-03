@@ -638,8 +638,8 @@ router:
           - asn: 203023
             passive: true
             neighbor-address:
-              - fe80::12
               - 169.254.12.1
+              - 2602:f93b:ffff:ffff:1:2:0:1
             update-source: wg1241
 
   - name: core.fra.atlas.projectk.org
