@@ -533,6 +533,33 @@ router:
           rule:
             - action: permit
               prefix: 2602:f93b:f41::/48
+      as-path-list:
+        - name: AUTOGEN-AS-PassGFW
+          rule:
+            - action: permit
+              description: Edgecast
+              regex: "15133$"
+            - action: permit
+              description: Fastly
+              regex: "54113$"
+            - action: permit
+              description: Google
+              regex: "(15169|16550|16591|19527|36040|43515|139070|139190|396982)$"
+            - action: permit
+              description: Telegram
+              regex: "(62014|62041|59930)$"
+            - action: permit
+              description: Twitter
+              regex: "(13414|35995|63179)$"
+            - action: permit
+              description: Cloudflare
+              regex: "13335$"
+            - action: permit
+              description: IDC Frontier
+              regex: "4694$"
+            - action: permit
+              description: Amazon for docker
+              regex: "(14618|16509)$"
     redistribute:
       - action: permit
         match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
@@ -548,8 +575,12 @@ router:
           - asn: 6939
             description: HE Upstream
             neighbor-address: 2a0f:5707:ffe3::30
+            soft-reconfiguration-inbound: false
             update-source: eth1
             pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
               - action: deny
                 match: as-path AUTOGEN-AS-ALL
         routeserver:
@@ -561,15 +592,22 @@ router:
             update-source: eth1
             soft-reconfiguration-inbound: false
             pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
               - action: deny
                 match: as-path AUTOGEN-AS-Tier1
           - asn: 38855
             description: STUIX IPv6 RS
+            soft-reconfiguration-inbound: false
             neighbor-address:
               - 2a0f:5707:ffe3::1
               - 2a0f:5707:ffe3::2
             update-source: eth1
             pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
               - action: deny
                 match: as-path AUTOGEN-AS-Tier1
         peer:
@@ -579,6 +617,9 @@ router:
             update-source: eth1
             soft-reconfiguration-inbound: false
             pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
               - action: deny
                 match: as-path AUTOGEN-AS-ALL
           - asn: 13335
@@ -593,7 +634,13 @@ router:
               - 2a0f:5707:ffe3::36
               - 2a0f:5707:ffe3::45
             update-source: eth1
-        downstream: []
+        downstream:
+          - asn: 203023
+            passive: true
+            neighbor-address:
+              - fe80::12
+              - 169.254.12.1
+            update-source: wg1241
 
   - name: core.fra.atlas.projectk.org
     src:
