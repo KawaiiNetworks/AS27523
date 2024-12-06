@@ -102,10 +102,6 @@ router:
             neighbor-address: 2001:504:1b:1::160
             local-pref: 99
             update-source: eth2
-            pre-export-accept:
-              - action: deny
-            pre-import-accept:
-              - action: deny
           - asn: 6939
             description: HE KCIX Upstream
             # example
@@ -246,7 +242,6 @@ router:
             update-source: eth3.2
             pre-import-accept:
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
           - asn: 15169
             description: Google SIX
             neighbor-address:
@@ -256,7 +251,6 @@ router:
             update-source: eth3.2
             pre-import-accept:
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
           - asn: 16509
             description: Amazon KCIX
             neighbor-address:
@@ -424,7 +418,6 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
           - description: BGP Tunnel to Home
             neighbor-address: 2602:f93b:151:ffff::2
             update-source: wg1151
@@ -433,7 +426,6 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
         upstream:
           - asn: 134835
             neighbor-address: 10.1.52.253
@@ -505,7 +497,6 @@ router:
             soft-reconfiguration-inbound: false
             pre-import-accept:
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
           - asn: 955
             description: LSHIY Upstream
             multihop: 255
@@ -513,7 +504,6 @@ router:
             update-source: eth0
             pre-import-accept:
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
         routeserver: []
         peer: []
         downstream: []
@@ -595,7 +585,6 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
           - asn: 18041
             neighbor-address:
         routeserver:
@@ -636,7 +625,6 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AUTOGEN-AS-ALL
           - asn: 13335
             neighbor-address:
               - 103.158.187.34
