@@ -102,6 +102,9 @@ router:
             neighbor-address: 2001:504:1b:1::160
             local-pref: 99
             update-source: eth2
+            pre-export-accept:
+              - action: permit
+                set: "community add '945:30049'"
           - asn: 6939
             description: HE KCIX Upstream
             # example
