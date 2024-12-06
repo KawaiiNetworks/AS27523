@@ -52,6 +52,10 @@ router:
           rule:
             - action: permit
               regex: _1299_
+        - name: AUTOGEN-AS174
+          rule:
+            - action: permit
+              regex: _174_
     redistribute:
       - action: permit
         match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
@@ -84,15 +88,24 @@ router:
             prepend: "27523"
             neighbor-address: 206.51.7.160
             update-source: eth2
+            pre-export-accept:
+              - action: permit
+                set: "community add '945:30049'"
             pre-import-accept:
               - action: deny
                 match: as-path AUTOGEN-AS7018
               - action: deny
                 match: as-path AUTOGEN-AS1299
+              - action: deny
+                match: as-path AUTOGEN-AS174
           - asn: 945
             neighbor-address: 2001:504:1b:1::160
             local-pref: 99
             update-source: eth2
+            pre-export-accept:
+              - action: deny
+            pre-import-accept:
+              - action: deny
           - asn: 6939
             description: HE KCIX Upstream
             # example
@@ -583,6 +596,8 @@ router:
                 on-match-next: false
               - action: deny
                 match: as-path AUTOGEN-AS-ALL
+          - asn: 18041
+            neighbor-address:
         routeserver:
           - asn: 38855
             description: STUIX IPv4 RS
