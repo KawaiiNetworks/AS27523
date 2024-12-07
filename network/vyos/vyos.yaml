@@ -604,8 +604,8 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-          - asn: 18041
-            neighbor-address:
+          # - asn: 18041
+          #   neighbor-address:
         routeserver:
           - asn: 38855
             description: STUIX IPv4 RS
