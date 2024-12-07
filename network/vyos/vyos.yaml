@@ -8,8 +8,9 @@ as-set:
 router:
   - name: core.mci.atlas.projectk.org
     src:
-      ipv4: 23.175.184.1
-      ipv6: 2602:f93b:131::1
+      - protocol: bgp
+        ipv4: 23.175.184.1
+        ipv6: 2602:f93b:131::1
     service:
       bmp:
         - target: akvorado
@@ -329,8 +330,9 @@ router:
 
   - name: core.tyo.atlas.projectk.org
     src:
-      ipv4: 103.27.185.43
-      ipv6: 2602:f93b:151::1
+      - protocol: bgp
+        ipv4: 103.27.185.43
+        ipv6: 2602:f93b:151::1
     service:
       bmp:
         - target: akvorado
@@ -482,8 +484,9 @@ router:
 
   - name: core.hk.atlas.projectk.org
     src:
-      ipv4: 45.148.132.153
-      ipv6: 2602:f93b:121::1
+      - protocol: bgp
+        ipv4: 45.148.132.153
+        ipv6: 2602:f93b:121::1
     protocols:
       rpki:
         - server: rtr.rpki.cloudflare.com
@@ -513,8 +516,9 @@ router:
 
   - name: core.tpe.atlas.projectk.org
     src:
-      ipv4: 103.147.22.125
-      ipv6: 2602:f93b:141::1
+      - protocol: bgp
+        ipv4: 103.147.22.125
+        ipv6: 2602:f93b:141::1
     service:
       bmp:
         - target: akvorado
@@ -650,8 +654,9 @@ router:
 
   - name: core.fra.atlas.projectk.org
     src:
-      ipv4: 179.61.138.168
-      ipv6: 2602:f93b:161::1
+      - protocol: bgp
+        ipv4: 179.61.138.168
+        ipv6: 2602:f93b:161::1
     service:
       bmp:
         - target: akvorado
