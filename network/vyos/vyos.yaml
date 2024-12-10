@@ -5,6 +5,17 @@ as-set:
   prefix-limit: 100
   limit-violation: accept # accept, deny
 
+blacklist:
+  asn:
+    - 21158
+    - 216056
+  as-set:
+    - AS216056:AS-VIRTUALIZE
+  prefix4:
+    - 193.109.132.0/23
+  prefix6:
+    - 2001:678:de0::/48
+
 router:
   - name: core.mci.atlas.projectk.org
     src:
