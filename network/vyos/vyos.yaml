@@ -340,6 +340,7 @@ router:
             description: BGP Tools
             neighbor-address: 2a0c:2f07:9459::b12
             update-source: 2602:f93b:131::1
+            addpath: true
             multihop: 255
 
   - name: core.tyo.atlas.projectk.org
