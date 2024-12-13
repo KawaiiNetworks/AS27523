@@ -627,10 +627,8 @@ router:
               - action: deny
         routeserver:
           - asn: 38855
-            description: STUIX IPv4 RS
-            neighbor-address:
-              - 103.158.187.1
-              - 103.158.187.2
+            description: STUIX IPv4 RS1
+            neighbor-address: 103.158.187.1
             update-source: eth1
             soft-reconfiguration-inbound: false
             pre-import-accept:
@@ -639,6 +637,13 @@ router:
                 on-match-next: false
               - action: deny
                 match: as-path AUTOGEN-AS-Tier1
+          - asn: 38855
+            description: STUIX IPv4 RS2
+            neighbor-address: 103.158.187.2
+            update-source: eth1
+            soft-reconfiguration-inbound: false
+            pre-import-accept:
+              - action: deny
           - asn: 38855
             description: STUIX IPv6 RS
             soft-reconfiguration-inbound: false
