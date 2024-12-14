@@ -377,7 +377,8 @@ router:
               prefix: 2602:f93b:131::1/128
               le: 128
       as-path-list:
-        - name: AUTOGEN-AS-PassGFW
+        - &AUTOGEN-AS-PassGFW
+          name: AUTOGEN-AS-PassGFW
           rule:
             - action: permit
               description: Edgecast
@@ -403,6 +404,9 @@ router:
             - action: permit
               description: Amazon for docker
               regex: "(14618|16509)$"
+            - action: permit
+              description: Wikimedia
+              regex: "14907$"
     # custom-config: |
     #   delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
     #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
@@ -568,32 +572,7 @@ router:
             - action: permit
               prefix: 2602:f93b:f41::/48
       as-path-list:
-        - name: AUTOGEN-AS-PassGFW
-          rule:
-            - action: permit
-              description: Edgecast
-              regex: "15133$"
-            - action: permit
-              description: Fastly
-              regex: "54113$"
-            - action: permit
-              description: Google
-              regex: "(15169|16550|16591|19527|36040|43515|139070|139190|396982)$"
-            - action: permit
-              description: Telegram
-              regex: "(62014|62041|59930)$"
-            - action: permit
-              description: Twitter
-              regex: "(13414|35995|63179)$"
-            - action: permit
-              description: Cloudflare
-              regex: "13335$"
-            - action: permit
-              description: IDC Frontier
-              regex: "4694$"
-            - action: permit
-              description: Amazon for docker
-              regex: "(14618|16509)$"
+        - *AUTOGEN-AS-PassGFW
     redistribute:
       - action: permit
         match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
