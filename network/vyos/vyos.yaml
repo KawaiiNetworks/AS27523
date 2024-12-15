@@ -599,6 +599,7 @@ router:
             neighbor-address: 10.101.10.254
             update-source: eth2
             soft-reconfiguration-inbound: false
+            holdtime: 600
             pre-import-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-PassGFW
