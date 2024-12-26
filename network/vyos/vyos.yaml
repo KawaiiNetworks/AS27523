@@ -730,4 +730,9 @@ router:
           - asn: 200078
             neighbor-address: 2001:7f8:f2:e1:0:2000:78:1
             update-source: eth1
-        downstream: []
+        downstream:
+          - asn: 212232
+            neighbor-address: 2a0c:2f07:9459::b18
+            update-source: 2602:f93b:161::1
+            addpath: true
+            multihop: 255
