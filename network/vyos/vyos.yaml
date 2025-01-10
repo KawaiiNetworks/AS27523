@@ -655,7 +655,7 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AUTOGEN-AS-Tier1
+                # match: as-path AUTOGEN-AS-Tier1
         peer:
           - asn: 6939
             description: HE Peer
