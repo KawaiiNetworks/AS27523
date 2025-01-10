@@ -635,7 +635,7 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-                match: as-path AUTOGEN-AS-Tier1
+                # match: as-path AUTOGEN-AS-Tier1
           - asn: 38855
             description: STUIX IPv4 RS2
             neighbor-address: 103.158.187.2
