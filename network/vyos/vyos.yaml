@@ -330,6 +330,7 @@ router:
           - asn: 208223
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:8223:1
+            disable-IRR: true
             update-source: eth6
           - asn: 215750
             passive: true
