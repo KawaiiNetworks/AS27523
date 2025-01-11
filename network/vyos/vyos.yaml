@@ -32,7 +32,7 @@ router:
     service:
       bmp:
         - target: openbmp
-          mirror: true
+          mirror: false
           address: 2602:f93b:161:33::254
           port: 5000
         - target: akvorado
@@ -374,7 +374,7 @@ router:
     service:
       bmp:
         - target: openbmp
-          mirror: true
+          mirror: false
           address: 2602:f93b:161:33::254
           port: 5000
         - target: akvorado
@@ -710,7 +710,7 @@ router:
     service:
       bmp:
         - target: openbmp
-          mirror: true
+          mirror: false
           address: 2602:f93b:161:33::254
           port: 5000
         - target: akvorado
@@ -769,10 +769,5 @@ router:
           - asn: 212232
             neighbor-address: 2a0c:2f07:9459::b18
             update-source: 2602:f93b:161::1
-            addpath: true
-            multihop: 255
-          - asn: 212232
-            neighbor-address: 185.230.223.75
-            update-source: 179.61.138.168
             addpath: true
             multihop: 255
