@@ -360,15 +360,11 @@ router:
       ipv4:
         - protocol: bgp
           src: 103.27.185.43
-          pre-accept:
-            - action: deny
         - protocol: static
           src: 103.27.185.43
       ipv6:
         - protocol: bgp
           src: 2602:f93b:151::1
-          pre-accept:
-            - action: deny
         - protocol: static
           src: 2602:f93b:151::1
     service:
