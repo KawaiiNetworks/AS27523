@@ -572,27 +572,14 @@ router:
       ipv4:
         - protocol: bgp
           src: 103.147.22.125
-          pre-accept:
-            - action: deny
         - protocol: static
           src: 103.147.22.125
       ipv6:
         - protocol: bgp
           src: 2602:f93b:141::1
-          pre-accept:
-            - action: deny
         - protocol: static
           src: 2602:f93b:141::1
     service:
-      bmp:
-        - target: openbmp
-          mirror: true
-          address: 2602:f93b:161:33::254
-          port: 5000
-        - target: akvorado
-          mirror: false
-          address: 2602:f93b:131:32::200
-          port: 10179
       sflow:
         agent-address: 2602:f93b:141::1
         interface: [eth1, wg10001]
