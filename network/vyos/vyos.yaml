@@ -360,11 +360,15 @@ router:
       ipv4:
         - protocol: bgp
           src: 103.27.185.43
+          pre-accept:
+            - action: deny
         - protocol: static
           src: 103.27.185.43
       ipv6:
         - protocol: bgp
           src: 2602:f93b:151::1
+          pre-accept:
+            - action: deny
         - protocol: static
           src: 2602:f93b:151::1
     service:
@@ -474,22 +478,22 @@ router:
             neighbor-address: 10.1.52.253
             update-source: 103.27.185.43
             multihop: 2
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
-                match: as-path AUTOGEN-AS-Except-China
+            # pre-import-accept:
+            #   - action: permit
+            #     match: as-path AUTOGEN-AS-PassGFW
+            #     on-match-next: false
+            #   - action: deny
+            # match: as-path AUTOGEN-AS-Except-China
           - asn: 134835
             neighbor-address: 2403:ad80:8f:ffff::253
             update-source: 2403:ad80:88:44fd::9c38
             multihop: 2
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
-                match: as-path AUTOGEN-AS-Except-China
+            # pre-import-accept:
+            #   - action: permit
+            #     match: as-path AUTOGEN-AS-PassGFW
+            #     on-match-next: false
+            #   - action: deny
+            #     match: as-path AUTOGEN-AS-Except-China
         routeserver: []
         peer: []
         downstream:
