@@ -560,6 +560,16 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
+          - asn: 212232
+            neighbor-address: 185.230.223.75
+            update-source: 82.152.161.84
+            addpath: true
+            multihop: 255
+          - asn: 212232
+            neighbor-address: 2a0c:2f07:9459::b19
+            update-source: 2602:f93b:121::1
+            addpath: true
+            multihop: 255
 
   - name: core.tpe.atlas.projectk.org
     kernel:
