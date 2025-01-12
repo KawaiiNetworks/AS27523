@@ -425,7 +425,7 @@ router:
     #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
     protocols:
       rpki:
-        - server: rtr.rpki.cloudflare.com
+        - server: 172.65.0.2
           port: 8282
           preference: 10
       bgp:
@@ -532,28 +532,34 @@ router:
           src: 2602:f93b:121::1
     protocols:
       rpki:
-        - server: rtr.rpki.cloudflare.com
+        - server: 172.65.0.2
           port: 8282
           preference: 10
       bgp:
         ibgp: []
         upstream:
-          # - asn: 202662
-          #   multihop: 255
-          #   neighbor-address: 103.203.242.1
-          #   update-source: eth0
-          #   soft-reconfiguration-inbound: false
-          #   pre-import-accept:
-          #     - action: deny
           - asn: 202662
-            multihop: 255
-            neighbor-address: fc00:1000::111
+            multihop: 2
+            neighbor-address: 10.10.0.11
             update-source: eth0
-            pre-import-accept:
-              - action: deny
+          - asn: 202662
+            multihop: 2
+            neighbor-address: fc00:1000::11
+            update-source: eth0
         routeserver: []
         peer: []
-        downstream: []
+        downstream:
+          - asn: 203023
+            passive: true
+            update-source: wg1241
+            neighbor-address:
+              - 169.254.23.12
+              - 2602:f93b:ffff:ffff:1:2:0:1
+            pre-export-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
 
   - name: core.tpe.atlas.projectk.org
     kernel:
@@ -594,7 +600,7 @@ router:
         set: large-community add 27523:1101:21167
     protocols:
       rpki:
-        - server: rtr.rpki.cloudflare.com
+        - server: 172.65.0.2
           port: 8282
           preference: 10
       bgp:
@@ -715,7 +721,7 @@ router:
         encrypted-password: a4a5bb9f81f9ecb16e33d22e173c414c3c384f63
     protocols:
       rpki:
-        - server: rtr.rpki.cloudflare.com
+        - server: 172.65.0.2
           port: 8282
           preference: 10
       bgp:
