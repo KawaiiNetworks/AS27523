@@ -518,13 +518,13 @@ router:
         peer: []
         downstream: []
 
-  - name: core.hk.atlas.projectk.org
+  - name: core.hkg.atlas.projectk.org
     kernel:
       ipv4:
         - protocol: bgp
-          src: 45.148.132.153
+          src: 82.152.161.84
         - protocol: static
-          src: 45.148.132.153
+          src: 82.152.161.84
       ipv6:
         - protocol: bgp
           src: 2602:f93b:121::1
@@ -538,18 +538,16 @@ router:
       bgp:
         ibgp: []
         upstream:
-          - asn: 955
-            description: LSHIY Upstream
+          # - asn: 202662
+          #   multihop: 255
+          #   neighbor-address: 103.203.242.1
+          #   update-source: eth0
+          #   soft-reconfiguration-inbound: false
+          #   pre-import-accept:
+          #     - action: deny
+          - asn: 202662
             multihop: 255
-            neighbor-address: 103.203.242.1
-            update-source: eth0
-            soft-reconfiguration-inbound: false
-            pre-import-accept:
-              - action: deny
-          - asn: 955
-            description: LSHIY Upstream
-            multihop: 255
-            neighbor-address: 2401:4020:1:1::1
+            neighbor-address: fc00:1000::111
             update-source: eth0
             pre-import-accept:
               - action: deny
