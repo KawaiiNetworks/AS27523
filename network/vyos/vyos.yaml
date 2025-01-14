@@ -8,10 +8,14 @@ as-set:
 blacklist:
   asn:
     - 21158
+    - 24151
+    - 36530
+    - 199436
     - 216056
   as-set:
     - AS216056:AS-VIRTUALIZE
   prefix4:
+    - 42.83.147.0/24
     - 193.109.132.0/23
   prefix6:
     - 2001:678:de0::/48
@@ -532,6 +536,19 @@ router:
           src: 2602:f93b:121::1
         - protocol: static
           src: 2602:f93b:121::1
+    service:
+      sflow:
+        agent-address: 2602:f93b:121::1
+        interface: [eth0, eth1]
+        server:
+          - address: 2602:f93b:131:32::200
+            port: 6343
+          - address: 162.159.65.1
+            port: 6343
+      snmp:
+        listen-address: 2602:f93b:121::1
+        location: HKG
+        encrypted-password: 23ca3d9e7b16c635bd6348266ae954a90d81b17f
     policy:
       as-path-list:
         - *AUTOGEN-AS-PassGFW
