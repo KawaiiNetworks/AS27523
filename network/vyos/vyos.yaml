@@ -452,22 +452,6 @@ router:
                 match: as-path AUTOGEN-AS-CERNET
               - action: deny
                 match: ipv6 address prefix-list AUTOGEN-Tunnel-Endpoints
-          - description: BGP Tunnel to Home
-            neighbor-address: 169.254.11.2
-            update-source: wg1151
-            pre-export-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
-          - description: BGP Tunnel to Home
-            neighbor-address: 2602:f93b:151:ffff::2
-            update-source: wg1151
-            pre-export-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
         upstream:
           - asn: 134835
             neighbor-address: 10.1.52.253
@@ -502,6 +486,22 @@ router:
             update-source: 2602:f93b:151::1
             addpath: true
             multihop: 255
+          - asn: 203023
+            neighbor-address: 169.254.23.11
+            update-source: wg1151
+            pre-export-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
+          - asn: 203023
+            neighbor-address: 2602:f93b:ffff:ffff:1:1:0:1
+            update-source: wg1151
+            pre-export-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
 
   - name: edge.zj.atlas.projectk.org
     protocols:
