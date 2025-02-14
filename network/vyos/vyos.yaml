@@ -554,7 +554,7 @@ router:
         - *AUTOGEN-AS-PassGFW
     protocols:
       rpki:
-        - server: 172.65.0.2
+        - server: rtr.rpki.cloudflare.com
           port: 8282
           preference: 10
       bgp:
