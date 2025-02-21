@@ -88,8 +88,8 @@ router:
         set: large-community add 27523:1000:15169
     protocols:
       rpki:
-        - server: 192.168.32.2
-          port: 8082
+        - server: rtr.rpki.cloudflare.com
+          port: 8282
           preference: 10
       bgp:
         ibgp:
@@ -789,7 +789,7 @@ router:
             update-source: eth1
         downstream:
           - asn: 212232
-            neighbor-address: 2a0c:2f07:9459::b18
+            neighbor-address: 2a0c:2f07:9459::b19
             update-source: 2602:f93b:161::1
             addpath: true
             multihop: 255
