@@ -107,30 +107,30 @@ router:
                 match: ipv6 address prefix-list AUTOGEN-Tunnel-Endpoints
             update-source: tun20
         upstream:
-          - asn: 945
-            prepend: "27523"
-            neighbor-address: 206.51.7.160
-            update-source: eth2
-            pre-export-accept:
-              - action: permit
-                set: "community add '945:30049'"
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS7018
-                set: "ip-next-hop 74.80.181.233"
-              - action: permit
-                match: as-path AUTOGEN-AS1299
-                set: "ip-next-hop 74.80.181.233"
-              - action: permit
-                match: as-path AUTOGEN-AS174
-                set: "ip-next-hop 74.80.181.233"
-          - asn: 945
-            neighbor-address: 2001:504:1b:1::160
-            local-pref: 99
-            update-source: eth2
-            pre-export-accept:
-              - action: permit
-                set: "community add '945:30049'"
+          # - asn: 945
+          #   prepend: "27523"
+          #   neighbor-address: 206.51.7.160
+          #   update-source: eth2
+          #   pre-export-accept:
+          #     - action: permit
+          #       set: "community add '945:30049'"
+          #   pre-import-accept:
+          #     - action: permit
+          #       match: as-path AUTOGEN-AS7018
+          #       set: "ip-next-hop 74.80.181.233"
+          #     - action: permit
+          #       match: as-path AUTOGEN-AS1299
+          #       set: "ip-next-hop 74.80.181.233"
+          #     - action: permit
+          #       match: as-path AUTOGEN-AS174
+          #       set: "ip-next-hop 74.80.181.233"
+          # - asn: 945
+          #   neighbor-address: 2001:504:1b:1::160
+          #   local-pref: 99
+          #   update-source: eth2
+          #   pre-export-accept:
+          #     - action: permit
+          #       set: "community add '945:30049'"
           - asn: 6939
             description: HE KCIX Upstream
             # example
