@@ -422,6 +422,9 @@ router:
             - action: permit
               description: Wikimedia
               regex: "14907$"
+            - action: permit
+              description: Meta
+              regex: "(32934|54115|63293)$"
     # custom-config: |
     #   delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
     #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
