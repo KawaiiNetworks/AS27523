@@ -107,30 +107,6 @@ router:
                 match: ipv6 address prefix-list AUTOGEN-Tunnel-Endpoints
             update-source: tun20
         upstream:
-          # - asn: 945
-          #   prepend: "27523"
-          #   neighbor-address: 206.51.7.160
-          #   update-source: eth2
-          #   pre-export-accept:
-          #     - action: permit
-          #       set: "community add '945:30049'"
-          #   pre-import-accept:
-          #     - action: permit
-          #       match: as-path AUTOGEN-AS7018
-          #       set: "ip-next-hop 74.80.181.233"
-          #     - action: permit
-          #       match: as-path AUTOGEN-AS1299
-          #       set: "ip-next-hop 74.80.181.233"
-          #     - action: permit
-          #       match: as-path AUTOGEN-AS174
-          #       set: "ip-next-hop 74.80.181.233"
-          # - asn: 945
-          #   neighbor-address: 2001:504:1b:1::160
-          #   local-pref: 99
-          #   update-source: eth2
-          #   pre-export-accept:
-          #     - action: permit
-          #       set: "community add '945:30049'"
           - asn: 6939
             description: HE KCIX Upstream
             # example
@@ -195,11 +171,6 @@ router:
             description: KCIX IPv6 RS
             neighbor-address: 2001:504:1b:1::126
             update-source: eth2
-          - asn: 40115
-            description: Pigeon IX MCI RS
-            neighbor-address: 2602:f9f6:7e0:5::1
-            local-pref: 125
-            update-source: br5
         peer:
           - asn: 714
             description: Apple SIX
@@ -303,12 +274,6 @@ router:
               - 206.81.80.103
               - 2001:504:16::6444
             update-source: eth3.2
-          - asn: 44324
-            passive: true
-            neighbor-address:
-              - 206.51.7.208
-              - 2001:504:1b:1::208
-            update-source: eth2
           - asn: 49544
             description: i3D SIX
             neighbor-address:
@@ -333,14 +298,6 @@ router:
             neighbor-address: 2602:f93b:131:ffff::20:8223:1
             disable-IRR: true
             update-source: eth6
-          - asn: 215750
-            passive: true
-            neighbor-address: 2602:f93b:131:ffff::21:5750:1
-            update-source: eth6
-          - asn: 216299
-            passive: true
-            neighbor-address: 2602:f93b:131:ffff::21:6299:1
-            update-source: eth6
           - asn: 401009
             passive: true
             neighbor-address: 2602:f93b:ffff:131::40:1009:1
@@ -350,11 +307,11 @@ router:
             update-source: 2602:f93b:131::1
             addpath: true
             multihop: 255
-          - asn: 212232
-            neighbor-address: 185.230.223.79
-            update-source: 23.175.184.1
-            addpath: true
-            multihop: 255
+          # - asn: 212232
+          #   neighbor-address: 185.230.223.79
+          #   update-source: 23.175.184.1
+          #   addpath: true
+          #   multihop: 255
 
   - name: core.tyo.atlas.projectk.org
     kernel:
