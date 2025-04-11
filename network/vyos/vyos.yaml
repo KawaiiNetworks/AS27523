@@ -289,10 +289,6 @@ router:
             passive: true
             neighbor-address: 2602:f93b:131:ffff::14:915:1
             update-source: eth6
-          - asn: 203023
-            passive: true
-            neighbor-address: 2602:f93b:131:ffff::20:3023:1
-            update-source: eth6
           - asn: 208223
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:8223:1
@@ -447,7 +443,7 @@ router:
             update-source: 2602:f93b:151::1
             addpath: true
             multihop: 255
-          - asn: 203023
+          - asn: 395909
             neighbor-address: 169.254.23.11
             update-source: wg1151
             pre-export-accept:
@@ -455,7 +451,7 @@ router:
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-          - asn: 203023
+          - asn: 395909
             neighbor-address: 2602:f93b:ffff:ffff:1:1:0:1
             update-source: wg1151
             pre-export-accept:
@@ -532,7 +528,7 @@ router:
         routeserver: []
         peer: []
         downstream:
-          - asn: 203023
+          - asn: 395909
             passive: true
             update-source: wg1221
             neighbor-address:
@@ -675,7 +671,7 @@ router:
               - 2a0f:5707:ffe3::45
             update-source: eth1
         downstream:
-          - asn: 203023
+          - asn: 395909
             passive: true
             neighbor-address:
               - 169.254.12.1
