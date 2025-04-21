@@ -59,7 +59,7 @@ router:
               prefix: 2602:f93b:f31::/48
         - name: AUTOGEN-DNA-GOOGLE
           rule:
-            - action: permit
+            - action: deny # 本来是permit为了让google走transit，但是流量太大了，还是分到peer吧
               prefix: 2602:f93b:131::/48
         - name: AUTOGEN-Tunnel-Endpoints
           rule:
