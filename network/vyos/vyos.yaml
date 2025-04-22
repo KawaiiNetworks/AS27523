@@ -4,7 +4,14 @@ as-set-limit:
   member-limit: 250
   prefix-limit: 100
   large-as-list:
+    - 714
+    - 1828
     - 6939
+    - 13335
+    - 15169
+    - 16509
+    - 49544
+    - 140915
 
 blacklist:
   asn:
