@@ -2,7 +2,7 @@ local-asn: 27523
 
 as-set-limit:
   member-limit: 250
-  prefix-limit: 100
+  prefix-limit: 50
   large-as-list:
     - 714
     - 1828
