@@ -13,6 +13,10 @@ as-set-limit:
     - 49544
     - 140915
 
+keepup-as-list:
+  - 1828
+  - 13335
+
 blacklist:
   asn:
     - 21158
@@ -194,7 +198,6 @@ router:
               - 206.51.7.54
               - 2001:504:1b:1::54
             update-source: eth2
-            keepup: true
           - asn: 1828
             description: Unitas Global SIX
             neighbor-address:
@@ -202,7 +205,6 @@ router:
               - 2001:504:16::724
             metric: "+5"
             update-source: eth3.2
-            keepup: true
           - asn: 6456
             neighbor-address:
               - 206.81.80.10
