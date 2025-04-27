@@ -330,11 +330,15 @@ router:
       ipv4:
         - protocol: bgp
           src: 103.27.185.43
+          pre-accept:
+            - action: deny
         - protocol: static
           src: 103.27.185.43
       ipv6:
         - protocol: bgp
           src: 2602:f93b:151::1
+          pre-accept:
+            - action: deny
         - protocol: static
           src: 2602:f93b:151::1
     service:
@@ -392,10 +396,10 @@ router:
               description: Meta
               regex: "(32934|54115|63293)$"
     # custom-config: |
-    #   delete policy prefix-list6 AUTOGEN-Tunnel-Endpoints
-    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 action permit
-    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 prefix 2602:f93b:131::1/128
-    #   set policy prefix-list6 AUTOGEN-Tunnel-Endpoints rule 10 le 128
+    #   delete policy route-map AUTOGEN-KERNEL-IPv4-bgp
+    #   set policy route-map AUTOGEN-KERNEL-IPv4-bgp rule 10 action deny
+    #   delete policy route-map AUTOGEN-KERNEL-IPv6-bgp
+    #   set policy route-map AUTOGEN-KERNEL-IPv6-bgp rule 10 action deny
     protocols:
       rpki:
         - server: 172.65.0.2
