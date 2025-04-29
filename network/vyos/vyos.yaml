@@ -306,6 +306,11 @@ router:
             neighbor-address: 2602:f93b:131:ffff::20:8223:1
             # disable-IRR: true
             update-source: eth6
+          - asn: 209481
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::20:9481:1
+            update-source: eth6
+            default-originate: true
           - asn: 216299
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:6299:1
