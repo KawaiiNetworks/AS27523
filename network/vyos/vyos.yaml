@@ -656,11 +656,9 @@ router:
             pre-import-accept:
               - action: deny
           - asn: 38855
-            description: STUIX IPv6 RS
+            description: STUIX IPv6 RS1
             soft-reconfiguration-inbound: false
-            neighbor-address:
-              - 2a0f:5707:ffe3::1
-              - 2a0f:5707:ffe3::2
+            neighbor-address: 2a0f:5707:ffe3::1
             update-source: eth1
             pre-import-accept:
               - action: permit
@@ -668,6 +666,13 @@ router:
                 on-match-next: false
               - action: deny
                 match: as-path AUTOGEN-AS-Tier1
+          - asn: 38855
+            description: STUIX IPv6 RS2
+            soft-reconfiguration-inbound: false
+            neighbor-address: 2a0f:5707:ffe3::2
+            update-source: eth1
+            pre-import-accept:
+              - action: deny
         peer:
           - asn: 6939
             description: HE Peer
