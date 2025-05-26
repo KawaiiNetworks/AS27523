@@ -689,75 +689,75 @@ router:
               - 2602:f93b:ffff:ffff:1:1:0:1
             update-source: wg1141
 
-  - name: core.fra.atlas.projectk.org
-    kernel:
-      ipv4:
-        - protocol: bgp
-          src: 179.61.138.168
-        - protocol: static
-          src: 179.61.138.168
-      ipv6:
-        - protocol: bgp
-          src: 2602:f93b:161::1
-        - protocol: static
-          src: 2602:f93b:161::1
-    service:
-      bmp:
-        - target: akvorado
-          mirror: false
-          address: 2602:f93b:131:32::200
-          port: 10179
-      sflow:
-        agent-address: 2602:f93b:161::1
-        interface: [eth0, eth1, eth2]
-        server:
-          - address: 2602:f93b:131:32::200
-            port: 6343
-          - address: 162.159.65.1
-            port: 6343
-      snmp:
-        listen-address: 2602:f93b:161::1
-        location: FRA
-        encrypted-password: a4a5bb9f81f9ecb16e33d22e173c414c3c384f63
-    protocols:
-      rpki:
-        - server: 172.65.0.2
-          port: 8282
-          preference: 10
-      bgp:
-        ibgp: []
-        upstream:
-          - asn: 6939
-            neighbor-address: 2001:7f8:f2:e1::6939:1
-            update-source: eth1
-        routeserver:
-          - asn: 202409
-            neighbor-address:
-              - 185.1.166.100
-              - 185.1.166.200
-              - 185.1.166.254
-            update-source: eth1
-          - asn: 202409
-            neighbor-address:
-              - 2001:7f8:f2:e1::babe:1
-              - 2001:7f8:f2:e1::dead:1
-              - 2001:7f8:f2:e1::be5a
-            update-source: eth1
-        peer:
-          - asn: 6939
-            neighbor-address: 185.1.167.69
-            update-source: eth1
-          - asn: 13335
-            neighbor-address:
-              - 185.1.166.3
-              - 2001:7f8:f2:e1:0:1:3335:1
-            update-source: eth1
-          - asn: 200078
-            neighbor-address: 2001:7f8:f2:e1:0:2000:78:2
-            update-source: eth1
-        downstream:
-          - asn: 212232
-            neighbor-address: 2a0c:2f07:9459::b19
-            update-source: 2602:f93b:161::1
-            addpath: true
-            multihop: 255
+  # - name: core.fra.atlas.projectk.org
+  #   kernel:
+  #     ipv4:
+  #       - protocol: bgp
+  #         src: 179.61.138.168
+  #       - protocol: static
+  #         src: 179.61.138.168
+  #     ipv6:
+  #       - protocol: bgp
+  #         src: 2602:f93b:161::1
+  #       - protocol: static
+  #         src: 2602:f93b:161::1
+  #   service:
+  #     bmp:
+  #       - target: akvorado
+  #         mirror: false
+  #         address: 2602:f93b:131:32::200
+  #         port: 10179
+  #     sflow:
+  #       agent-address: 2602:f93b:161::1
+  #       interface: [eth0, eth1, eth2]
+  #       server:
+  #         - address: 2602:f93b:131:32::200
+  #           port: 6343
+  #         - address: 162.159.65.1
+  #           port: 6343
+  #     snmp:
+  #       listen-address: 2602:f93b:161::1
+  #       location: FRA
+  #       encrypted-password: a4a5bb9f81f9ecb16e33d22e173c414c3c384f63
+  #   protocols:
+  #     rpki:
+  #       - server: 172.65.0.2
+  #         port: 8282
+  #         preference: 10
+  #     bgp:
+  #       ibgp: []
+  #       upstream:
+  #         - asn: 6939
+  #           neighbor-address: 2001:7f8:f2:e1::6939:1
+  #           update-source: eth1
+  #       routeserver:
+  #         - asn: 202409
+  #           neighbor-address:
+  #             - 185.1.166.100
+  #             - 185.1.166.200
+  #             - 185.1.166.254
+  #           update-source: eth1
+  #         - asn: 202409
+  #           neighbor-address:
+  #             - 2001:7f8:f2:e1::babe:1
+  #             - 2001:7f8:f2:e1::dead:1
+  #             - 2001:7f8:f2:e1::be5a
+  #           update-source: eth1
+  #       peer:
+  #         - asn: 6939
+  #           neighbor-address: 185.1.167.69
+  #           update-source: eth1
+  #         - asn: 13335
+  #           neighbor-address:
+  #             - 185.1.166.3
+  #             - 2001:7f8:f2:e1:0:1:3335:1
+  #           update-source: eth1
+  #         - asn: 200078
+  #           neighbor-address: 2001:7f8:f2:e1:0:2000:78:2
+  #           update-source: eth1
+  #       downstream:
+  #         - asn: 212232
+  #           neighbor-address: 2a0c:2f07:9459::b19
+  #           update-source: 2602:f93b:161::1
+  #           addpath: true
+  #           multihop: 255
