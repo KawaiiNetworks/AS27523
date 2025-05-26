@@ -481,27 +481,6 @@ router:
                 on-match-next: false
               - action: deny
 
-  - name: edge.zj.atlas.projectk.org
-    protocols:
-      rpki:
-        - server: rtr.rpki.cloudflare.com
-          port: 8282
-          preference: 10
-      bgp:
-        ibgp:
-          - description: BGP Tunnel to Tokyo
-            neighbor-address: 169.254.11.1
-            update-source: wg1151
-            simple-out: true
-          - description: BGP Tunnel to Tokyo
-            neighbor-address: 2602:f93b:151:ffff::1
-            update-source: wg1151
-            simple-out: true
-        upstream: []
-        routeserver: []
-        peer: []
-        downstream: []
-
   - name: core.hkg.atlas.projectk.org
     kernel:
       ipv4:
