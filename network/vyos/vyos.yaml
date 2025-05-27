@@ -465,21 +465,22 @@ router:
             addpath: true
             multihop: 255
           - asn: 395909
-            neighbor-address: 169.254.23.11
+            extended-nexthop: true
+            neighbor-address: wg1151
             update-source: wg1151
             pre-export-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-PassGFW
                 on-match-next: false
               - action: deny
-          - asn: 395909
-            neighbor-address: 2602:f93b:ffff:ffff:1:1:0:1
-            update-source: wg1151
-            pre-export-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
+          # - asn: 395909
+          #   neighbor-address: 2602:f93b:ffff:ffff:1:1:0:1
+          #   update-source: wg1151
+          #   pre-export-accept:
+          #     - action: permit
+          #       match: as-path AUTOGEN-AS-PassGFW
+          #       on-match-next: false
+          #     - action: deny
 
   - name: core.hkg.atlas.projectk.org
     kernel:
@@ -530,10 +531,9 @@ router:
         downstream:
           - asn: 395909
             passive: true
+            extended-nexthop: true
             update-source: wg1221
-            neighbor-address:
-              - 169.254.23.12
-              - 2602:f93b:ffff:ffff:1:2:0:1
+            neighbor-address: wg1221
             pre-export-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-PassGFW
