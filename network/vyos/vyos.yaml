@@ -678,15 +678,13 @@ router:
         downstream:
           - asn: 395909
             passive: true
-            neighbor-address:
-              - 169.254.12.1
-              - 2602:f93b:ffff:ffff:1:2:0:1
+            extended-nexthop: true
+            neighbor-address: wg1241
             update-source: wg1241
           - asn: 395909
             passive: true
-            neighbor-address:
-              - 169.254.23.11
-              - 2602:f93b:ffff:ffff:1:1:0:1
+            extended-nexthop: true
+            neighbor-address: wg1141
             update-source: wg1141
 
   # - name: core.fra.atlas.projectk.org
