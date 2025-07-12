@@ -100,7 +100,7 @@ router:
         set: large-community add 27523:1000:15169
     protocols:
       rpki:
-        - server: rtr.rpki.cloudflare.com
+        - server: 2606:4700:60::2
           port: 8282
           preference: 10
       bgp:
