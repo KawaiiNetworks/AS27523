@@ -293,13 +293,13 @@ router:
               - 2001:504:16::c188
             update-source: eth3.2
         downstream:
-          - asn: 55223
-            passive: true
-            neighbor-address: 2602:f93b:131:ffff::5:5223:1
-            update-source: eth6
           - asn: 140915
             passive: true
             neighbor-address: 2602:f93b:131:ffff::14:915:1
+            update-source: eth6
+          - asn: 150289
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::15:289:1
             update-source: eth6
           - asn: 201386
             passive: true
