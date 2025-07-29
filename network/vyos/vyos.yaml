@@ -281,6 +281,20 @@ router:
               - 2001:504:16::249:0:407d
               - 2001:504:16::250:0:407d
             update-source: eth3.2
+          - asn: 20940
+            description: Akamai KCIX
+            neighbor-address:
+              - 206.51.7.99
+              - 2001:504:1b:1::99
+            update-source: eth2
+          - asn: 20940
+            description: Akamai SIX
+            neighbor-address:
+              - 206.81.80.113
+              - 206.81.80.168
+              - 2001:504:16::51cc
+              - 2001:504:16::168:0:51cc
+            update-source: eth3.2
           - asn: 25668
             neighbor-address:
               - 206.81.80.103
