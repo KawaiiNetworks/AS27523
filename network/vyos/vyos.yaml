@@ -197,6 +197,7 @@ router:
             neighbor-address:
               - 206.83.12.254
               - 2001:504:98::254
+            update-source: eth2.314
         peer:
           - asn: 714
             description: Apple SIX
