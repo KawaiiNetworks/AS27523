@@ -362,29 +362,33 @@ router:
           - asn: 140915
             passive: true
             neighbor-address: 2602:f93b:131:ffff::14:915:1
-            update-source: eth6
+            update-source: eth6.1000
           - asn: 150289
             passive: true
             neighbor-address: 2602:f93b:131:ffff::15:289:1
-            update-source: eth6
+            update-source: eth6.1000
           - asn: 201386
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:1386:1
-            update-source: eth6
+            update-source: eth6.1000
           - asn: 208223
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:8223:1
             # disable-IRR: true
-            update-source: eth6
+            update-source: eth6.1000
           - asn: 209481
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:9481:1
-            update-source: eth6
+            update-source: eth6.1000
             default-originate: true
+          - asn: 216342
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::21:6342:1
+            update-source: eth6.1000
           - asn: 401009
             passive: true
             neighbor-address: 2602:f93b:ffff:131::40:1009:1
-            update-source: eth6
+            update-source: eth6.1000
           - asn: 212232
             neighbor-address: 2a0c:2f07:9459::b12
             update-source: 2602:f93b:131::1
