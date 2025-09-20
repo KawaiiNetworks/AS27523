@@ -159,9 +159,9 @@ router:
           #   update-source: tun20
         upstream:
           - asn: 6939
-            description: HE KCIX Upstream
+            prepend: "27523 27523"
             # example
-            # prepend: "27523 27523 27523"
+            # description: HE KCIX Upstream
             # pre-import-accept:
             #   - action: permit
             #     match: ipv6 address prefix-list AUTOGEN-CERNET-0
@@ -169,13 +169,12 @@ router:
             neighbor-address: 2001:504:1b:1::5
             update-source: eth2.816
           - asn: 6939
-            description: HE SIX Upstream
-            prepend: "27523"
+            prepend: "27523 27523 27523"
             neighbor-address: 2001:504:16::1b1b
             metric: "+10"
             update-source: eth3.2
           - asn: 6939
-            description: HE SIX Jumbo Upstream
+            prepend: "27523 27523 27523"
             neighbor-address: 2001:504:16:1::1b1b
             metric: "+5"
             update-source: eth3.3
@@ -186,9 +185,11 @@ router:
             neighbor-address: 2620:11f:700f:1::8
             update-source: eth0
           - asn: 32097
+            prepend: "27523"
             neighbor-address: 69.30.215.13
             update-source: eth7
           - asn: 32097
+            prepend: "27523"
             neighbor-address: 2001:4858:aaaa:211::1
             update-source: eth7
         routeserver:
