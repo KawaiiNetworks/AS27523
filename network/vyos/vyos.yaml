@@ -185,6 +185,12 @@ router:
           - asn: 13737
             neighbor-address: 2620:11f:700f:1::8
             update-source: eth0
+          - asn: 32097
+            neighbor-address: 69.30.215.13
+            update-source: eth7
+          - asn: 32097
+            neighbor-address: 2001:4858:aaaa:211::1
+            update-source: eth7
         routeserver:
           - asn: 33108
             description: SIX IPv4 RS
