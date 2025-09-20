@@ -550,71 +550,73 @@ router:
           - asn: 6939
             description: HE Upstream
             neighbor-address: 2a0f:5707:ffe3::30
-            # soft-reconfiguration-inbound: false
+            soft-reconfiguration-inbound: false
             update-source: eth1
-            # pre-import-accept:
-            #   - action: permit
-            #     match: as-path AUTOGEN-AS-PassGFW
-            #     on-match-next: false
-            #   - action: deny
+            pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
           - asn: 18041
             neighbor-address: 10.101.10.254
             update-source: eth2
-            # soft-reconfiguration-inbound: false
+            soft-reconfiguration-inbound: false
             # holdtime: 600
-            # pre-import-accept:
-            # - action: permit
-            #   match: as-path AUTOGEN-AS-PassGFW
-            #   on-match-next: false
-            # - action: deny
+            pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
         routeserver:
           - asn: 38855
             description: STUIX IPv4 RS1
             neighbor-address: 103.158.187.1
             update-source: eth1
-            # soft-reconfiguration-inbound: false
-            # pre-import-accept:
-            #   - action: permit
-            #     match: as-path AUTOGEN-AS-PassGFW
-            #     on-match-next: false
-            #   - action: deny
-            #     match: as-path AUTOGEN-AS-Tier1
+            soft-reconfiguration-inbound: false
+            pre-import-accept:
+              - action: deny
+                match: as-path AUTOGEN-AS-Tier1
+              - action: permit
+                match: as-path AUTOGEN-AS-ALL
+                on-match-next: false
+              - action: deny
           - asn: 38855
             description: STUIX IPv4 RS2
             neighbor-address: 103.158.187.2
             update-source: eth1
-            # soft-reconfiguration-inbound: false
-            # pre-import-accept:
-            #   - action: deny
+            soft-reconfiguration-inbound: false
+            pre-import-accept:
+              - action: deny
           - asn: 38855
             description: STUIX IPv6 RS1
-            # soft-reconfiguration-inbound: false
+            soft-reconfiguration-inbound: false
             neighbor-address: 2a0f:5707:ffe3::1
             update-source: eth1
-            # pre-import-accept:
-            #   - action: permit
-            #     match: as-path AUTOGEN-AS-PassGFW
-            #     on-match-next: false
-            #   - action: deny
-            #     match: as-path AUTOGEN-AS-Tier1
+            pre-import-accept:
+              - action: deny
+                match: as-path AUTOGEN-AS-Tier1
+              - action: permit
+                match: as-path AS-ALL
+                on-match-next: false
+              - action: deny
           - asn: 38855
             description: STUIX IPv6 RS2
-            # soft-reconfiguration-inbound: false
+            soft-reconfiguration-inbound: false
             neighbor-address: 2a0f:5707:ffe3::2
             update-source: eth1
-            # pre-import-accept:
-            #   - action: deny
+            pre-import-accept:
+              - action: deny
         peer:
           - asn: 6939
             description: HE Peer
             neighbor-address: 103.158.187.30
             update-source: eth1
-            # soft-reconfiguration-inbound: false
-            # pre-import-accept:
-            #   - action: permit
-            #     match: as-path AUTOGEN-AS-PassGFW
-            #     on-match-next: false
-            #   - action: deny
+            soft-reconfiguration-inbound: false
+            pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
           - asn: 13335
             neighbor-address:
               - 103.158.187.34
@@ -628,14 +630,14 @@ router:
               - 2a0f:5707:ffe3::45
             update-source: eth1
         downstream:
-          - asn: 212232
-            neighbor-address: 103.158.187.165
-            update-source: 103.158.187.111
-            addpath: true
-          - asn: 212232
-            neighbor-address: 2a0f:5707:ffe3::165
-            update-source: 2a0f:5707:ffe3::111
-            addpath: true
+          # - asn: 212232
+          #   neighbor-address: 103.158.187.165
+          #   update-source: 103.158.187.111
+          #   addpath: true
+          # - asn: 212232
+          #   neighbor-address: 2a0f:5707:ffe3::165
+          #   update-source: 2a0f:5707:ffe3::111
+          #   addpath: true
           - asn: 395909
             passive: true
             extended-nexthop: true
