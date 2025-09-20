@@ -596,7 +596,7 @@ router:
               - action: deny
                 match: as-path AUTOGEN-AS-Tier1
               - action: permit
-                match: as-path AS-ALL
+                match: as-path AUTOGEN-AS-ALL
                 on-match-next: false
               - action: deny
           - asn: 38855
