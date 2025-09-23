@@ -142,6 +142,8 @@ router:
           port: 8282
           preference: 10
       bgp:
+        parameters:
+          - "bestpath as-path multipath-relax"
         ibgp:
           []
           # - description: BGP Tunnel to TYO
@@ -186,6 +188,7 @@ router:
             update-source: eth0
           - asn: 32097
             neighbor-address: 69.30.215.13
+            in-prepend: "32097"
             update-source: eth7
           - asn: 32097
             neighbor-address: 2001:4858:aaaa:211::1
@@ -197,6 +200,8 @@ router:
                 match: as-path AUTOGEN-AS-ALL
                 set: "ip-next-hop 74.80.181.233"
                 on-match-next: false
+            pre-export-accept:
+              - action: deny
             update-source: eth2.816
         routeserver:
           - asn: 33108
