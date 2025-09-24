@@ -161,7 +161,7 @@ router:
           #   update-source: tun20
         upstream:
           - asn: 6939
-            prepend: "27523"
+            out-prepend: "27523"
             # example
             # description: HE KCIX Upstream
             # pre-import-accept:
@@ -171,12 +171,12 @@ router:
             neighbor-address: 2001:504:1b:1::5
             update-source: eth2.816
           - asn: 6939
-            prepend: "27523 27523"
+            out-prepend: "27523 27523"
             neighbor-address: 2001:504:16::1b1b
             metric: "+10"
             update-source: eth3.2
           - asn: 6939
-            prepend: "27523 27523"
+            out-prepend: "27523 27523"
             neighbor-address: 2001:504:16:1::1b1b
             metric: "+5"
             update-source: eth3.3
@@ -191,6 +191,7 @@ router:
             in-prepend: "32097"
             update-source: eth7
           - asn: 32097
+            out-prepend: "27523 27523"
             neighbor-address: 2001:4858:aaaa:211::1
             update-source: eth7
           - asn: 212895
