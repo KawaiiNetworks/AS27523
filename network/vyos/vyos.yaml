@@ -187,6 +187,7 @@ router:
             neighbor-address: 2620:11f:700f:1::8
             update-source: eth0
           - asn: 32097
+            out-prepend: "27523"
             neighbor-address: 69.30.215.13
             in-prepend: "32097"
             update-source: eth7
