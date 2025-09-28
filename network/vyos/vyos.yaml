@@ -144,8 +144,7 @@ router:
       bgp:
         parameters:
           - "bestpath as-path multipath-relax"
-        ibgp:
-          []
+        ibgp: []
           # - description: BGP Tunnel to TYO
           #   neighbor-address: 169.254.20.5
           #   simple-out: true
@@ -316,6 +315,7 @@ router:
             update-source: eth3.2
           - asn: 15169
             description: Google SIX
+            out-prepend: "27523"
             neighbor-address:
               - 206.81.80.17
               - 2001:504:16::3b41
