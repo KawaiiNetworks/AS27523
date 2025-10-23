@@ -519,17 +519,18 @@ router:
       ipv4:
         - protocol: bgp
           src: 103.147.22.125
-          pre-accept:
-            - action: deny
-              match: large-community large-community-list AUTOGEN-FROM-UPSTREAM
+          # pre-accept:
+          # 在这里是zebra的过滤，community都不起作用
+          #   - action: deny
+          #     match: large-community large-community-list AUTOGEN-FROM-UPSTREAM
         - protocol: static
           src: 103.147.22.125
       ipv6:
         - protocol: bgp
           src: 2602:f93b:141::1
-          pre-accept:
-            - action: deny
-              match: large-community large-community-list AUTOGEN-FROM-UPSTREAM
+          # pre-accept:
+          #   - action: deny
+          #     match: large-community large-community-list AUTOGEN-FROM-UPSTREAM
         - protocol: static
           src: 2602:f93b:141::1
     service:
