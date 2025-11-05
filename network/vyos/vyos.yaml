@@ -103,10 +103,10 @@ router:
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
     policy:
       prefix-list6:
-        - name: AUTOGEN-BACKBONE-TunnelEndpoint
-          rule:
-            - action: permit
-              prefix: 2602:f93b:f31::/48
+        # - name: AUTOGEN-BACKBONE-TunnelEndpoint
+        #   rule:
+        #     - action: permit
+        #       prefix: 2602:f93b:f31::/48
         - name: AUTOGEN-DNA-GOOGLE
           rule:
             - action: deny # 本来是permit为了让google走transit，但是流量太大了，还是分到peer吧
@@ -130,9 +130,9 @@ router:
             - action: permit
               regex: _174_
     redistribute:
-      - action: permit
-        match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
-        set: large-community add 27523:1101:1972
+      # - action: permit
+      #   match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
+      #   set: large-community add 27523:1101:1972
       - action: permit
         match: ipv6 address prefix-list AUTOGEN-DNA-GOOGLE
         set: large-community add 27523:1000:15169
@@ -547,17 +547,17 @@ router:
         location: TPE
         encrypted-password: a4ab5a99dfdfdb23d925bdc74b59ba103789c2aa
     policy:
-      prefix-list6:
-        - name: AUTOGEN-BACKBONE-TunnelEndpoint
-          rule:
-            - action: permit
-              prefix: 2602:f93b:f41::/48
+      prefix-list6: []
+        # - name: AUTOGEN-BACKBONE-TunnelEndpoint
+        #   rule:
+        #     - action: permit
+        #       prefix: 2602:f93b:f41::/48
       as-path-list:
         - *AUTOGEN-AS-PassGFW
-    redistribute:
-      - action: permit
-        match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
-        set: large-community add 27523:1101:21167
+    redistribute: []
+      # - action: permit
+      #   match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
+      #   set: large-community add 27523:1101:21167
     protocols:
       rpki:
         - server: 172.65.0.2
