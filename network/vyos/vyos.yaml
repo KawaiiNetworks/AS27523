@@ -380,6 +380,14 @@ router:
               - 2001:504:16::c188
             update-source: eth3.2
         downstream:
+          - asn: 12198
+            passive: true
+            neighbor-address: 23.175.184.116
+            update-source: eth4
+          - asn: 12198
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::1:2198:1
+            update-source: eth6.1000
           - asn: 64515
             passive: true
             neighbor-address: 2602:f93b:131:ffff::6:4515:1
