@@ -130,12 +130,13 @@ router:
             - action: permit
               regex: _174_
     redistribute:
-      # - action: permit
-      #   match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
-      #   set: large-community add 27523:1101:1972
-      - action: permit
-        match: ipv6 address prefix-list AUTOGEN-DNA-GOOGLE
-        set: large-community add 27523:1000:15169
+      pre-accept:
+        # - action: permit
+        #   match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
+        #   set: large-community add 27523:1101:1972
+        - action: permit
+          match: ipv6 address prefix-list AUTOGEN-DNA-GOOGLE
+          set: large-community add 27523:1000:15169
     protocols:
       rpki:
         - server: 2606:4700:60::2
@@ -562,10 +563,11 @@ router:
         #       prefix: 2602:f93b:f41::/48
       as-path-list:
         - *AUTOGEN-AS-PassGFW
-    redistribute: []
-      # - action: permit
-      #   match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
-      #   set: large-community add 27523:1101:21167
+    # redistribute:
+    #   pre-accept:
+    #     - action: permit
+    #       match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
+    #       set: large-community add 27523:1101:21167
     protocols:
       rpki:
         - server: 172.65.0.2
