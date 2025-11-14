@@ -381,6 +381,11 @@ router:
               - 2001:504:16::c188
             update-source: eth3.2
         downstream:
+          - asn: 395909
+            passive: true
+            extended-nexthop: true
+            neighbor-address: wg1231
+            update-source: wg1231
           - asn: 12198
             passive: true
             neighbor-address: 23.175.184.116
