@@ -195,16 +195,16 @@ router:
             out-prepend: "27523 27523"
             neighbor-address: 2001:4858:aaaa:211::1
             update-source: eth7
-          - asn: 212895
-            neighbor-address: 206.51.7.97
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-ALL
-                set: "ip-next-hop 74.80.181.233"
-                on-match-next: false
-            pre-export-accept:
-              - action: deny
-            update-source: eth2.816
+          # - asn: 212895
+          #   neighbor-address: 206.51.7.97
+          #   pre-import-accept:
+          #     - action: permit
+          #       match: as-path AUTOGEN-AS-ALL
+          #       set: "ip-next-hop 74.80.181.233"
+          #       on-match-next: false
+          #   pre-export-accept:
+          #     - action: deny
+          #   update-source: eth2.816
         routeserver:
           - asn: 33108
             description: SIX IPv4 RS
