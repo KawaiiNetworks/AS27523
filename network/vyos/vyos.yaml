@@ -386,6 +386,11 @@ router:
             extended-nexthop: true
             neighbor-address: wg1231
             update-source: wg1231
+          - asn: 395909
+            passive: true
+            extended-nexthop: true
+            neighbor-address: wg1331
+            update-source: wg1331
           - asn: 12198
             passive: true
             neighbor-address: 23.175.184.116
@@ -690,6 +695,24 @@ router:
                 on-match-next: false
               - action: deny
             update-source: wg1241
+          - asn: 395909
+            passive: true
+            extended-nexthop: true
+            neighbor-address: wg1341
+            pre-export-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
+                match: as-path AUTOGEN-AS-China
+              - action: permit
+                match: large-community large-community-list AUTOGEN-FROM-PEER
+                on-match-next: false
+              - action: permit
+                match: large-community large-community-list AUTOGEN-FROM-ROUTESERVER
+                on-match-next: false
+              - action: deny
+            update-source: wg1341
           - asn: 395909
             passive: true
             extended-nexthop: true
