@@ -607,11 +607,22 @@ router:
                 on-match-next: false
               - action: deny
           - asn: 44324
-            neighbor-address:
-              - 103.158.187.113
-              - 2a0f:5707:ffe3::113
+            neighbor-address: 103.158.187.113
             soft-reconfiguration-inbound: false
             update-source: eth1
+            pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-PassGFW
+                on-match-next: false
+              - action: deny
+          - asn: 44324
+            neighbor-address: 2a0f:5707:ffe3::113
+            soft-reconfiguration-inbound: false
+            update-source: eth1
+            pre-export-accept:
+              - action: deny
+            pre-import-accept:
+              - action: deny
         routeserver:
           - asn: 38855
             description: STUIX IPv4 RS1
