@@ -420,10 +420,6 @@ router:
             passive: true
             neighbor-address: 2602:f93b:131:ffff::15:289:1
             update-source: eth6.1000
-          - asn: 201386
-            passive: true
-            neighbor-address: 2602:f93b:131:ffff::20:1386:1
-            update-source: eth6.1000
           - asn: 205329
             passive: true
             neighbor-address: 23.175.184.115
@@ -445,6 +441,10 @@ router:
           - asn: 215526
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:5526:1
+            update-source: eth6.1000
+          - asn: 216299
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::21:6299:1
             update-source: eth6.1000
           - asn: 216342
             passive: true
