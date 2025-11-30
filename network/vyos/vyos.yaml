@@ -611,9 +611,6 @@ router:
             soft-reconfiguration-inbound: false
             update-source: eth1
             pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
               - action: deny
           - asn: 44324
             neighbor-address: 2a0f:5707:ffe3::113
