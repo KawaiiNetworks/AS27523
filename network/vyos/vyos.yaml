@@ -438,6 +438,16 @@ router:
             neighbor-address: 2602:f93b:131:ffff::20:9481:1
             update-source: eth6.1000
             default-originate: true
+          - asn: 209481
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::20:9481:2
+            update-source: eth6.1000
+            default-originate: true
+          - asn: 209481
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::20:9481:3
+            update-source: eth6.1000
+            default-originate: true
           - asn: 215526
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:5526:1
