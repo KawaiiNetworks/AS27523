@@ -454,6 +454,12 @@ router:
             neighbor-address: 2602:f93b:131:ffff::20:9481:3
             update-source: eth6.1000
             default-originate: true
+          - asn: 203023
+            # 209481代播
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::20:3023:1
+            update-source: eth6.1000
+            default-originate: true
           - asn: 215526
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:5526:1
