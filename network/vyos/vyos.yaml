@@ -123,6 +123,10 @@ router:
               prefix: 2403:ad80:88:44fd::9c38/128
               le: 128
       as-path-list:
+        - name: AUTOGEN-AS4538
+          rule:
+            - action: permit
+              regex: "4538$"
         - name: AUTOGEN-AS7018
           rule:
             - action: permit
@@ -199,6 +203,10 @@ router:
             neighbor-address: 69.30.215.13
             in-prepend: "32097"
             update-source: eth7
+            pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS4538
+                set: "ip-next-hop 206.81.80.40"
           - asn: 32097
             out-prepend: "27523 27523"
             neighbor-address: 2001:4858:aaaa:211::1
