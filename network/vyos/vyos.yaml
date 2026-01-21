@@ -727,6 +727,8 @@ router:
             passive: true
             extended-nexthop: true
             neighbor-address: wg1241
+            pre-import-accept:
+              - action: deny
             pre-export-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-PassGFW
@@ -745,6 +747,8 @@ router:
             passive: true
             extended-nexthop: true
             neighbor-address: wg1341
+            pre-import-accept:
+              - action: deny
             pre-export-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-PassGFW
@@ -763,6 +767,8 @@ router:
             passive: true
             extended-nexthop: true
             neighbor-address: wg1141
+            pre-import-accept:
+              - action: deny
             pre-export-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-PassGFW
