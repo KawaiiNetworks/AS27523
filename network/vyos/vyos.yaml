@@ -131,6 +131,10 @@ router:
           rule:
             - action: permit
               regex: _7018_
+        - name: AUTOGEN-AS8796
+          rule:
+            - action: permit
+              regex: "8796$"
         - name: AUTOGEN-AS1299
           rule:
             - action: permit
@@ -207,6 +211,11 @@ router:
               - action: permit
                 match: as-path AUTOGEN-AS4538
                 set: "ip-next-hop 206.81.80.40"
+                on-match-next: false
+              - action: permit
+                match: as-path AUTOGEN-AS8796
+                set: "ip-next-hop 74.80.181.233"
+                on-match-next: false
           - asn: 32097
             out-prepend: "27523 27523"
             neighbor-address: 2001:4858:aaaa:211::1
