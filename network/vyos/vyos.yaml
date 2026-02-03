@@ -128,8 +128,8 @@ router:
               - 185.0.1.51
               - 2001:7f8:134::51
             update-source: eth2
-            pre-import-accept:
-              - action: deny
+            # pre-import-accept:
+            #   - action: deny
         routeserver:
           - asn: 56584
             neighbor-address:
@@ -149,7 +149,17 @@ router:
               - 185.0.1.25
               - 2001:7f8:134::25
             update-source: eth2
-        downstream: []
+        downstream:
+          - asn: 62246
+            passive: true
+            neighbor-address: 2a0b:71c0:171:ffff:1051:6:2246:1
+            update-source: eth1.1051
+            extended-nexthop: true
+          - asn: 204539
+            passive: true
+            neighbor-address: 2a0b:71c0:171:ffff:1051:20:4539:1
+            update-source: eth1.1051
+            extended-nexthop: true
 
   - name: core.mci.atlas.projectk.org
     kernel:
