@@ -139,6 +139,11 @@ router:
               - 2001:7f8:134::254
             update-source: eth2
         peer:
+          - asn: 13335
+            neighbor-address:
+              - 185.0.1.40
+              - 2001:7f8:134::40
+            update-source: eth2
           - asn: 212635
             neighbor-address:
               - 185.0.1.25
