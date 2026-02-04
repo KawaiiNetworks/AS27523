@@ -99,7 +99,7 @@ router:
           - address: 162.159.65.1
             port: 6343
       snmp:
-        listen-address: 2a0b:71c0:171::1
+        listen-address: 192.168.233.2
         location: AMS
         encrypted-password: d200010e2fed6258d4d978cde2e3e6ec8d4f600d
     policy:
