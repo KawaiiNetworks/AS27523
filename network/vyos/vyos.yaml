@@ -130,6 +130,9 @@ router:
             update-source: eth2
             # pre-import-accept:
             #   - action: deny
+          - asn: 6939
+            neighbor-address: 2001:7f8:10f::1b1b:154
+            update-source: eth10.2604
         routeserver:
           - asn: 56584
             neighbor-address:
@@ -144,13 +147,23 @@ router:
               - 2001:7f8:10f::dc49:1
               - 185.1.161.0
               - 2001:7f8:10f::dc49:2
-            update-source: eth10.2605
+            update-source: eth10.2604
         peer:
+          - asn: 6939
+            neighbor-address: 185.1.160.154
+            update-source: eth10.2604
           - asn: 13335
             neighbor-address:
               - 185.0.1.40
               - 2001:7f8:134::40
             update-source: eth2
+          - asn: 13335
+            neighbor-address:
+              - 2001:7f8:10f::3417:217
+              - 2001:7f8:10f::3417:109
+              - 185.1.160.217
+              - 185.1.160.109
+            update-source: eth10.2604
           - asn: 212635
             neighbor-address:
               - 185.0.1.25
