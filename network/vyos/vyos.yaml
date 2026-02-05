@@ -124,12 +124,13 @@ router:
         ibgp: []
         upstream:
           - asn: 6204
-            neighbor-address:
-              - 185.0.1.51
-              - 2001:7f8:134::51
+            neighbor-address: 185.0.1.51
             update-source: eth2
-            # pre-import-accept:
-            #   - action: deny
+          - asn: 6204
+            neighbor-address: 2001:7f8:134::51
+            update-source: eth2
+            pre-import-accept:
+              - action: deny
           - asn: 6939
             neighbor-address: 2001:7f8:10f::1b1b:154
             update-source: eth10.2604
