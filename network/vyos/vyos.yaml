@@ -142,6 +142,7 @@ router:
               - 185.0.1.254
               - 2001:7f8:134::254
             update-source: eth2
+            metric: "+10"
           - asn: 56393
             neighbor-address:
               - 185.1.160.255
@@ -158,6 +159,7 @@ router:
               - 185.0.1.40
               - 2001:7f8:134::40
             update-source: eth2
+            metric: "+10"
           - asn: 13335
             neighbor-address:
               - 2001:7f8:10f::3417:217
