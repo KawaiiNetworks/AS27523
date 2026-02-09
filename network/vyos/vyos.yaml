@@ -133,6 +133,7 @@ router:
               - action: deny
           - asn: 6939
             neighbor-address: 2001:7f8:10f::1b1b:154
+            out-prepend: "27523"
             update-source: eth10.2604
         routeserver:
           - asn: 56584
