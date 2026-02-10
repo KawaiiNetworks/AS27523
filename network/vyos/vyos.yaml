@@ -248,6 +248,10 @@ router:
           rule:
             - action: permit
               regex: "8796$"
+        - name: AUTOGEN-AS30058
+          rule:
+            - action: permit
+              regex: "30058$"
         - name: AUTOGEN-AS1299
           rule:
             - action: permit
@@ -327,6 +331,10 @@ router:
                 on-match-next: false
               - action: permit
                 match: as-path AUTOGEN-AS8796
+                set: "ip-next-hop 74.80.181.233"
+                on-match-next: false
+              - action: permit
+                match: as-path AUTOGEN-AS30058
                 set: "ip-next-hop 74.80.181.233"
                 on-match-next: false
           - asn: 32097
