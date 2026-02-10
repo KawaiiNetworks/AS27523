@@ -184,6 +184,11 @@ router:
             neighbor-address: 2a0b:71c0:171:ffff:1051:20:4539:1
             update-source: eth1.1051
             extended-nexthop: true
+          - asn: 212232
+            neighbor-address: 2001:7f8:134::60
+            update-source: eth2
+            extended-nexthop: true
+            addpath: true
 
   - name: core.mci.atlas.projectk.org
     kernel:
