@@ -129,8 +129,6 @@ router:
           - asn: 6204
             neighbor-address: 2001:7f8:134::51
             update-source: eth2
-            pre-import-accept:
-              - action: deny
           - asn: 6939
             neighbor-address: 2001:7f8:10f::1b1b:154
             out-prepend: "27523"
