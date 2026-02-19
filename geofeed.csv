@@ -3,6 +3,7 @@
 44.30.63.0/24,TW,TW-TPE,,
 23.175.184.0/24,US,,,
 23.175.184.128/28,US,US-MO,Kansas City,
+23.154.104.0/24,NL,NL-NH,Amsterdam,
 
 2602:f93b:120::/44,HK,,,
 
@@ -20,3 +21,5 @@
 2602:f93b:a00::/48,CN,CN-BJ,Beijing,
 2602:f93b:a41::/48,TW,TW-TPE,,
 2602:f93b:a41:3::/64,TW,TW-TPE,,
+
+2a0b:71c0:171::/48,NL,NL-NH,Amsterdam,
