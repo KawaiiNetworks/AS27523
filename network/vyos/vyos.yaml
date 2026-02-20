@@ -81,20 +81,25 @@ router:
     kernel:
       ipv4:
         - protocol: bgp
-          src: 123.253.213.228
+          src: 23.154.104.1
         - protocol: static
-          src: 123.253.213.228
+          src: 23.154.104.1
       ipv6:
         - protocol: bgp
           src: 2a0b:71c0:171::1
         - protocol: static
           src: 2a0b:71c0:171::1
     service:
+      bmp:
+        - target: akvorado
+          mirror: false
+          address: 192.168.233.240
+          port: 10179
       sflow:
-        agent-address: 2a0b:71c0:171::1
+        agent-address: 192.168.233.2
         interface: [eth0, eth1, eth2, eth3, eth4, eth5, eth6, eth7, eth8, eth9, eth10, eth11, eth12]
         server:
-          - address: 2602:f93b:131:32::200
+          - address: 192.168.233.240
             port: 6343
           - address: 162.159.65.1
             port: 6343
@@ -206,21 +211,21 @@ router:
         - protocol: static
           src: 2602:f93b:131::1
     service:
-      bmp:
-        - target: akvorado
-          mirror: false
-          address: 192.168.32.200
-          port: 10179
+      # bmp:
+      #   - target: akvorado
+      #     mirror: false
+      #     address: 123.253.213.229
+      #     port: 10179
       sflow:
-        agent-address: 192.168.32.1
+        agent-address: 2602:f93b:131::1
         interface: [eth0, eth1, eth2, eth3, eth4, eth6, eth7]
         server:
-          - address: 192.168.32.200
+          - address: 2a0e:5b44:104::229
             port: 6343
           - address: 162.159.65.1
             port: 6343
       snmp:
-        listen-address: 192.168.32.1
+        listen-address: 2602:f93b:131::1
         location: MCI
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
     policy:
@@ -721,7 +726,7 @@ router:
         agent-address: 2602:f93b:141::1
         interface: [eth0, eth1, wg10001]
         server:
-          - address: 2602:f93b:131:32::200
+          - address: 2a0e:5b44:104::229
             port: 6343
           - address: 162.159.65.1
             port: 6343
