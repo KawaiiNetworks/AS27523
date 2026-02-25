@@ -278,8 +278,8 @@ router:
           set: large-community add 27523:1000:15169
     protocols:
       rpki:
-        - server: 2606:4700:60::2
-          port: 8282
+        - server: 192.168.32.2
+          port: 8082
           preference: 10
       bgp:
         parameters:
