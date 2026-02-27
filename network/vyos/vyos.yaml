@@ -138,6 +138,9 @@ router:
             neighbor-address: 2001:7f8:10f::1b1b:154
             out-prepend: "27523"
             update-source: eth10.2604
+          - asn: 50917
+            neighbor-address: 45.152.39.140
+            update-source: eth9
         routeserver:
           - asn: 56584
             neighbor-address:
