@@ -252,6 +252,14 @@ router:
             update-source: eth2
             extended-nexthop: true
             addpath: true
+          - asn: 65500
+            neighbor-address: 216.238.52.191
+            update-source: 123.253.213.228
+            multihop: 255
+            address-family:
+              - ipv4
+              - ipv6
+            addpath: true
 
   - name: core.mci.atlas.projectk.org
     kernel:
