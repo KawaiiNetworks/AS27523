@@ -155,7 +155,7 @@ router:
     #       set: large-community add 27523:1101:21167
     protocols:
       rpki:
-        - server: 172.65.0.2
+        - server: 192.168.233.240
           port: 8282
           preference: 10
       bgp:
