@@ -148,6 +148,10 @@ router:
         - *AUTOGEN-AS-ChinaUnicom
         - *AUTOGEN-AS-ChinaTelecom
         - *AUTOGEN-AS-PassGFW
+        - name: AUTOGEN-AS-PATH-20495
+          rule:
+            - action: permit
+              regex: "_20495_"
     # redistribute:
     #   pre-accept:
     #     - action: permit
@@ -185,6 +189,10 @@ router:
               - action: permit
                 match: as-path AUTOGEN-AS-ChinaUnicom
                 set: "local-preference '110'"
+              - action: permit
+                # bad upstream
+                match: as-path AUTOGEN-AS-PATH-20495
+                set: "local-preference '50'"
         routeserver:
           - asn: 56584
             neighbor-address:
