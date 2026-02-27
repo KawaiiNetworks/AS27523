@@ -1,0 +1,520 @@
+{
+  "12198": {
+    "type": "normal",
+    "name": "JSMSR Network",
+    "as_set": [
+      "AS-JSMSR -S ARIN"
+    ],
+    "max_prefix": [
+      10,
+      1000
+    ]
+  },
+  "13150": {
+    "type": "normal",
+    "name": "Cato Networks",
+    "as_set": [
+      "AS-CATONETWORKS-ASNS"
+    ],
+    "max_prefix": [
+      800,
+      1
+    ]
+  },
+  "13335": {
+    "type": "normal",
+    "name": "Cloudflare",
+    "as_set": [
+      "AS13335:AS-CLOUDFLARE"
+    ],
+    "max_prefix": [
+      80000,
+      30000
+    ]
+  },
+  "135671": {
+    "type": "normal",
+    "name": "RBB-AS-AP",
+    "as_set": [
+      "AS135671"
+    ],
+    "max_prefix": [
+      1,
+      2
+    ]
+  },
+  "13737": {
+    "type": "normal",
+    "name": "Interconnecx, LLC",
+    "as_set": [
+      "AS13737:AS-ALL"
+    ],
+    "max_prefix": [
+      200,
+      75
+    ]
+  },
+  "140915": {
+    "type": "normal",
+    "name": "2HGN",
+    "as_set": [
+      "AS140915:AS-MKNT"
+    ],
+    "max_prefix": [
+      1,
+      250
+    ]
+  },
+  "150289": {
+    "type": "normal",
+    "name": "SunyzNET",
+    "as_set": [
+      "AS-SUNYZ"
+    ],
+    "max_prefix": [
+      100,
+      2000
+    ]
+  },
+  "15169": {
+    "type": "normal",
+    "name": "Google LLC",
+    "as_set": [
+      "AS-GOOGLE -S RADB"
+    ],
+    "max_prefix": [
+      15000,
+      10000
+    ]
+  },
+  "16509": {
+    "type": "normal",
+    "name": "Amazon.com",
+    "as_set": [
+      "AS16509:AS-AMAZON"
+    ],
+    "max_prefix": [
+      16000,
+      8000
+    ]
+  },
+  "18041": {
+    "type": "normal",
+    "name": "TWDS",
+    "as_set": [
+      "AS-TWDS -S RIPE"
+    ],
+    "max_prefix": [
+      600,
+      600
+    ]
+  },
+  "1828": {
+    "type": "normal",
+    "name": "Unitas Global",
+    "as_set": [
+      "AS-UNITAS -S RADB"
+    ],
+    "max_prefix": [
+      15000,
+      1000
+    ]
+  },
+  "202662": {
+    "type": "normal",
+    "name": "Hytron Network Services Limited",
+    "as_set": [
+      "AS202662:AS-HYTRON"
+    ],
+    "max_prefix": [
+      5000,
+      5000
+    ]
+  },
+  "203023": {
+    "type": "normal",
+    "name": "Kawaii Networks E&R",
+    "as_set": [
+      "AS203023:AS-KAWAIINETWORKS"
+    ],
+    "max_prefix": [
+      20,
+      100
+    ]
+  },
+  "204539": {
+    "type": "normal",
+    "name": "AXIC",
+    "as_set": [
+      "AS-AXIC"
+    ],
+    "max_prefix": [
+      1024,
+      8192
+    ]
+  },
+  "205329": {
+    "type": "normal",
+    "name": "Muilties Network",
+    "as_set": [
+      "AS-MUILTIES"
+    ],
+    "max_prefix": [
+      500,
+      500
+    ]
+  },
+  "206540": {
+    "type": "normal",
+    "name": "BEANSUMMERHOST",
+    "as_set": [
+      "AS206540"
+    ],
+    "max_prefix": [
+      1,
+      10
+    ]
+  },
+  "208223": {
+    "type": "normal",
+    "name": "fOxO Internet Service Provider",
+    "as_set": [
+      "AS208223:AS-ALL"
+    ],
+    "max_prefix": [
+      5,
+      60
+    ]
+  },
+  "20940": {
+    "type": "normal",
+    "name": "Akamai Technologies",
+    "as_set": [
+      "AS-AKAMAI"
+    ],
+    "max_prefix": [
+      12000,
+      5000
+    ]
+  },
+  "209481": {
+    "type": "normal",
+    "name": "Denghaoyu",
+    "as_set": [
+      "AS209481"
+    ],
+    "max_prefix": [
+      1,
+      20
+    ]
+  },
+  "209557": {
+    "type": "not_found",
+    "name": "Nonexistent AS209557",
+    "as_set": [
+      "AS209557"
+    ],
+    "max_prefix": [
+      100,
+      100
+    ]
+  },
+  "212232": {
+    "type": "normal",
+    "name": "BGP.Tools",
+    "as_set": [
+      "AS212232:AS-BGPTOOLS -S RIPE"
+    ],
+    "max_prefix": [
+      1,
+      2
+    ]
+  },
+  "212635": {
+    "type": "normal",
+    "name": "AS212635",
+    "as_set": [
+      "AS212635:AS-212635 -S RIPE"
+    ],
+    "max_prefix": [
+      110,
+      200
+    ]
+  },
+  "215526": {
+    "type": "normal",
+    "name": "SHAHEWAY-NET",
+    "as_set": [
+      "AS215526"
+    ],
+    "max_prefix": [
+      1,
+      1
+    ]
+  },
+  "216299": {
+    "type": "normal",
+    "name": "LCNetwork",
+    "as_set": [
+      "AS216299:AS-LCNET-PEERS"
+    ],
+    "max_prefix": [
+      10,
+      1000
+    ]
+  },
+  "216342": {
+    "type": "normal",
+    "name": "AS216342",
+    "as_set": [
+      "AS216342:AS-MARIONIC"
+    ],
+    "max_prefix": [
+      1,
+      32
+    ]
+  },
+  "25668": {
+    "type": "normal",
+    "name": "AEBC Internet Corp.",
+    "as_set": [
+      "AS-CIPHERKEY-TRANSIT"
+    ],
+    "max_prefix": [
+      300,
+      50
+    ]
+  },
+  "27523": {
+    "type": "normal",
+    "name": "KAWAII",
+    "as_set": [
+      "AS-KAWAIINETWORKS"
+    ],
+    "max_prefix": [
+      200,
+      200
+    ]
+  },
+  "32097": {
+    "type": "normal",
+    "name": "WII",
+    "as_set": [
+      "AS-WHOLESALE-INTERNET"
+    ],
+    "max_prefix": [
+      1000,
+      5000
+    ]
+  },
+  "33108": {
+    "type": "normal",
+    "name": "SIX",
+    "as_set": [
+      "AS-SEATTLEIX-RS-CLIENTS"
+    ],
+    "max_prefix": [
+      250000,
+      100000
+    ]
+  },
+  "35920": {
+    "type": "normal",
+    "name": "HOUIX Route Server",
+    "as_set": [
+      "AS35920"
+    ],
+    "max_prefix": [
+      200000,
+      100000
+    ]
+  },
+  "38855": {
+    "type": "normal",
+    "name": "STUIX RS",
+    "as_set": [
+      "AS-STUIX"
+    ],
+    "max_prefix": [
+      300000,
+      150000
+    ]
+  },
+  "395909": {
+    "type": "normal",
+    "name": "Kawaii Networks Education",
+    "as_set": [
+      "AS395909:AS-KAWAIINETWORKS"
+    ],
+    "max_prefix": [
+      1,
+      100
+    ]
+  },
+  "401009": {
+    "type": "normal",
+    "name": "JSMSR Servers",
+    "as_set": [
+      "AS-JSMSR -S ARIN"
+    ],
+    "max_prefix": [
+      10,
+      1000
+    ]
+  },
+  "40542": {
+    "type": "normal",
+    "name": "KCIX Route Server",
+    "as_set": [
+      "AS40542"
+    ],
+    "max_prefix": [
+      200000,
+      100000
+    ]
+  },
+  "44324": {
+    "type": "normal",
+    "name": "MoeDove Global",
+    "as_set": [
+      "AS-MOEDOVE"
+    ],
+    "max_prefix": [
+      1000,
+      1000
+    ]
+  },
+  "46389": {
+    "type": "normal",
+    "name": "STLIX Route Servers",
+    "as_set": [
+      "AS46389"
+    ],
+    "max_prefix": [
+      200000,
+      100000
+    ]
+  },
+  "49544": {
+    "type": "normal",
+    "name": "i3D.net",
+    "as_set": [
+      "AS-INTERACTIVE3D"
+    ],
+    "max_prefix": [
+      5000,
+      2000
+    ]
+  },
+  "50917": {
+    "type": "normal",
+    "name": "BACKBONE.direct",
+    "as_set": [
+      "AS-SITEFAST"
+    ],
+    "max_prefix": [
+      1000,
+      2500
+    ]
+  },
+  "56393": {
+    "type": "normal",
+    "name": "Frys-IX",
+    "as_set": [
+      "AS-FRYS-IX-CONNECTED"
+    ],
+    "max_prefix": [
+      320000,
+      110000
+    ]
+  },
+  "56584": {
+    "type": "normal",
+    "name": "InterIX",
+    "as_set": [
+      "AS56584:AS-INTERIX"
+    ],
+    "max_prefix": [
+      500000,
+      100000
+    ]
+  },
+  "6204": {
+    "type": "normal",
+    "name": "ZET.NET",
+    "as_set": [
+      "AS-ZETNET"
+    ],
+    "max_prefix": [
+      8000,
+      6000
+    ]
+  },
+  "62246": {
+    "type": "normal",
+    "name": "WJY Limited",
+    "as_set": [
+      "AS-WJY"
+    ],
+    "max_prefix": [
+      100,
+      1000
+    ]
+  },
+  "64515": {
+    "type": "private",
+    "name": "Private AS64515",
+    "as_set": [
+      "AS64515"
+    ],
+    "max_prefix": [
+      100,
+      100
+    ]
+  },
+  "6456": {
+    "type": "normal",
+    "name": "alt.net",
+    "as_set": [
+      "AS-ALTOPIA"
+    ],
+    "max_prefix": [
+      6,
+      2
+    ]
+  },
+  "65500": {
+    "type": "private",
+    "name": "Private AS65500",
+    "as_set": [
+      "AS65500"
+    ],
+    "max_prefix": [
+      100,
+      100
+    ]
+  },
+  "6939": {
+    "type": "normal",
+    "name": "HE.net",
+    "as_set": [
+      "AS-HURRICANE -S RADB",
+      "AS-HURRICANEV6 -S RADB"
+    ],
+    "max_prefix": [
+      210000,
+      180000
+    ]
+  },
+  "714": {
+    "type": "normal",
+    "name": "Apple Inc.",
+    "as_set": [
+      "AS-APPLE"
+    ],
+    "max_prefix": [
+      10000,
+      1000
+    ]
+  }
+}
