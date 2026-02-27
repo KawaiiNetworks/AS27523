@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "2HGN",
+  "as_set": [
+    "AS140915:AS-MKNT"
+  ],
+  "max_prefix": [
+    1,
+    250
+  ]
+}

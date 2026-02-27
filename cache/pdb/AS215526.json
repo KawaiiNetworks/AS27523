@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "SHAHEWAY-NET",
+  "as_set": [
+    "AS215526"
+  ],
+  "max_prefix": [
+    1,
+    1
+  ]
+}

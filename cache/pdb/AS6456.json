@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "alt.net",
+  "as_set": [
+    "AS-ALTOPIA"
+  ],
+  "max_prefix": [
+    6,
+    2
+  ]
+}

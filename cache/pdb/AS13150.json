@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Cato Networks",
+  "as_set": [
+    "AS-CATONETWORKS-ASNS"
+  ],
+  "max_prefix": [
+    800,
+    1
+  ]
+}

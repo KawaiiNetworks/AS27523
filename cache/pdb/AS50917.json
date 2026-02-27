@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "BACKBONE.direct",
+  "as_set": [
+    "AS-SITEFAST"
+  ],
+  "max_prefix": [
+    1000,
+    2500
+  ]
+}

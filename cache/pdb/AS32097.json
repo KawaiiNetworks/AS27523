@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "WII",
+  "as_set": [
+    "AS-WHOLESALE-INTERNET"
+  ],
+  "max_prefix": [
+    1000,
+    5000
+  ]
+}

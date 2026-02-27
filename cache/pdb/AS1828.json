@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Unitas Global",
+  "as_set": [
+    "AS-UNITAS -S RADB"
+  ],
+  "max_prefix": [
+    15000,
+    1000
+  ]
+}

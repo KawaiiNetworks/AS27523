@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "STUIX RS",
+  "as_set": [
+    "AS-STUIX"
+  ],
+  "max_prefix": [
+    300000,
+    150000
+  ]
+}

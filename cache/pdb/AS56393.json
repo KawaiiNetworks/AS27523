@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Frys-IX",
+  "as_set": [
+    "AS-FRYS-IX-CONNECTED"
+  ],
+  "max_prefix": [
+    320000,
+    110000
+  ]
+}

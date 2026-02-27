@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "SIX",
+  "as_set": [
+    "AS-SEATTLEIX-RS-CLIENTS"
+  ],
+  "max_prefix": [
+    250000,
+    100000
+  ]
+}

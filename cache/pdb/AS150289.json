@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "SunyzNET",
+  "as_set": [
+    "AS-SUNYZ"
+  ],
+  "max_prefix": [
+    100,
+    2000
+  ]
+}

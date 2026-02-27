@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Denghaoyu",
+  "as_set": [
+    "AS209481"
+  ],
+  "max_prefix": [
+    1,
+    20
+  ]
+}

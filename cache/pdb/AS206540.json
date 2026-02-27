@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "BEANSUMMERHOST",
+  "as_set": [
+    "AS206540"
+  ],
+  "max_prefix": [
+    1,
+    10
+  ]
+}

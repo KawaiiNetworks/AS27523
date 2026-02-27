@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "InterIX",
+  "as_set": [
+    "AS56584:AS-INTERIX"
+  ],
+  "max_prefix": [
+    500000,
+    100000
+  ]
+}

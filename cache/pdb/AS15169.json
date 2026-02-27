@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Google LLC",
+  "as_set": [
+    "AS-GOOGLE -S RADB"
+  ],
+  "max_prefix": [
+    15000,
+    10000
+  ]
+}

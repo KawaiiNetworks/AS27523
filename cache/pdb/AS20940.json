@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Akamai Technologies",
+  "as_set": [
+    "AS-AKAMAI"
+  ],
+  "max_prefix": [
+    12000,
+    5000
+  ]
+}

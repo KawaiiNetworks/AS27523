@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "WJY Limited",
+  "as_set": [
+    "AS-WJY"
+  ],
+  "max_prefix": [
+    100,
+    1000
+  ]
+}

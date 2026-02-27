@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "fOxO Internet Service Provider",
+  "as_set": [
+    "AS208223:AS-ALL"
+  ],
+  "max_prefix": [
+    5,
+    60
+  ]
+}

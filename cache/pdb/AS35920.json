@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "HOUIX Route Server",
+  "as_set": [
+    "AS35920"
+  ],
+  "max_prefix": [
+    200000,
+    100000
+  ]
+}

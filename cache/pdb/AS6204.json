@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "ZET.NET",
+  "as_set": [
+    "AS-ZETNET"
+  ],
+  "max_prefix": [
+    8000,
+    6000
+  ]
+}

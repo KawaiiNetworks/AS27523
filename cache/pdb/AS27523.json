@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "KAWAII",
+  "as_set": [
+    "AS-KAWAIINETWORKS"
+  ],
+  "max_prefix": [
+    200,
+    200
+  ]
+}

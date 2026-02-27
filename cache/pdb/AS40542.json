@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "KCIX Route Server",
+  "as_set": [
+    "AS40542"
+  ],
+  "max_prefix": [
+    200000,
+    100000
+  ]
+}

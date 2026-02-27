@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "AEBC Internet Corp.",
+  "as_set": [
+    "AS-CIPHERKEY-TRANSIT"
+  ],
+  "max_prefix": [
+    300,
+    50
+  ]
+}

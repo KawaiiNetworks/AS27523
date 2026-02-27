@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "JSMSR Network",
+  "as_set": [
+    "AS-JSMSR -S ARIN"
+  ],
+  "max_prefix": [
+    10,
+    1000
+  ]
+}

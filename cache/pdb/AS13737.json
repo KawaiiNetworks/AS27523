@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Interconnecx, LLC",
+  "as_set": [
+    "AS13737:AS-ALL"
+  ],
+  "max_prefix": [
+    200,
+    75
+  ]
+}

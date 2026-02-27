@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "AXIC",
+  "as_set": [
+    "AS-AXIC"
+  ],
+  "max_prefix": [
+    1024,
+    8192
+  ]
+}

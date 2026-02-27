@@ -1,0 +1,12 @@
+{
+  "type": "normal",
+  "name": "HE.net",
+  "as_set": [
+    "AS-HURRICANE -S RADB",
+    "AS-HURRICANEV6 -S RADB"
+  ],
+  "max_prefix": [
+    210000,
+    180000
+  ]
+}

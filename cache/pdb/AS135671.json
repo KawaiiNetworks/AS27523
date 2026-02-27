@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "RBB-AS-AP",
+  "as_set": [
+    "AS135671"
+  ],
+  "max_prefix": [
+    1,
+    2
+  ]
+}

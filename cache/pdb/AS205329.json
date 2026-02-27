@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Muilties Network",
+  "as_set": [
+    "AS-MUILTIES"
+  ],
+  "max_prefix": [
+    500,
+    500
+  ]
+}

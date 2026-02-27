@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "STLIX Route Servers",
+  "as_set": [
+    "AS46389"
+  ],
+  "max_prefix": [
+    200000,
+    100000
+  ]
+}

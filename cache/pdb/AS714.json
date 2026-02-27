@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Apple Inc.",
+  "as_set": [
+    "AS-APPLE"
+  ],
+  "max_prefix": [
+    10000,
+    1000
+  ]
+}

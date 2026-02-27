@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "TWDS",
+  "as_set": [
+    "AS-TWDS -S RIPE"
+  ],
+  "max_prefix": [
+    600,
+    600
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "AS216342",
+  "as_set": [
+    "AS216342:AS-MARIONIC"
+  ],
+  "max_prefix": [
+    1,
+    32
+  ]
+}

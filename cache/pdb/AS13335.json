@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Cloudflare",
+  "as_set": [
+    "AS13335:AS-CLOUDFLARE"
+  ],
+  "max_prefix": [
+    80000,
+    30000
+  ]
+}

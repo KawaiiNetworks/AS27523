@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Hytron Network Services Limited",
+  "as_set": [
+    "AS202662:AS-HYTRON"
+  ],
+  "max_prefix": [
+    5000,
+    5000
+  ]
+}
