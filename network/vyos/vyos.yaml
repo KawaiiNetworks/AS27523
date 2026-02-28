@@ -127,7 +127,22 @@ router:
           port: 10179
       sflow:
         agent-address: 192.168.233.2
-        interface: [eth0, eth1, eth2, eth3, eth4, eth5, eth6, eth7, eth8, eth9, eth10, eth11, eth12]
+        interface:
+          [
+            eth0,
+            eth1,
+            eth2,
+            eth3,
+            eth4,
+            eth5,
+            eth6,
+            eth7,
+            eth8,
+            eth9,
+            eth10,
+            eth11,
+            eth12,
+          ]
         server:
           - address: 192.168.233.240
             port: 6343
@@ -189,10 +204,6 @@ router:
               - action: permit
                 match: as-path AUTOGEN-AS-ChinaUnicom
                 set: "local-preference '110'"
-              - action: permit
-                # bad upstream
-                match: as-path AUTOGEN-AS-PATH-20495
-                set: "local-preference '50'"
         routeserver:
           - asn: 56584
             neighbor-address:
