@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "Unitas Global",
   "as_set": [
-    "AS-UNITAS -S RADB"
+    "RADB::AS-UNITAS"
   ],
   "max_prefix": [
     15000,

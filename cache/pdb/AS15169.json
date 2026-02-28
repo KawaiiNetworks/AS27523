@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "Google LLC",
   "as_set": [
-    "AS-GOOGLE -S RADB"
+    "RADB::AS-GOOGLE"
   ],
   "max_prefix": [
     15000,

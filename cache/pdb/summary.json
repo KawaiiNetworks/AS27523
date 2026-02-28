@@ -3,7 +3,7 @@
     "type": "normal",
     "name": "JSMSR Network",
     "as_set": [
-      "AS-JSMSR -S ARIN"
+      "ARIN::AS-JSMSR"
     ],
     "max_prefix": [
       10,
@@ -80,7 +80,7 @@
     "type": "normal",
     "name": "Google LLC",
     "as_set": [
-      "AS-GOOGLE -S RADB"
+      "RADB::AS-GOOGLE"
     ],
     "max_prefix": [
       15000,
@@ -102,7 +102,7 @@
     "type": "normal",
     "name": "TWDS",
     "as_set": [
-      "AS-TWDS -S RIPE"
+      "RIPE::AS-TWDS"
     ],
     "max_prefix": [
       600,
@@ -113,7 +113,7 @@
     "type": "normal",
     "name": "Unitas Global",
     "as_set": [
-      "AS-UNITAS -S RADB"
+      "RADB::AS-UNITAS"
     ],
     "max_prefix": [
       15000,
@@ -223,7 +223,7 @@
     "type": "normal",
     "name": "BGP.Tools",
     "as_set": [
-      "AS212232:AS-BGPTOOLS -S RIPE"
+      "RIPE::AS212232:AS-BGPTOOLS"
     ],
     "max_prefix": [
       1,
@@ -234,7 +234,7 @@
     "type": "normal",
     "name": "AS212635",
     "as_set": [
-      "AS212635:AS-212635 -S RIPE"
+      "RIPE::AS212635:AS-212635"
     ],
     "max_prefix": [
       110,
@@ -355,7 +355,7 @@
     "type": "normal",
     "name": "JSMSR Servers",
     "as_set": [
-      "AS-JSMSR -S ARIN"
+      "ARIN::AS-JSMSR"
     ],
     "max_prefix": [
       10,
@@ -498,8 +498,8 @@
     "type": "normal",
     "name": "HE.net",
     "as_set": [
-      "AS-HURRICANE -S RADB",
-      "AS-HURRICANEV6 -S RADB"
+      "RADB::AS-HURRICANE",
+      "RADB::AS-HURRICANEV6"
     ],
     "max_prefix": [
       210000,

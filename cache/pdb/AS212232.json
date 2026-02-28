@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "BGP.Tools",
   "as_set": [
-    "AS212232:AS-BGPTOOLS -S RIPE"
+    "RIPE::AS212232:AS-BGPTOOLS"
   ],
   "max_prefix": [
     1,

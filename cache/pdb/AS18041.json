@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "TWDS",
   "as_set": [
-    "AS-TWDS -S RIPE"
+    "RIPE::AS-TWDS"
   ],
   "max_prefix": [
     600,

@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "AS212635",
   "as_set": [
-    "AS212635:AS-212635 -S RIPE"
+    "RIPE::AS212635:AS-212635"
   ],
   "max_prefix": [
     110,

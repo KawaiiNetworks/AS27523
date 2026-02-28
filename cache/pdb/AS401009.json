@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "JSMSR Servers",
   "as_set": [
-    "AS-JSMSR -S ARIN"
+    "ARIN::AS-JSMSR"
   ],
   "max_prefix": [
     10,

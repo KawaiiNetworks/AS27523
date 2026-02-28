@@ -2,8 +2,8 @@
   "type": "normal",
   "name": "HE.net",
   "as_set": [
-    "AS-HURRICANE -S RADB",
-    "AS-HURRICANEV6 -S RADB"
+    "RADB::AS-HURRICANE",
+    "RADB::AS-HURRICANEV6"
   ],
   "max_prefix": [
     210000,
