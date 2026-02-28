@@ -183,7 +183,7 @@ router:
           - asn: 6204
             neighbor-address: 185.0.1.51
             update-source: eth2
-            in-prepend: "6204 6204"
+            in-prepend: "6204"
             pre-import-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-ChinaTelecom
