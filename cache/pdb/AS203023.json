@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS203023",
+  "type": "normal",
+  "name": "Kawaii Networks E&R",
   "as_set": [
-    "AS203023"
+    "AS203023:AS-KAWAIINETWORKS"
   ],
   "max_prefix": [
-    100,
+    20,
     100
   ]
 }
