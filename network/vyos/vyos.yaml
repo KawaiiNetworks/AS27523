@@ -708,6 +708,14 @@ router:
             update-source: 23.175.184.1
             addpath: true
             multihop: 255
+          - asn: 65500
+            neighbor-address: 216.238.52.191
+            update-source: 23.175.184.1
+            multihop: 255
+            address-family:
+              - ipv4
+              - ipv6
+            addpath: true
 
   - name: core.hkg.atlas.projectk.org
     kernel:
