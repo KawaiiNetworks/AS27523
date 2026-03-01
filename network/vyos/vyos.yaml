@@ -184,6 +184,11 @@ router:
             neighbor-address: 185.0.1.51
             update-source: eth2
             in-prepend: "6204"
+            pre-export-accept:
+              - action: permit
+                set:
+                  - "community add 6204:5105"
+                  - "community add 3491:53400"
             pre-import-accept:
               - action: permit
                 match: as-path AUTOGEN-AS-ChinaTelecom
