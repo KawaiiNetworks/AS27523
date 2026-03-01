@@ -12,7 +12,6 @@ as-set-limit:
     - 16509
     - 20940
     - 49544
-    - 140915
     - 205329
 
 keepup-as-list:
@@ -645,10 +644,6 @@ router:
           - asn: 135671
             passive: true
             neighbor-address: 2602:f93b:131:ffff::13:5671:1
-            update-source: eth6.1000
-          - asn: 140915
-            passive: true
-            neighbor-address: 2602:f93b:131:ffff::14:915:1
             update-source: eth6.1000
           - asn: 150289
             passive: true
