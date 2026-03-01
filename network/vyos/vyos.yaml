@@ -269,8 +269,8 @@ router:
             update-source: 123.253.213.228
             multihop: 255
             address-family:
-              - ipv4
-              - ipv6
+              ipv4: true
+              ipv6: true
             addpath: true
 
   - name: core.mci.atlas.projectk.org
@@ -713,8 +713,8 @@ router:
             update-source: 23.175.184.1
             multihop: 255
             address-family:
-              - ipv4
-              - ipv6
+              ipv4: true
+              ipv6: true
             addpath: true
 
   - name: core.hkg.atlas.projectk.org
