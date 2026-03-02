@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "HEX-NET",
+  "as_set": [
+    "AS209574:AS-ALL"
+  ],
+  "max_prefix": [
+    1,
+    66
+  ]
+}
