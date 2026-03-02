@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "0 16 * * *" # CST 0:00 - full (pdb + bgpq4)
-    - cron: "0 4 * * *" # CST 12:00 - pdb only
+    - cron: "0 15 * * *" # CST 23:00 - full (pdb + bgpq4)
+    - cron: "0 3 * * *" # CST 11:00 - pdb only
   workflow_dispatch:
     inputs:
       mode:
