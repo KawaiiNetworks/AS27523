@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "HEX-NET",
   "as_set": [
-    "AS209574:AS-ALL"
+    "AS209574:AS-HEXNET"
   ],
   "max_prefix": [
     1,
