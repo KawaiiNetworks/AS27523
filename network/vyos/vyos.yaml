@@ -254,6 +254,11 @@ router:
             neighbor-address: 2a0b:71c0:171:ffff:1052:6:2246:1
             update-source: eth1.1052
             extended-nexthop: true
+          - asn: 202335
+            passive: true
+            neighbor-address: 2a0b:71c0:171:1500:c201::1004
+            update-source: eth1.1500
+            extended-nexthop: true
           - asn: 204539
             passive: true
             neighbor-address: 2a0b:71c0:171:ffff:1051:20:4539:1
