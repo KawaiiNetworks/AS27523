@@ -60,6 +60,8 @@ jobs:
           fi
 
       - name: Update cache
+        env:
+          ARIN_API_KEY: ${{ secrets.ARIN_API_KEY }}
         run: python scripts/configure/save-cache.py . ${{ steps.mode.outputs.flag }}
 
       - name: Commit and push
