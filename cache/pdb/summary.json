@@ -124,7 +124,7 @@
     "type": "normal",
     "name": "Haima Network",
     "as_set": [
-      "AS202335:AS-DOWNSTREAM"
+      "RIPE::AS202335:AS-DOWNSTREAM"
     ],
     "max_prefix": [
       1,
