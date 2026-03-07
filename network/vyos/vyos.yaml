@@ -178,7 +178,7 @@ router:
         - action: permit
           match: ipv6 address prefix-list AUTOGEN-LOCAL-ASN-PREFIX6
           set:
-            - "large-community add 27523:2002:6939" # Prepend x2 to HE
+            - "large-community add 27523:2001:6939" # Prepend x2 to HE
     protocols:
       rpki:
         - server: 192.168.233.240
@@ -204,9 +204,6 @@ router:
                 set: "local-preference '110'"
               - action: permit
                 match: as-path AUTOGEN-AS-ChinaUnicom
-                set: "local-preference '110'"
-              - action: permit
-                match: as-path AUTOGEN-AS-ChinaTelecom
                 set: "local-preference '110'"
           - asn: 6939
             neighbor-address: 2001:7f8:10f::1b1b:154
