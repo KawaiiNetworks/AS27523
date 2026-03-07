@@ -178,7 +178,7 @@ router:
         - action: permit
           match: ipv6 address prefix-list AUTOGEN-LOCAL-ASN-PREFIX6
           set:
-            - "community add 27523:2002:6939" # Prepend x2 to HE
+            - "large-community add 27523:2002:6939" # Prepend x2 to HE
     protocols:
       rpki:
         - server: 192.168.233.240
