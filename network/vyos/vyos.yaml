@@ -176,7 +176,7 @@ router:
             - "community add 1299:5879" # Do not announce to China Unicom in North America
             - "community add 1299:2871" # Prepend x1 to China Unicom in Europe
         - action: permit
-          match: ip address prefix-list AUTOGEN-LOCAL-ASN-PREFIX6
+          match: ipv6 address prefix-list AUTOGEN-LOCAL-ASN-PREFIX6
           set:
             - "community add 27523:2002:6939" # Prepend x2 to HE
     protocols:
