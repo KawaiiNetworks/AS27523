@@ -178,6 +178,11 @@ router:
         - action: permit
           match: ipv6 address prefix-list AUTOGEN-LOCAL-ASN-PREFIX6
           set:
+            - "community add 1299:5889" # Do not announce to China Telecom in North America
+            - "community add 1299:5879" # Do not announce to China Unicom in North America
+            - "community add 1299:5009" # Do not announce in North America
+            - "community add 1299:2009" # Do not announce in Europe
+            - "community add 1299:7009" # Do not announce in Asia
             - "large-community add 27523:2001:6939" # Prepend x2 to HE
     protocols:
       rpki:
