@@ -1,7 +1,5 @@
 {
-  "cone_members": [
-    216342
-  ],
+  "cone_members": [],
   "prefix4": [],
   "prefix6": [
     [
@@ -12,12 +10,5 @@
     ]
   ],
   "cone_prefix4": [],
-  "cone_prefix6": [
-    [
-      "2a14:7580:e400::",
-      "40",
-      "40",
-      "48"
-    ]
-  ]
+  "cone_prefix6": []
 }
