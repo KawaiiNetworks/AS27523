@@ -253,47 +253,47 @@
     ]
   },
   "212635": {
-    "type": "not_found",
-    "name": "Nonexistent AS212635",
+    "type": "normal",
+    "name": "AS212635",
     "as_set": [
-      "AS212635"
+      "RIPE::AS212635:AS-212635"
     ],
     "max_prefix": [
-      100,
-      100
+      150,
+      750
     ]
   },
   "215526": {
-    "type": "not_found",
-    "name": "Nonexistent AS215526",
+    "type": "normal",
+    "name": "SHAHEWAY-NET",
     "as_set": [
       "AS215526"
     ],
     "max_prefix": [
-      100,
-      100
+      1,
+      1
     ]
   },
   "216299": {
-    "type": "not_found",
-    "name": "Nonexistent AS216299",
+    "type": "normal",
+    "name": "LCNetwork",
     "as_set": [
-      "AS216299"
+      "AS216299:AS-LCNET-PEERS"
     ],
     "max_prefix": [
-      100,
-      100
+      10,
+      1000
     ]
   },
   "216342": {
-    "type": "not_found",
-    "name": "Nonexistent AS216342",
+    "type": "normal",
+    "name": "AS216342",
     "as_set": [
-      "AS216342"
+      "AS216342:AS-MARIONIC"
     ],
     "max_prefix": [
-      100,
-      100
+      1,
+      32
     ]
   },
   "25668": {

@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS215526",
+  "type": "normal",
+  "name": "SHAHEWAY-NET",
   "as_set": [
     "AS215526"
   ],
   "max_prefix": [
-    100,
-    100
+    1,
+    1
   ]
 }
