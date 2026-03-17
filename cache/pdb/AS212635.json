@@ -1,11 +1,11 @@
 {
-  "type": "normal",
-  "name": "AS212635",
+  "type": "not_found",
+  "name": "Nonexistent AS212635",
   "as_set": [
-    "RIPE::AS212635:AS-212635"
+    "AS212635"
   ],
   "max_prefix": [
-    110,
-    200
+    100,
+    100
   ]
 }

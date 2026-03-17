@@ -1,11 +1,11 @@
 {
-  "type": "normal",
-  "name": "LCNetwork",
+  "type": "not_found",
+  "name": "Nonexistent AS216299",
   "as_set": [
-    "AS216299:AS-LCNET-PEERS"
+    "AS216299"
   ],
   "max_prefix": [
-    10,
-    1000
+    100,
+    100
   ]
 }
