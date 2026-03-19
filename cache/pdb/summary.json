@@ -286,14 +286,14 @@
     ]
   },
   "216342": {
-    "type": "normal",
-    "name": "AS216342",
+    "type": "not_found",
+    "name": "Nonexistent AS216342",
     "as_set": [
-      "AS216342:AS-MARIONIC"
+      "AS216342"
     ],
     "max_prefix": [
-      1,
-      32
+      100,
+      100
     ]
   },
   "25668": {
