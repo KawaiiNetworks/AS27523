@@ -238,6 +238,11 @@ router:
               - 185.1.161.0
               - 2001:7f8:10f::dc49:2
             update-source: eth10.2604
+          - asn: 203023
+            neighbor-address:
+              - 195.60.92.65
+              - 2602:f93b:1a35:1311::65
+            update-source: eth1.1311
         peer:
           - asn: 6939
             neighbor-address: 185.1.160.154
