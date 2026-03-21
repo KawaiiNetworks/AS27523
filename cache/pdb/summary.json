@@ -439,6 +439,17 @@
       2500
     ]
   },
+  "53889": {
+    "type": "normal",
+    "name": "WJY LLC",
+    "as_set": [
+      "AS-WJY"
+    ],
+    "max_prefix": [
+      100,
+      1000
+    ]
+  },
   "56393": {
     "type": "normal",
     "name": "Frys-IX",
