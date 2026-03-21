@@ -661,6 +661,16 @@ router:
             passive: true
             neighbor-address: 2602:f93b:131:ffff::1:2198:1
             update-source: eth6.1000
+          - asn: 53889
+            passive: true
+            neighbor-address: 23.175.184.118
+            update-source: eth4
+            default-originate: true
+          - asn: 53889
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::5:3889:1
+            update-source: eth6.1000
+            default-originate: true
           # - asn: 64515
           #   passive: true
           #   neighbor-address: 2602:f93b:131:ffff::6:4515:1
