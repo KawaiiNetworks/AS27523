@@ -406,6 +406,17 @@
       100000
     ]
   },
+  "40929": {
+    "type": "normal",
+    "name": "MDREN",
+    "as_set": [
+      "AS-MOEDOVE-BN"
+    ],
+    "max_prefix": [
+      25,
+      300
+    ]
+  },
   "44324": {
     "type": "normal",
     "name": "MoeDove Global",

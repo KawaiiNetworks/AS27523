@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "MDREN",
+  "as_set": [
+    "AS-MOEDOVE-BN"
+  ],
+  "max_prefix": [
+    25,
+    300
+  ]
+}
