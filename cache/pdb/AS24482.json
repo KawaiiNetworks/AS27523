@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "SG.GS",
+  "as_set": [
+    "AS-SGGS"
+  ],
+  "max_prefix": [
+    15000,
+    4000
+  ]
+}

@@ -296,6 +296,17 @@
       100
     ]
   },
+  "24482": {
+    "type": "normal",
+    "name": "SG.GS",
+    "as_set": [
+      "AS-SGGS"
+    ],
+    "max_prefix": [
+      15000,
+      4000
+    ]
+  },
   "25668": {
     "type": "normal",
     "name": "AEBC Internet Corp.",
