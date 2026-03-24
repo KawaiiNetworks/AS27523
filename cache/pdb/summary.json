@@ -254,7 +254,7 @@
   },
   "212635": {
     "type": "normal",
-    "name": "AS212635",
+    "name": "AS212635 Network",
     "as_set": [
       "RIPE::AS212635:AS-212635"
     ],
