@@ -11,14 +11,14 @@
     ]
   },
   "13150": {
-    "type": "normal",
-    "name": "Cato Networks",
+    "type": "not_found",
+    "name": "Nonexistent AS13150",
     "as_set": [
-      "AS-CATONETWORKS-ASNS"
+      "AS13150"
     ],
     "max_prefix": [
-      800,
-      1
+      100,
+      100
     ]
   },
   "13335": {
