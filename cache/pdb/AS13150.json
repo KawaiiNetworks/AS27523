@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS13150",
+  "type": "normal",
+  "name": "Cato Networks",
   "as_set": [
-    "AS13150"
+    "AS-CATONETWORKS-ASNS"
   ],
   "max_prefix": [
-    100,
-    100
+    800,
+    1
   ]
 }
