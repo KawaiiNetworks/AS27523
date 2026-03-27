@@ -226,6 +226,10 @@ router:
           - asn: 50917
             neighbor-address: 2001:678:7ec:2202::250
             update-source: eth9
+            pre-import-accept:
+              - action: permit
+                match: as-path AUTOGEN-AS-ChinaMobile
+                set: "local-preference '110'"
         routeserver:
           - asn: 56584
             neighbor-address:
