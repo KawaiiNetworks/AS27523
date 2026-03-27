@@ -230,6 +230,9 @@ router:
               - action: permit
                 match: as-path AUTOGEN-AS-ChinaMobile
                 set: "local-preference '110'"
+              - action: permit
+                match: as-path AUTOGEN-AS-ChinaTelecom
+                set: "local-preference '110'"
         routeserver:
           - asn: 56584
             neighbor-address:
