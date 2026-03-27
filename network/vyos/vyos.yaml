@@ -214,7 +214,7 @@ router:
             neighbor-address: 2001:7f8:10f::1b1b:154
             update-source: eth10.2604
           - asn: 50917
-            neighbor-address: 45.152.39.140
+            neighbor-address: 89.37.98.250
             update-source: eth9
             pre-import-accept:
               - action: permit
@@ -223,6 +223,9 @@ router:
               - action: permit
                 match: as-path AUTOGEN-AS-ChinaUnicom
                 set: "local-preference '110'"
+          - asn: 50917
+            neighbor-address: 2001:678:7ec:2202::250
+            update-source: eth9
         routeserver:
           - asn: 56584
             neighbor-address:
