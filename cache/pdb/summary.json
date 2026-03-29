@@ -157,7 +157,9 @@
     "type": "normal",
     "name": "AXIC",
     "as_set": [
-      "AS-AXIC"
+      "ARIN::AS-AXIC",
+      "RADB::AS-AXIC",
+      "RIPE::AS204539:AS-AXIC"
     ],
     "max_prefix": [
       1024,
