@@ -142,6 +142,17 @@
       5000
     ]
   },
+  "202939": {
+    "type": "normal",
+    "name": "Chimon Network",
+    "as_set": [
+      "AS-CHIMON"
+    ],
+    "max_prefix": [
+      10,
+      300
+    ]
+  },
   "203023": {
     "type": "normal",
     "name": "Kawaii IX RS",

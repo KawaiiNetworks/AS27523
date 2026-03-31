@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Chimon Network",
+  "as_set": [
+    "AS-CHIMON"
+  ],
+  "max_prefix": [
+    10,
+    300
+  ]
+}
