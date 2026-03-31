@@ -1,11 +1,11 @@
 {
-  "type": "normal",
-  "name": "SG.GS",
+  "type": "not_found",
+  "name": "Nonexistent AS24482",
   "as_set": [
-    "AS-SGGS"
+    "AS24482"
   ],
   "max_prefix": [
-    15000,
-    4000
+    100,
+    100
   ]
 }

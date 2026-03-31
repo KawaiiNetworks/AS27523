@@ -99,14 +99,14 @@
     ]
   },
   "18041": {
-    "type": "normal",
-    "name": "TWDS",
+    "type": "not_found",
+    "name": "Nonexistent AS18041",
     "as_set": [
-      "RIPE::AS-TWDS"
+      "AS18041"
     ],
     "max_prefix": [
-      600,
-      600
+      100,
+      100
     ]
   },
   "1828": {
@@ -200,14 +200,14 @@
     ]
   },
   "20940": {
-    "type": "normal",
-    "name": "Akamai Technologies",
+    "type": "not_found",
+    "name": "Nonexistent AS20940",
     "as_set": [
-      "AS-AKAMAI"
+      "AS20940"
     ],
     "max_prefix": [
-      12000,
-      5000
+      100,
+      100
     ]
   },
   "209481": {
@@ -299,14 +299,14 @@
     ]
   },
   "24482": {
-    "type": "normal",
-    "name": "SG.GS",
+    "type": "not_found",
+    "name": "Nonexistent AS24482",
     "as_set": [
-      "AS-SGGS"
+      "AS24482"
     ],
     "max_prefix": [
-      15000,
-      4000
+      100,
+      100
     ]
   },
   "25668": {
