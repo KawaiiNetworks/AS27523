@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS18041",
+  "type": "normal",
+  "name": "TWDS",
   "as_set": [
-    "AS18041"
+    "RIPE::AS-TWDS"
   ],
   "max_prefix": [
-    100,
-    100
+    600,
+    600
   ]
 }
