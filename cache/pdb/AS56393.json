@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS56393",
+  "type": "normal",
+  "name": "Frys-IX",
   "as_set": [
-    "AS56393"
+    "AS-FRYS-IX-CONNECTED"
   ],
   "max_prefix": [
-    100,
-    100
+    320000,
+    110000
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS56584",
+  "type": "normal",
+  "name": "InterIX",
   "as_set": [
-    "AS56584"
+    "AS56584:AS-INTERIX"
   ],
   "max_prefix": [
-    100,
-    100
+    500000,
+    100000
   ]
 }
