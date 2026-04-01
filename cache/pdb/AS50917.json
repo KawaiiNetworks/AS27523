@@ -1,11 +1,11 @@
 {
-  "type": "normal",
-  "name": "BACKBONE.direct",
+  "type": "not_found",
+  "name": "Nonexistent AS50917",
   "as_set": [
-    "AS-SITEFAST"
+    "AS50917"
   ],
   "max_prefix": [
-    1000,
-    2500
+    100,
+    100
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "type": "normal",
-  "name": "WJY LLC",
+  "type": "not_found",
+  "name": "Nonexistent AS53889",
   "as_set": [
-    "AS-WJY"
+    "AS53889"
   ],
   "max_prefix": [
     100,
-    1000
+    100
   ]
 }

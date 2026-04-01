@@ -464,47 +464,47 @@
     ]
   },
   "50917": {
-    "type": "normal",
-    "name": "BACKBONE.direct",
+    "type": "not_found",
+    "name": "Nonexistent AS50917",
     "as_set": [
-      "AS-SITEFAST"
-    ],
-    "max_prefix": [
-      1000,
-      2500
-    ]
-  },
-  "53889": {
-    "type": "normal",
-    "name": "WJY LLC",
-    "as_set": [
-      "AS-WJY"
+      "AS50917"
     ],
     "max_prefix": [
       100,
-      1000
+      100
+    ]
+  },
+  "53889": {
+    "type": "not_found",
+    "name": "Nonexistent AS53889",
+    "as_set": [
+      "AS53889"
+    ],
+    "max_prefix": [
+      100,
+      100
     ]
   },
   "56393": {
-    "type": "normal",
-    "name": "Frys-IX",
+    "type": "not_found",
+    "name": "Nonexistent AS56393",
     "as_set": [
-      "AS-FRYS-IX-CONNECTED"
+      "AS56393"
     ],
     "max_prefix": [
-      320000,
-      110000
+      100,
+      100
     ]
   },
   "56584": {
-    "type": "normal",
-    "name": "InterIX",
+    "type": "not_found",
+    "name": "Nonexistent AS56584",
     "as_set": [
-      "AS56584:AS-INTERIX"
+      "AS56584"
     ],
     "max_prefix": [
-      500000,
-      100000
+      100,
+      100
     ]
   },
   "6204": {
