@@ -1,11 +1,11 @@
 {
-  "type": "normal",
-  "name": "STUIX RS",
+  "type": "not_found",
+  "name": "Nonexistent AS38855",
   "as_set": [
-    "AS-STUIX"
+    "AS38855"
   ],
   "max_prefix": [
-    300000,
-    150000
+    100,
+    100
   ]
 }

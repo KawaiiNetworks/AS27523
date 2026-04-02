@@ -1,11 +1,11 @@
 {
-  "type": "normal",
-  "name": "i3D.net",
+  "type": "not_found",
+  "name": "Nonexistent AS49544",
   "as_set": [
-    "AS-INTERACTIVE3D"
+    "AS49544"
   ],
   "max_prefix": [
-    5000,
-    2000
+    100,
+    100
   ]
 }
