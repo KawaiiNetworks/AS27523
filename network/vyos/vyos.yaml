@@ -139,6 +139,17 @@ router:
             eth11,
             eth12,
           ]
+        vpp-interface: 
+          [
+            eth1,
+            eth2,
+            eth3,
+            eth4,
+            eth5,
+            eth6,
+            eth9,
+            eth10
+          ]
         server:
           - address: 192.168.233.240
             port: 6343
