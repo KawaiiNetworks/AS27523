@@ -376,36 +376,36 @@
     ]
   },
   "38855": {
-    "type": "not_found",
-    "name": "Nonexistent AS38855",
+    "type": "normal",
+    "name": "STUIX RS",
     "as_set": [
-      "AS38855"
+      "AS-STUIX"
     ],
     "max_prefix": [
-      100,
-      100
+      300000,
+      150000
     ]
   },
   "395909": {
-    "type": "not_found",
-    "name": "Nonexistent AS395909",
+    "type": "normal",
+    "name": "Kawaii Networks Education",
     "as_set": [
-      "AS395909"
+      "AS395909:AS-KAWAIINETWORKS"
     ],
     "max_prefix": [
-      100,
+      1,
       100
     ]
   },
   "401009": {
-    "type": "not_found",
-    "name": "Nonexistent AS401009",
+    "type": "normal",
+    "name": "JSMSR Servers",
     "as_set": [
-      "AS401009"
+      "ARIN::AS-JSMSR"
     ],
     "max_prefix": [
-      100,
-      100
+      10,
+      1000
     ]
   },
   "40542": {
@@ -420,14 +420,14 @@
     ]
   },
   "40929": {
-    "type": "not_found",
-    "name": "Nonexistent AS40929",
+    "type": "normal",
+    "name": "MDREN",
     "as_set": [
-      "AS40929"
+      "AS-MOEDOVE-BN"
     ],
     "max_prefix": [
-      100,
-      100
+      25,
+      300
     ]
   },
   "44324": {
@@ -453,14 +453,14 @@
     ]
   },
   "49544": {
-    "type": "not_found",
-    "name": "Nonexistent AS49544",
+    "type": "normal",
+    "name": "i3D.net",
     "as_set": [
-      "AS49544"
+      "AS-INTERACTIVE3D"
     ],
     "max_prefix": [
-      100,
-      100
+      5000,
+      2000
     ]
   },
   "50917": {

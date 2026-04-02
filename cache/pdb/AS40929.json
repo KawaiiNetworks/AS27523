@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS40929",
+  "type": "normal",
+  "name": "MDREN",
   "as_set": [
-    "AS40929"
+    "AS-MOEDOVE-BN"
   ],
   "max_prefix": [
-    100,
-    100
+    25,
+    300
   ]
 }
