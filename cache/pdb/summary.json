@@ -387,25 +387,25 @@
     ]
   },
   "395909": {
-    "type": "normal",
-    "name": "Kawaii Networks Education",
+    "type": "not_found",
+    "name": "Nonexistent AS395909",
     "as_set": [
-      "AS395909:AS-KAWAIINETWORKS"
+      "AS395909"
     ],
     "max_prefix": [
-      1,
+      100,
       100
     ]
   },
   "401009": {
-    "type": "normal",
-    "name": "JSMSR Servers",
+    "type": "not_found",
+    "name": "Nonexistent AS401009",
     "as_set": [
-      "ARIN::AS-JSMSR"
+      "AS401009"
     ],
     "max_prefix": [
-      10,
-      1000
+      100,
+      100
     ]
   },
   "40542": {
