@@ -120,6 +120,17 @@
       1000
     ]
   },
+  "199310": {
+    "type": "normal",
+    "name": "QFLink",
+    "as_set": [
+      "AS199310:AS-QFNET"
+    ],
+    "max_prefix": [
+      1000,
+      2000
+    ]
+  },
   "202335": {
     "type": "normal",
     "name": "Haima Network",
