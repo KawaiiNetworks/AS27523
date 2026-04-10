@@ -730,6 +730,11 @@ router:
             passive: true
             neighbor-address: 2602:f93b:131:ffff::15:289:1
             update-source: eth6.1000
+          - asn: 199310
+            passive: true
+            neighbor-address: 2602:f93b:131:ffff::19:9310:1
+            update-source: eth6.1000
+            extended-nexthop: true
           - asn: 202335
             passive: true
             neighbor-address: 2602:f93b:131:c001::1094
