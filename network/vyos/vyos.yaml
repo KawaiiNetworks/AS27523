@@ -337,6 +337,10 @@ router:
               - 23.154.104.104
               - 2a0b:71c0:171:1500:c201::1003
             update-source: eth1.1500
+          - asn: 395909
+            neighbor-address: 2a0b:71c0:171:1513::23
+            update-source: eth1.1513
+            default-originate: true
           - asn: 212232
             neighbor-address: 2001:7f8:134::60
             update-source: eth2
