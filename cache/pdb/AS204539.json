@@ -2,12 +2,10 @@
   "type": "normal",
   "name": "AXIC",
   "as_set": [
-    "ARIN::AS-AXIC",
-    "RADB::AS-AXIC",
-    "RIPE::AS204539:AS-AXIC"
+    "AS-AXIC"
   ],
   "max_prefix": [
-    1024,
-    8192
+    250,
+    1500
   ]
 }
