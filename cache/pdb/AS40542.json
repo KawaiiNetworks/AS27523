@@ -1,11 +1,11 @@
 {
-  "type": "not_found",
-  "name": "Nonexistent AS40542",
+  "type": "normal",
+  "name": "KCIX Route Server",
   "as_set": [
     "AS40542"
   ],
   "max_prefix": [
-    100,
-    100
+    200000,
+    100000
   ]
 }

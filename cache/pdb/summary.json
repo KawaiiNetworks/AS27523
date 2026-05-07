@@ -285,6 +285,18 @@
       750
     ]
   },
+  "215172": {
+    "type": "normal",
+    "name": "JianyueLab Main Network",
+    "as_set": [
+      "RADB::AS-JYL",
+      "RIPE::AS215172:AS-JIANYUELAB"
+    ],
+    "max_prefix": [
+      100,
+      1000
+    ]
+  },
   "215526": {
     "type": "normal",
     "name": "Shahe Networks",
@@ -418,14 +430,14 @@
     ]
   },
   "40542": {
-    "type": "not_found",
-    "name": "Nonexistent AS40542",
+    "type": "normal",
+    "name": "KCIX Route Server",
     "as_set": [
       "AS40542"
     ],
     "max_prefix": [
-      100,
-      100
+      200000,
+      100000
     ]
   },
   "40929": {

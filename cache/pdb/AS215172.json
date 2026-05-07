@@ -1,0 +1,12 @@
+{
+  "type": "normal",
+  "name": "JianyueLab Main Network",
+  "as_set": [
+    "RADB::AS-JYL",
+    "RIPE::AS215172:AS-JIANYUELAB"
+  ],
+  "max_prefix": [
+    100,
+    1000
+  ]
+}
