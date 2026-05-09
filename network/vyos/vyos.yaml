@@ -15,6 +15,7 @@ as-set-limit:
     - 40929
     - 49544
     - 62246
+    - 199310
     - 204539
     - 205329
     - 212635
@@ -131,25 +132,8 @@ router:
           port: 10179
       sflow:
         agent-address: 192.168.233.2
-        interface:
-          [
-            eth0,
-            eth7,
-            eth8,
-            eth11,
-            eth12,
-          ]
-        vpp-interface: 
-          [
-            eth1,
-            eth2,
-            eth3,
-            eth4,
-            eth5,
-            eth6,
-            eth9,
-            eth10
-          ]
+        interface: [eth0, eth7, eth8, eth11, eth12]
+        vpp-interface: [eth1, eth2, eth3, eth4, eth5, eth6, eth9, eth10]
         server:
           - address: 192.168.233.240
             port: 6343
