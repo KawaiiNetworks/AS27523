@@ -1,12 +1,11 @@
 {
-  "type": "normal",
-  "name": "JianyueLab Main Network",
+  "type": "not_found",
+  "name": "Nonexistent AS215172",
   "as_set": [
-    "RADB::AS-JYL",
-    "RIPE::AS215172:AS-JIANYUELAB"
+    "AS215172"
   ],
   "max_prefix": [
     100,
-    1000
+    100
   ]
 }
