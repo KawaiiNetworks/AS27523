@@ -286,36 +286,37 @@
     ]
   },
   "215172": {
-    "type": "not_found",
-    "name": "Nonexistent AS215172",
+    "type": "normal",
+    "name": "JianyueLab Main Network",
     "as_set": [
-      "AS215172"
+      "RADB::AS-JYL",
+      "RIPE::AS215172:AS-JIANYUELAB"
     ],
     "max_prefix": [
       100,
-      100
+      1000
     ]
   },
   "215526": {
-    "type": "not_found",
-    "name": "Nonexistent AS215526",
+    "type": "normal",
+    "name": "Shahe Networks",
     "as_set": [
       "AS215526"
     ],
     "max_prefix": [
-      100,
-      100
+      1,
+      1
     ]
   },
   "216299": {
-    "type": "not_found",
-    "name": "Nonexistent AS216299",
+    "type": "normal",
+    "name": "LCNetwork",
     "as_set": [
-      "AS216299"
+      "AS216299:AS-LCNET-PEERS"
     ],
     "max_prefix": [
-      100,
-      100
+      10,
+      1000
     ]
   },
   "216342": {
@@ -407,25 +408,25 @@
     ]
   },
   "395909": {
-    "type": "not_found",
-    "name": "Nonexistent AS395909",
+    "type": "normal",
+    "name": "Kawaii Networks Education",
     "as_set": [
-      "AS395909"
+      "AS395909:AS-KAWAIINETWORKS"
     ],
     "max_prefix": [
-      100,
+      1,
       100
     ]
   },
   "401009": {
-    "type": "not_found",
-    "name": "Nonexistent AS401009",
+    "type": "normal",
+    "name": "JSMSR Servers",
     "as_set": [
-      "AS401009"
+      "ARIN::AS-JSMSR"
     ],
     "max_prefix": [
-      100,
-      100
+      10,
+      1000
     ]
   },
   "40542": {
