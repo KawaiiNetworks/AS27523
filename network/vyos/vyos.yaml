@@ -183,16 +183,7 @@ router:
         ibgp: []
         upstream:
           - asn: 6204
-            neighbor-address: 185.0.1.51
-            update-source: eth2
-            in-prepend: "6204"
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-ChinaTelecom
-                set: "local-preference '110'"
-          - asn: 6204
             neighbor-address: 185.1.184.51
-            shutdown: true
             update-source: eth2
             in-prepend: "6204"
             pre-import-accept:
