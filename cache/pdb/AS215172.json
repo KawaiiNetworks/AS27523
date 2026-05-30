@@ -1,6 +1,6 @@
 {
   "type": "normal",
-  "name": "JianyueLab Main Network",
+  "name": "JianyueLab Global Backbone",
   "as_set": [
     "RADB::AS-JYL",
     "RIPE::AS215172:AS-JIANYUELAB"
