@@ -64,11 +64,11 @@ template:
     # PassGFW: routes ORIGINATED by these ASNs bypass the GFW upstream filter
     # (matched with `bgp_path.last ~ ...`, i.e. origin, not transit).
     passgfw: &passgfw
-      - 15133   # Edgecast
-      - 54113   # Fastly
-      - 20940   # Akamai
-      - 3462    # HiNet
-      - 15169   # Google
+      - 15133 # Edgecast
+      - 54113 # Fastly
+      - 20940 # Akamai
+      - 3462 # HiNet
+      - 15169 # Google
       - 16550
       - 16591
       - 19527
@@ -77,38 +77,29 @@ template:
       - 139070
       - 139190
       - 396982
-      - 62014   # Telegram
+      - 62014 # Telegram
       - 62041
       - 59930
-      - 13414   # Twitter
+      - 13414 # Twitter
       - 35995
       - 63179
-      - 13335   # Cloudflare
-      - 4694    # IDC Frontier
-      - 14618   # Amazon
+      - 13335 # Cloudflare
+      - 4694 # IDC Frontier
+      - 14618 # Amazon
       - 16509
-      - 14907   # Wikimedia
-      - 32934   # Meta
+      - 14907 # Wikimedia
+      - 32934 # Meta
       - 54115
       - 63293
   filters:
     # only import routes originated by a PassGFW ASN (GFW bypass).
     gfw-import: &gfw_import |
       if !(bgp_path.last ~ autogen_as_passgfw) then reject;
-    # export to a GFW-bypass downstream; first-match-wins, mirrors the old FRR
-    # route-map order (PassGFW origin / drop China / from peer / from routeserver).
-    wg-export: &wg_export |
-      if bgp_path.last ~ autogen_as_passgfw then accept;
-      if is_china_as_path() then reject;
-      if large_community_from_peer ~ bgp_large_community then accept;
-      if large_community_from_routeserver ~ bgp_large_community then accept;
-      reject;
 
 router:
   # ==========================================================================
   - name: core.ams.atlas.projectk.org
     router-id: 23.154.104.1
-
     service:
       bmp:
         - target: akvorado
@@ -128,21 +119,31 @@ router:
         listen-address: 192.168.233.2
         location: AMS
         encrypted-password: d200010e2fed6258d4d978cde2e3e6ec8d4f600d
-
     defines:
       as-sets:
         # contains-semantics (old FRR `_asn_` regex) -> path_contains_asn_set()
         AUTOGEN-AS-ChinaMobile:
-          [9808, 9231, 58453, 58807, 132389, 135054, 137872, 139619, 141419, 209141, 268862, 328787]
+          [
+            9808,
+            9231,
+            58453,
+            58807,
+            132389,
+            135054,
+            137872,
+            139619,
+            141419,
+            209141,
+            268862,
+            328787,
+          ]
         AUTOGEN-AS-ChinaUnicom: [4837, 9929, 10099]
         AUTOGEN-AS-ChinaTelecom: [4134, 4809, 23764]
-
     protocols:
       rpki:
         - server: 192.168.233.240
           port: 8282
           preference: 10
-
       kernel:
         ipv4:
           pre-export-accept: |
@@ -152,7 +153,6 @@ router:
           pre-export-accept: |
             if source = RTS_BGP then krt_prefsrc = 2a0b:71c0:171::1;
             if source = RTS_STATIC then krt_prefsrc = 2a0b:71c0:171::1;
-
       # was redistribute.pre-accept: tag locally-originated prefixes with TE
       # communities so upstreams steer/limit them.
       direct:
@@ -169,10 +169,8 @@ router:
             bgp_community.add((1299, 5009));    # Do not announce in NA
             bgp_large_community.add((27523, 2001, 6939));  # Prepend x2 to HE
           }
-
       bgp:
         ibgp: []
-
         upstream:
           - asn: 6204
             neighbor-address: 185.1.184.51
@@ -204,7 +202,6 @@ router:
             pre-import-accept: |
               if path_contains_asn_set(autogen_as_chinamobile) then bgp_local_pref = 110;
               if path_contains_asn_set(autogen_as_chinatelecom) then bgp_local_pref = 110;
-
         routeserver:
           - asn: 56584
             neighbor-address:
@@ -226,7 +223,6 @@ router:
               - 195.60.92.65
               - 2602:f93b:1a35:1311::65
             # was update-source: eth1.1311
-
         peer:
           - asn: 6939
             neighbor-address: 185.1.184.189
@@ -264,7 +260,6 @@ router:
               - 185.1.184.25
               - 2001:7f8:134::25
             # was update-source: eth2
-
         downstream:
           - asn: 40929
             passive: true
@@ -324,10 +319,8 @@ router:
               ipv6: true
             addpath: true
 
-  # ==========================================================================
   - name: core.mci.atlas.projectk.org
     router-id: 23.175.184.1
-
     service:
       sflow:
         agent-address: 2602:f93b:131::1
@@ -341,18 +334,15 @@ router:
         listen-address: 2602:f93b:131::1
         location: MCI
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
-
     # NOTE: the old redistribute rule tagging Google /48 (large-community
     # 27523:1000:15169) was already DISABLED via the AUTOGEN-DNA-GOOGLE deny
     # prefix-list ("流量太大了，还是分到peer吧"), so it is intentionally not
     # carried over. Re-add a direct.pre-import-accept hook if you want it back.
-
     protocols:
       rpki:
         - server: 192.168.32.2
           port: 8082
           preference: 10
-
       kernel:
         ipv4:
           pre-export-accept: |
@@ -362,12 +352,10 @@ router:
           pre-export-accept: |
             if source = RTS_BGP then krt_prefsrc = 2602:f93b:131::1;
             if source = RTS_STATIC then krt_prefsrc = 2602:f93b:131::1;
-
       bgp:
         parameters:
           - bestpath as-path multipath-relax
         ibgp: []
-
         upstream:
           - asn: 6939
             out-prepend: "27523"
@@ -405,7 +393,6 @@ router:
             out-prepend: "27523 27523"
             neighbor-address: 2001:4858:aaaa:211::1
             # was update-source: eth7
-
         routeserver:
           - asn: 33108
             description: SIX IPv4 RS
@@ -457,7 +444,6 @@ router:
               - 206.83.12.254
               - 2001:504:98::254
             # was update-source: eth2.314
-
         peer:
           - asn: 714
             description: Apple SIX
@@ -583,7 +569,6 @@ router:
               - 206.81.80.117
               - 2001:504:16::c188
             # was update-source: eth3.2
-
         downstream:
           - asn: 12198
             passive: true
@@ -703,83 +688,8 @@ router:
               ipv6: true
             addpath: true
 
-  # ==========================================================================
-  - name: core.hkg.atlas.projectk.org
-    router-id: 82.152.161.84
-
-    service:
-      sflow:
-        agent-address: 2602:f93b:121::1
-        interface: [eth0, eth1]
-        server:
-          - address: 2602:f93b:131:32::200
-            port: 6343
-          - address: 162.159.65.1
-            port: 6343
-      snmp:
-        listen-address: 2602:f93b:121::1
-        location: HKG
-        encrypted-password: 23ca3d9e7b16c635bd6348266ae954a90d81b17f
-
-    defines:
-      as-sets:
-        AUTOGEN-AS-PassGFW: *passgfw
-
-    protocols:
-      rpki:
-        - server: rtr.rpki.cloudflare.com
-          port: 8282
-          preference: 10
-
-      kernel:
-        ipv4:
-          pre-export-accept: |
-            if source = RTS_BGP then krt_prefsrc = 82.152.161.84;
-            if source = RTS_STATIC then krt_prefsrc = 82.152.161.84;
-        ipv6:
-          pre-export-accept: |
-            if source = RTS_BGP then krt_prefsrc = 2602:f93b:121::1;
-            if source = RTS_STATIC then krt_prefsrc = 2602:f93b:121::1;
-
-      bgp:
-        ibgp: []
-
-        upstream:
-          - asn: 202662
-            multihop: 2
-            neighbor-address: 10.10.0.11
-            # was update-source: eth0
-          - asn: 202662
-            multihop: 2
-            neighbor-address: fc00:1000::11
-            # was update-source: eth0
-
-        routeserver: []
-        peer: []
-
-        downstream:
-          - asn: 395909
-            passive: true
-            extended-nexthop: true
-            neighbor-address: "fe80::1%wg1221"   # FIXME placeholder LL (was: wg1221)
-            pre-export-accept: |
-              if bgp_path.last ~ autogen_as_passgfw then accept;
-              reject;
-          - asn: 212232
-            neighbor-address: 185.230.223.75
-            source-address: 82.152.161.84
-            addpath: true
-            multihop: 255
-          - asn: 212232
-            neighbor-address: 2a0c:2f07:9459::b19
-            source-address: 2602:f93b:121::1
-            addpath: true
-            multihop: 255
-
-  # ==========================================================================
   - name: core.tpe.atlas.projectk.org
     router-id: 103.147.22.125
-
     service:
       sflow:
         agent-address: 2602:f93b:141::1
@@ -793,17 +703,14 @@ router:
         listen-address: 2602:f93b:141::1
         location: TPE
         encrypted-password: a4ab5a99dfdfdb23d925bdc74b59ba103789c2aa
-
     defines:
       as-sets:
         AUTOGEN-AS-PassGFW: *passgfw
-
     protocols:
       rpki:
         - server: 172.65.0.2
           port: 8282
           preference: 10
-
       kernel:
         ipv4:
           pre-export-accept: |
@@ -813,10 +720,8 @@ router:
           pre-export-accept: |
             if source = RTS_BGP then krt_prefsrc = 2602:f93b:141::1;
             if source = RTS_STATIC then krt_prefsrc = 2602:f93b:141::1;
-
       bgp:
         ibgp: []
-
         upstream:
           - asn: 6939
             description: HE Upstream
@@ -839,7 +744,6 @@ router:
               reject;
             pre-export-accept: |
               reject;
-
         routeserver:
           - asn: 38855
             description: STUIX IPv4 RS1
@@ -866,7 +770,6 @@ router:
             # was update-source: eth1
             pre-import-accept: |
               reject;
-
         peer:
           - asn: 6939
             description: HE Peer
@@ -890,28 +793,4 @@ router:
               - 103.158.187.133
               - 2a0f:5707:ffe3::133
             # was update-source: eth1
-
-        downstream:
-          # Unnumbered WireGuard downstreams; replace each fe80::1 PLACEHOLDER
-          # link-local with the real peer LL.
-          - asn: 395909
-            passive: true
-            extended-nexthop: true
-            neighbor-address: "fe80::1%wg1241"   # FIXME placeholder LL (was: wg1241)
-            pre-import-accept: |
-              reject;
-            pre-export-accept: *wg_export
-          - asn: 395909
-            passive: true
-            extended-nexthop: true
-            neighbor-address: "fe80::1%wg1341"   # FIXME placeholder LL (was: wg1341)
-            pre-import-accept: |
-              reject;
-            pre-export-accept: *wg_export
-          - asn: 395909
-            passive: true
-            extended-nexthop: true
-            neighbor-address: "fe80::1%wg1141"   # FIXME placeholder LL (was: wg1141)
-            pre-import-accept: |
-              reject;
-            pre-export-accept: *wg_export
+        downstream: []
