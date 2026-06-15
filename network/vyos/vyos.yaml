@@ -39,91 +39,76 @@ blacklist:
   prefix6:
     - 2001:678:de0::/48
 
+# ============================================================================
+# Migrated from the FRR schema to BIRD. Key conversions:
+#  - template.as-path-list (regex)  -> per-router defines.as-sets (integer sets);
+#    `_asn_` (contains) matched with path_contains_asn_set(...), `asn$` (origin)
+#    matched with `bgp_path.last ~ ...`.
+#  - pre-import/export-accept route-maps -> raw BIRD filter code. `permit+set`
+#    with on-match next = modifier (set, fall through to accept); `deny` = reject;
+#    `permit ... on-match-next:false` = accept (stop). NOTE: these hooks now run
+#    at the END of the import/export filter (after the base cone/out filter).
+#  - redistribute.pre-accept -> protocols.direct.pre-import-accept.
+#  - kernel.ipv4/ipv6 (src)  -> protocols.kernel.*.pre-export-accept (krt_prefsrc).
+#  - update-source: <iface>  -> dropped (directly-connected; BIRD auto-sources).
+#    update-source: <IP>      -> source-address: <IP>.
+#  - unnumbered neighbor-address: <iface> -> "fe80::1%<iface>" PLACEHOLDER link-
+#    local (search FIXME and replace with the real peer link-local).
+#  - soft-reconfiguration-inbound -> dropped (BIRD is always soft).
+# ============================================================================
+
+# Shared, repeated definitions live here and are pulled into the routers below
+# via YAML anchors (*name). The generator ignores the `template` key itself.
 template:
-  as-path-list:
-    - &AUTOGEN-AS-ChinaMobile
-      name: AUTOGEN-AS-ChinaMobile
-      rule:
-        - action: permit
-          description: China Mobile
-          regex: "(_9808_|_9231_|_58453_|_58807_|_132389_|_135054_|_137872_|_139619_|_141419_|_209141_|_268862_|_328787_)"
-    - &AUTOGEN-AS-ChinaUnicom
-      name: AUTOGEN-AS-ChinaUnicom
-      rule:
-        - action: permit
-          description: China Unicom
-          regex: "(_4837_|_9929_|_10099_)"
-    - &AUTOGEN-AS-ChinaTelecom
-      name: AUTOGEN-AS-ChinaTelecom
-      rule:
-        - action: permit
-          description: China Telecom
-          regex: "(_4134_|_4809_|_23764_)"
-    - &AUTOGEN-AS-CERNET
-      name: AUTOGEN-AS-CERNET
-      rule:
-        - action: permit
-          description: CERNET
-          regex: "(_4538_|_23911_)"
-    - &AUTOGEN-AS-CSTNET
-      name: AUTOGEN-AS-CSTNET
-      rule:
-        - action: permit
-          description: CSTNET
-          regex: "_7497_"
-    - &AUTOGEN-AS-PassGFW
-      name: AUTOGEN-AS-PassGFW
-      rule:
-        - action: permit
-          description: Edgecast
-          regex: "15133$"
-        - action: permit
-          description: Fastly
-          regex: "54113$"
-        - action: permit
-          description: Akamai
-          regex: "20940$"
-        - action: permit
-          description: HiNet
-          regex: "3462$"
-        - action: permit
-          description: Google
-          regex: "(15169|16550|16591|19527|36040|43515|139070|139190|396982)$"
-        - action: permit
-          description: Telegram
-          regex: "(62014|62041|59930)$"
-        - action: permit
-          description: Twitter
-          regex: "(13414|35995|63179)$"
-        - action: permit
-          description: Cloudflare
-          regex: "13335$"
-        - action: permit
-          description: IDC Frontier
-          regex: "4694$"
-        - action: permit
-          description: Amazon for docker
-          regex: "(14618|16509)$"
-        - action: permit
-          description: Wikimedia
-          regex: "14907$"
-        - action: permit
-          description: Meta
-          regex: "(32934|54115|63293)$"
+  as-sets:
+    # PassGFW: routes ORIGINATED by these ASNs bypass the GFW upstream filter
+    # (matched with `bgp_path.last ~ ...`, i.e. origin, not transit).
+    passgfw: &passgfw
+      - 15133   # Edgecast
+      - 54113   # Fastly
+      - 20940   # Akamai
+      - 3462    # HiNet
+      - 15169   # Google
+      - 16550
+      - 16591
+      - 19527
+      - 36040
+      - 43515
+      - 139070
+      - 139190
+      - 396982
+      - 62014   # Telegram
+      - 62041
+      - 59930
+      - 13414   # Twitter
+      - 35995
+      - 63179
+      - 13335   # Cloudflare
+      - 4694    # IDC Frontier
+      - 14618   # Amazon
+      - 16509
+      - 14907   # Wikimedia
+      - 32934   # Meta
+      - 54115
+      - 63293
+  filters:
+    # only import routes originated by a PassGFW ASN (GFW bypass).
+    gfw-import: &gfw_import |
+      if !(bgp_path.last ~ autogen_as_passgfw) then reject;
+    # export to a GFW-bypass downstream; first-match-wins, mirrors the old FRR
+    # route-map order (PassGFW origin / drop China / from peer / from routeserver).
+    wg-export: &wg_export |
+      if bgp_path.last ~ autogen_as_passgfw then accept;
+      if is_china_as_path() then reject;
+      if large_community_from_peer ~ bgp_large_community then accept;
+      if large_community_from_routeserver ~ bgp_large_community then accept;
+      reject;
 
 router:
+  # ==========================================================================
   - name: core.ams.atlas.projectk.org
-    kernel:
-      ipv4:
-        - protocol: bgp
-          src: 23.154.104.1
-        - protocol: static
-          src: 23.154.104.1
-      ipv6:
-        - protocol: bgp
-          src: 2a0b:71c0:171::1
-        - protocol: static
-          src: 2a0b:71c0:171::1
+    router-id: 23.154.104.1
+
     service:
       bmp:
         - target: akvorado
@@ -143,85 +128,83 @@ router:
         listen-address: 192.168.233.2
         location: AMS
         encrypted-password: d200010e2fed6258d4d978cde2e3e6ec8d4f600d
-    policy:
-      prefix-list6: []
-        # - name: AUTOGEN-BACKBONE-TunnelEndpoint
-        #   rule:
-        #     - action: permit
-        #       prefix: 2602:f93b:f41::/48
-      as-path-list:
-        - *AUTOGEN-AS-ChinaMobile
-        - *AUTOGEN-AS-ChinaUnicom
-        - *AUTOGEN-AS-ChinaTelecom
-        - *AUTOGEN-AS-PassGFW
-        - name: AUTOGEN-AS-PATH-20495
-          rule:
-            - action: permit
-              regex: "_20495_"
-    redistribute:
-      pre-accept:
-        - action: permit
-          match: ip address prefix-list AUTOGEN-LOCAL-ASN-PREFIX4
-          set:
-            - "community add 3491:62230" # Stop announcements to AS58453
-            - "community add 1299:5889" # Do not announce to China Telecom in North America
-            - "community add 1299:5879" # Do not announce to China Unicom in North America
-            - "community add 1299:2871" # Prepend x1 to China Unicom in Europe
-        - action: permit
-          match: ipv6 address prefix-list AUTOGEN-LOCAL-ASN-PREFIX6
-          set:
-            - "community add 1299:5889" # Do not announce to China Telecom in North America
-            - "community add 1299:5879" # Do not announce to China Unicom in North America
-            - "community add 1299:5009" # Do not announce in North America
-            - "large-community add 27523:2001:6939" # Prepend x2 to HE
+
+    defines:
+      as-sets:
+        # contains-semantics (old FRR `_asn_` regex) -> path_contains_asn_set()
+        AUTOGEN-AS-ChinaMobile:
+          [9808, 9231, 58453, 58807, 132389, 135054, 137872, 139619, 141419, 209141, 268862, 328787]
+        AUTOGEN-AS-ChinaUnicom: [4837, 9929, 10099]
+        AUTOGEN-AS-ChinaTelecom: [4134, 4809, 23764]
+
     protocols:
       rpki:
         - server: 192.168.233.240
           port: 8282
           preference: 10
+
+      kernel:
+        ipv4:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 23.154.104.1;
+            if source = RTS_STATIC then krt_prefsrc = 23.154.104.1;
+        ipv6:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 2a0b:71c0:171::1;
+            if source = RTS_STATIC then krt_prefsrc = 2a0b:71c0:171::1;
+
+      # was redistribute.pre-accept: tag locally-originated prefixes with TE
+      # communities so upstreams steer/limit them.
+      direct:
+        pre-import-accept: |
+          if net ~ autogen_local_asn_prefix4 then {
+            bgp_community.add((3491, 62230));   # Stop announcements to AS58453
+            bgp_community.add((1299, 5889));    # Do not announce to China Telecom in NA
+            bgp_community.add((1299, 5879));    # Do not announce to China Unicom in NA
+            bgp_community.add((1299, 2871));    # Prepend x1 to China Unicom in Europe
+          }
+          if net ~ autogen_local_asn_prefix6 then {
+            bgp_community.add((1299, 5889));    # Do not announce to China Telecom in NA
+            bgp_community.add((1299, 5879));    # Do not announce to China Unicom in NA
+            bgp_community.add((1299, 5009));    # Do not announce in NA
+            bgp_large_community.add((27523, 2001, 6939));  # Prepend x2 to HE
+          }
+
       bgp:
         ibgp: []
+
         upstream:
           - asn: 6204
             neighbor-address: 185.1.184.51
-            update-source: eth2
             in-prepend: "6204"
-            pre-import-accept:
-              - action: deny
+            # was update-source: eth2
+            pre-import-accept: |
+              reject;
           - asn: 6204
             neighbor-address: 2001:7f8:134::51
-            update-source: eth2
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-ChinaUnicom
-                set: "local-preference '110'"
+            # was update-source: eth2
+            pre-import-accept: |
+              if path_contains_asn_set(autogen_as_chinaunicom) then bgp_local_pref = 110;
           - asn: 6939
             neighbor-address: 2001:7f8:134::bc
-            update-source: eth2
             metric: "+10"
+            # was update-source: eth2
           - asn: 6939
             neighbor-address: 2001:7f8:10f::1b1b:154
-            update-source: eth10.2604
+            # was update-source: eth10.2604
           - asn: 50917
             neighbor-address: 89.37.98.250
-            update-source: eth9
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-ChinaMobile
-                set: "local-preference '110'"
-              - action: permit
-                match: as-path AUTOGEN-AS-ChinaUnicom
-                set: "local-preference '110'"
+            # was update-source: eth9
+            pre-import-accept: |
+              if path_contains_asn_set(autogen_as_chinamobile) then bgp_local_pref = 110;
+              if path_contains_asn_set(autogen_as_chinaunicom) then bgp_local_pref = 110;
           - asn: 50917
             neighbor-address: 2001:678:7ec:2202::250
-            update-source: eth9
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-ChinaMobile
-                set: "local-preference '110'"
-              - action: permit
-                match: as-path AUTOGEN-AS-ChinaTelecom
-                set: "local-preference '110'"
+            # was update-source: eth9
+            pre-import-accept: |
+              if path_contains_asn_set(autogen_as_chinamobile) then bgp_local_pref = 110;
+              if path_contains_asn_set(autogen_as_chinatelecom) then bgp_local_pref = 110;
+
         routeserver:
           - asn: 56584
             neighbor-address:
@@ -229,134 +212,123 @@ router:
               - 2001:7f8:134::254
               - 185.1.184.255
               - 185.1.185.0
-            update-source: eth2
             metric: "+10"
+            # was update-source: eth2
           - asn: 56393
             neighbor-address:
               - 185.1.160.255
               - 2001:7f8:10f::dc49:1
               - 185.1.161.0
               - 2001:7f8:10f::dc49:2
-            update-source: eth10.2604
+            # was update-source: eth10.2604
           - asn: 203023
             neighbor-address:
               - 195.60.92.65
               - 2602:f93b:1a35:1311::65
-            update-source: eth1.1311
+            # was update-source: eth1.1311
+
         peer:
           - asn: 6939
             neighbor-address: 185.1.184.189
-            update-source: eth2
             metric: "+10"
+            # was update-source: eth2
           - asn: 6939
             neighbor-address: 185.1.160.154
-            update-source: eth10.2604
+            # was update-source: eth10.2604
           - asn: 13335
             neighbor-address:
               - 185.1.184.40
               - 2001:7f8:134::40
-            update-source: eth2
             metric: "+10"
+            # was update-source: eth2
           - asn: 13335
             neighbor-address:
               - 2001:7f8:10f::3417:217
               - 2001:7f8:10f::3417:109
               - 185.1.160.217
               - 185.1.160.109
-            update-source: eth10.2604
+            # was update-source: eth10.2604
           - asn: 24482
             neighbor-address:
               - 185.1.184.120
               - 2001:7f8:134::3c
-            update-source: eth2
             metric: "+10"
+            # was update-source: eth2
           - asn: 24482
             neighbor-address:
               - 185.1.160.92
               - 2001:7f8:10f::5fa2:92
-            update-source: eth10.2604
+            # was update-source: eth10.2604
           - asn: 212635
             neighbor-address:
               - 185.1.184.25
               - 2001:7f8:134::25
-            update-source: eth2
+            # was update-source: eth2
+
         downstream:
           - asn: 40929
             passive: true
             neighbor-address: 2a0b:71c0:171:1500::24
-            update-source: eth1.1500
             extended-nexthop: true
+            # was update-source: eth1.1500
           - asn: 62246
             passive: true
             neighbor-address: 2a0b:71c0:171:ffff:1052:6:2246:1
-            update-source: eth1.1052
             extended-nexthop: true
+            # was update-source: eth1.1052
           - asn: 202335
             passive: true
             neighbor-address: 2a0b:71c0:171:1500:c201::1004
-            update-source: eth1.1500
             extended-nexthop: true
+            # was update-source: eth1.1500
           - asn: 202939
             passive: true
             neighbor-address: 2a0b:71c0:171:1500:c201::100a
-            update-source: eth1.1500
             extended-nexthop: true
+            # was update-source: eth1.1500
           - asn: 204539
             passive: true
             neighbor-address: 2a0b:71c0:171:ffff:1051:20:4539:1
-            update-source: eth1.1051
             extended-nexthop: true
+            # was update-source: eth1.1051
           - asn: 209557
             passive: true
             neighbor-address: 2a0b:71c0:171:ffff:1512:20:9557:1
-            update-source: eth1.1512
             extended-nexthop: true
+            # was update-source: eth1.1512
           - asn: 209574
             passive: true
             neighbor-address:
               - 23.154.104.104
               - 2a0b:71c0:171:1500:c201::1003
-            update-source: eth1.1500
+            # was update-source: eth1.1500
           - asn: 395909
             neighbor-address: 2a0b:71c0:171:1513::23
-            update-source: eth1.1513
             default-originate: true
+            # was update-source: eth1.1513
           - asn: 395909
             neighbor-address: 2a0b:71c0:171:1500:c201::1001
-            update-source: eth1.1500
             default-originate: true
+            # was update-source: eth1.1500
           - asn: 212232
             neighbor-address: 2001:7f8:134::60
-            update-source: eth2
             extended-nexthop: true
             addpath: true
+            # was update-source: eth2
           - asn: 65500
             neighbor-address: 216.238.52.191
-            update-source: 123.253.213.228
+            source-address: 123.253.213.228
             multihop: 255
             address-family:
               ipv4: true
               ipv6: true
             addpath: true
 
+  # ==========================================================================
   - name: core.mci.atlas.projectk.org
-    kernel:
-      ipv4:
-        - protocol: bgp
-          src: 23.175.184.1
-        - protocol: static
-          src: 23.175.184.1
-      ipv6:
-        - protocol: bgp
-          src: 2602:f93b:131::1
-        - protocol: static
-          src: 2602:f93b:131::1
+    router-id: 23.175.184.1
+
     service:
-      # bmp:
-      #   - target: akvorado
-      #     mirror: false
-      #     address: 123.253.213.229
-      #     port: 10179
       sflow:
         agent-address: 2602:f93b:131::1
         interface: [eth0, eth1, eth2, eth3, eth4, eth6, eth7]
@@ -369,137 +341,71 @@ router:
         listen-address: 2602:f93b:131::1
         location: MCI
         encrypted-password: ed3cd22e4f7e4fb5ae5438fc5bce2ba735d4a950
-    policy:
-      prefix-list6:
-        # - name: AUTOGEN-BACKBONE-TunnelEndpoint
-        #   rule:
-        #     - action: permit
-        #       prefix: 2602:f93b:f31::/48
-        - name: AUTOGEN-DNA-GOOGLE
-          rule:
-            - action: deny # 本来是permit为了让google走transit，但是流量太大了，还是分到peer吧
-              prefix: 2602:f93b:131::/48
-        - name: AUTOGEN-Tunnel-Endpoints
-          rule:
-            - action: permit
-              prefix: 2403:ad80:88:44fd::9c38/128
-              le: 128
-      as-path-list:
-        - name: AUTOGEN-AS4538
-          rule:
-            - action: permit
-              regex: "4538$"
-        - name: AUTOGEN-AS7018
-          rule:
-            - action: permit
-              regex: _7018_
-        - name: AUTOGEN-AS8796
-          rule:
-            - action: permit
-              regex: "8796$"
-        - name: AUTOGEN-AS30058
-          rule:
-            - action: permit
-              regex: "30058$"
-        - name: AUTOGEN-AS1299
-          rule:
-            - action: permit
-              regex: _1299_
-        - name: AUTOGEN-AS174
-          rule:
-            - action: permit
-              regex: _174_
-    redistribute:
-      pre-accept:
-        # - action: permit
-        #   match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
-        #   set: large-community add 27523:1101:1972
-        - action: permit
-          match: ipv6 address prefix-list AUTOGEN-DNA-GOOGLE
-          set: large-community add 27523:1000:15169
+
+    # NOTE: the old redistribute rule tagging Google /48 (large-community
+    # 27523:1000:15169) was already DISABLED via the AUTOGEN-DNA-GOOGLE deny
+    # prefix-list ("流量太大了，还是分到peer吧"), so it is intentionally not
+    # carried over. Re-add a direct.pre-import-accept hook if you want it back.
+
     protocols:
       rpki:
         - server: 192.168.32.2
           port: 8082
           preference: 10
+
+      kernel:
+        ipv4:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 23.175.184.1;
+            if source = RTS_STATIC then krt_prefsrc = 23.175.184.1;
+        ipv6:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 2602:f93b:131::1;
+            if source = RTS_STATIC then krt_prefsrc = 2602:f93b:131::1;
+
       bgp:
         parameters:
-          - "bestpath as-path multipath-relax"
+          - bestpath as-path multipath-relax
         ibgp: []
-          # - description: BGP Tunnel to TYO
-          #   neighbor-address: 169.254.20.5
-          #   simple-out: true
-          #   local-pref: 180
-          #   update-source: tun20
-          # - description: BGP Tunnel to TYO
-          #   neighbor-address: 2602:f93b:ffff:ffff:5:1:0:1
-          #   simple-out: true
-          #   local-pref: 180
-          #   pre-import-accept:
-          #     - action: deny
-          #       match: ipv6 address prefix-list AUTOGEN-Tunnel-Endpoints
-          #   update-source: tun20
+
         upstream:
           - asn: 6939
             out-prepend: "27523"
-            # example
-            # description: HE KCIX Upstream
-            # pre-import-accept:
-            #   - action: permit
-            #     match: ipv6 address prefix-list AUTOGEN-CERNET-0
-            #     set: "local-preference '500'"
             neighbor-address: 2001:504:1b:1::5
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 6939
             out-prepend: "27523 27523"
             neighbor-address: 2001:504:16::1b1b
             metric: "+10"
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 6939
             out-prepend: "27523 27523"
             neighbor-address: 2001:504:16:1::1b1b
             metric: "+5"
-            update-source: eth3.3
+            # was update-source: eth3.3
           - asn: 13737
             neighbor-address: 74.80.181.233
-            update-source: eth0
-            pre-export-accept:
-              - action: deny
+            # was update-source: eth0
+            pre-export-accept: |
+              reject;
           - asn: 13737
             neighbor-address: 2620:11f:700f:1::8
-            update-source: eth0
+            # was update-source: eth0
           - asn: 32097
             out-prepend: "27523"
             neighbor-address: 69.30.215.13
             in-prepend: "32097"
-            update-source: eth7
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS4538
-                set: "ip-next-hop 206.81.80.40"
-                on-match-next: false
-              - action: permit
-                match: as-path AUTOGEN-AS8796
-                set: "ip-next-hop 74.80.181.233"
-                on-match-next: false
-              - action: permit
-                match: as-path AUTOGEN-AS30058
-                set: "ip-next-hop 74.80.181.233"
-                on-match-next: false
+            # was update-source: eth7
+            pre-import-accept: |
+              # origin-based next-hop steering (old FRR set ip-next-hop, `asn$`)
+              if bgp_path.last = 4538 then { bgp_next_hop = 206.81.80.40; accept; }
+              if bgp_path.last = 8796 then { bgp_next_hop = 74.80.181.233; accept; }
+              if bgp_path.last = 30058 then { bgp_next_hop = 74.80.181.233; accept; }
           - asn: 32097
             out-prepend: "27523 27523"
             neighbor-address: 2001:4858:aaaa:211::1
-            update-source: eth7
-          # - asn: 212895
-          #   neighbor-address: 206.51.7.97
-          #   pre-import-accept:
-          #     - action: permit
-          #       match: as-path AUTOGEN-AS-ALL
-          #       set: "ip-next-hop 74.80.181.233"
-          #       on-match-next: false
-          #   pre-export-accept:
-          #     - action: deny
-          #   update-source: eth2.816
+            # was update-source: eth7
+
         routeserver:
           - asn: 33108
             description: SIX IPv4 RS
@@ -507,50 +413,51 @@ router:
               - 206.81.80.2
               - 206.81.80.3
             metric: "+10"
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 33108
             description: SIX IPv6 RS
             neighbor-address:
               - 2001:504:16::2
               - 2001:504:16::3
             metric: "+10"
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 33108
             description: SIX Jumbo IPv4 RS
             neighbor-address:
               - 149.112.96.2
               - 149.112.96.3
             metric: "+5"
-            update-source: eth3.3
+            # was update-source: eth3.3
           - asn: 33108
             description: SIX Jumbo IPv6 RS2
             neighbor-address:
               - 2001:504:16:1::2
               - 2001:504:16:1::3
             metric: "+5"
-            update-source: eth3.3
+            # was update-source: eth3.3
           - asn: 35920
             neighbor-address:
               - 206.83.136.254
               - 2001:504:9e::254
-            update-source: eth2.713
+            # was update-source: eth2.713
           - asn: 40542
             description: KCIX IPv4 RS
             neighbor-address:
               - 206.51.7.126
               - 206.51.7.254
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 40542
             description: KCIX IPv6 RS
             neighbor-address:
               - 2001:504:1b:1::126
               - 2001:504:1b:1::254
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 46389
             neighbor-address:
               - 206.83.12.254
               - 2001:504:98::254
-            update-source: eth2.314
+            # was update-source: eth2.314
+
         peer:
           - asn: 714
             description: Apple SIX
@@ -559,47 +466,47 @@ router:
               - 206.81.80.205
               - 2001:504:16::205:0:2ca
               - 2001:504:16::2ca
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 1828
             description: Unitas Global KCIX
             neighbor-address:
               - 206.51.7.54
               - 2001:504:1b:1::54
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 1828
             description: Unitas Global SIX
             neighbor-address:
               - 206.81.80.36
               - 2001:504:16::724
             metric: "+5"
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 6456
             neighbor-address:
               - 206.81.80.10
               - 206.81.81.41
               - 2001:504:16::1938
               - 2001:504:16::297:0:1938
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 6939
             neighbor-address: 206.81.80.40
             metric: "+5"
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 6939
             neighbor-address:
               - 149.112.96.40
             metric: "+10"
-            update-source: eth3.3
+            # was update-source: eth3.3
           - asn: 6939
             neighbor-address: 206.51.7.5
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 13150
             neighbor-address: 206.81.81.46
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 13335
             neighbor-address:
               - 206.51.7.34
               - 2001:504:1b:1::34
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 13335
             description: Cloudflare SIX
             neighbor-address:
@@ -608,7 +515,7 @@ router:
               - 2001:504:16::3417
               - 2001:504:16::314:0:3417
             metric: "+5"
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 15169
             description: Google SIX
             out-prepend: "27523"
@@ -617,18 +524,14 @@ router:
               - 2001:504:16::3b41
             metric: "+5"
             password: jutran7dEbUwr6c9
-            update-source: eth3.2
-            # pre-import-accept:
-            #   - action: deny
+            # was update-source: eth3.2
           - asn: 15169
             description: Google SIX
             neighbor-address:
               - 206.81.80.69
               - 2001:504:16::69:0:3b41
             password: jutran7dEbUwr6c9
-            update-source: eth3.2
-            # pre-import-accept:
-            #   - action: deny
+            # was update-source: eth3.2
           - asn: 16509
             description: Amazon KCIX
             neighbor-address:
@@ -636,7 +539,7 @@ router:
               - 206.51.7.194
               - 2001:504:1b:1::131
               - 2001:504:1b:1::194
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 16509
             description: Amazon SIX
             metric: "+10"
@@ -649,13 +552,13 @@ router:
               - 2001:504:16::248:0:407d
               - 2001:504:16::249:0:407d
               - 2001:504:16::250:0:407d
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 20940
             description: Akamai KCIX
             neighbor-address:
               - 206.51.7.99
               - 2001:504:1b:1::99
-            update-source: eth2.816
+            # was update-source: eth2.816
           - asn: 20940
             description: Akamai SIX
             neighbor-address:
@@ -663,169 +566,147 @@ router:
               - 206.81.80.168
               - 2001:504:16::51cc
               - 2001:504:16::168:0:51cc
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 24482
             neighbor-address:
               - 206.81.81.61
               - 2001:504:16::5fa2
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 25668
             neighbor-address:
               - 206.81.80.103
               - 2001:504:16::6444
-            update-source: eth3.2
+            # was update-source: eth3.2
           - asn: 49544
             description: i3D SIX
             neighbor-address:
               - 206.81.80.117
               - 2001:504:16::c188
-            update-source: eth3.2
+            # was update-source: eth3.2
+
         downstream:
-          # - asn: 395909
-          #   passive: true
-          #   extended-nexthop: true
-          #   neighbor-address: wg1231
-          #   update-source: wg1231
-          # - asn: 395909
-          #   passive: true
-          #   extended-nexthop: true
-          #   neighbor-address: wg1331
-          #   update-source: wg1331
           - asn: 12198
             passive: true
             neighbor-address: 23.175.184.116
-            update-source: eth4
+            # was update-source: eth4
           - asn: 12198
             passive: true
             neighbor-address: 2602:f93b:131:ffff::1:2198:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 53889
             passive: true
             neighbor-address: 23.175.184.118
-            update-source: eth4
             default-originate: true
+            # was update-source: eth4
           - asn: 53889
             passive: true
             neighbor-address: 2602:f93b:131:ffff::5:3889:1
-            update-source: eth6.1000
             default-originate: true
-          # - asn: 64515
-          #   passive: true
-          #   neighbor-address: 2602:f93b:131:ffff::6:4515:1
-          #   update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 64515
             passive: true
             neighbor-address: 2602:f93b:131:ffff::6:4515:2
             extended-nexthop: true
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 135671
             passive: true
             neighbor-address: 2602:f93b:131:ffff::13:5671:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 150289
             passive: true
             neighbor-address: 2602:f93b:131:ffff::15:289:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 199310
             passive: true
             neighbor-address: 2602:f93b:131:ffff::19:9310:1
-            update-source: eth6.1000
             extended-nexthop: true
+            # was update-source: eth6.1000
           - asn: 202335
             passive: true
             neighbor-address: 2602:f93b:131:c001::1094
             extended-nexthop: true
-            update-source: eth6
+            # was update-source: eth6
           - asn: 205329
             passive: true
             neighbor-address: 23.175.184.115
-            update-source: eth4
+            # was update-source: eth4
           - asn: 205329
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:5329:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 206540
             passive: true
             neighbor-address: 2602:f93b:131:c001::106a
-            update-source: eth6
+            # was update-source: eth6
           - asn: 208223
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:8223:1
-            # disable-IRR: true
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 209481
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:9481:1
-            update-source: eth6.1000
             default-originate: true
+            # was update-source: eth6.1000
           - asn: 203023
             # 209481代播
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:3023:1
-            update-source: eth6.1000
             default-originate: true
+            # was update-source: eth6.1000
           - asn: 203023
             passive: true
             neighbor-address: 2602:f93b:131:ffff::20:3023:2
-            update-source: eth6.1000
             default-originate: true
+            # was update-source: eth6.1000
           - asn: 209574
             passive: true
             neighbor-address: 2602:f93b:131:c001::1097
-            update-source: eth6
             extended-nexthop: true
+            # was update-source: eth6
           - asn: 215172
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:5172:1
-            update-source: eth6.1000
             extended-nexthop: true
+            # was update-source: eth6.1000
           - asn: 215526
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:5526:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 216299
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:6299:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 216342
             passive: true
             neighbor-address: 2602:f93b:131:ffff::21:6342:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 401009
             passive: true
             neighbor-address: 2602:f93b:ffff:131::40:1009:1
-            update-source: eth6.1000
+            # was update-source: eth6.1000
           - asn: 212232
             neighbor-address: 2a0c:2f07:9459::b12
-            update-source: 2602:f93b:131::1
+            source-address: 2602:f93b:131::1
             addpath: true
             multihop: 255
           - asn: 212232
             neighbor-address: 185.230.223.74
-            update-source: 23.175.184.1
+            source-address: 23.175.184.1
             addpath: true
             multihop: 255
           - asn: 65500
             neighbor-address: 216.238.52.191
-            update-source: 23.175.184.1
+            source-address: 23.175.184.1
             multihop: 255
             address-family:
               ipv4: true
               ipv6: true
             addpath: true
 
+  # ==========================================================================
   - name: core.hkg.atlas.projectk.org
-    kernel:
-      ipv4:
-        - protocol: bgp
-          src: 82.152.161.84
-        - protocol: static
-          src: 82.152.161.84
-      ipv6:
-        - protocol: bgp
-          src: 2602:f93b:121::1
-        - protocol: static
-          src: 2602:f93b:121::1
+    router-id: 82.152.161.84
+
     service:
       sflow:
         agent-address: 2602:f93b:121::1
@@ -839,68 +720,66 @@ router:
         listen-address: 2602:f93b:121::1
         location: HKG
         encrypted-password: 23ca3d9e7b16c635bd6348266ae954a90d81b17f
-    policy:
-      as-path-list:
-        - *AUTOGEN-AS-PassGFW
+
+    defines:
+      as-sets:
+        AUTOGEN-AS-PassGFW: *passgfw
+
     protocols:
       rpki:
         - server: rtr.rpki.cloudflare.com
           port: 8282
           preference: 10
+
+      kernel:
+        ipv4:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 82.152.161.84;
+            if source = RTS_STATIC then krt_prefsrc = 82.152.161.84;
+        ipv6:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 2602:f93b:121::1;
+            if source = RTS_STATIC then krt_prefsrc = 2602:f93b:121::1;
+
       bgp:
         ibgp: []
+
         upstream:
           - asn: 202662
             multihop: 2
             neighbor-address: 10.10.0.11
-            update-source: eth0
+            # was update-source: eth0
           - asn: 202662
             multihop: 2
             neighbor-address: fc00:1000::11
-            update-source: eth0
+            # was update-source: eth0
+
         routeserver: []
         peer: []
+
         downstream:
           - asn: 395909
             passive: true
             extended-nexthop: true
-            update-source: wg1221
-            neighbor-address: wg1221
-            pre-export-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
+            neighbor-address: "fe80::1%wg1221"   # FIXME placeholder LL (was: wg1221)
+            pre-export-accept: |
+              if bgp_path.last ~ autogen_as_passgfw then accept;
+              reject;
           - asn: 212232
             neighbor-address: 185.230.223.75
-            update-source: 82.152.161.84
+            source-address: 82.152.161.84
             addpath: true
             multihop: 255
           - asn: 212232
             neighbor-address: 2a0c:2f07:9459::b19
-            update-source: 2602:f93b:121::1
+            source-address: 2602:f93b:121::1
             addpath: true
             multihop: 255
 
+  # ==========================================================================
   - name: core.tpe.atlas.projectk.org
-    kernel:
-      ipv4:
-        - protocol: bgp
-          src: 103.147.22.125
-          # pre-accept:
-          # 在这里是zebra的过滤，community都不起作用
-          #   - action: deny
-          #     match: large-community large-community-list AUTOGEN-FROM-UPSTREAM
-        - protocol: static
-          src: 103.147.22.125
-      ipv6:
-        - protocol: bgp
-          src: 2602:f93b:141::1
-          # pre-accept:
-          #   - action: deny
-          #     match: large-community large-community-list AUTOGEN-FROM-UPSTREAM
-        - protocol: static
-          src: 2602:f93b:141::1
+    router-id: 103.147.22.125
+
     service:
       sflow:
         agent-address: 2602:f93b:141::1
@@ -914,194 +793,125 @@ router:
         listen-address: 2602:f93b:141::1
         location: TPE
         encrypted-password: a4ab5a99dfdfdb23d925bdc74b59ba103789c2aa
-    policy:
-      prefix-list6: []
-        # - name: AUTOGEN-BACKBONE-TunnelEndpoint
-        #   rule:
-        #     - action: permit
-        #       prefix: 2602:f93b:f41::/48
-      as-path-list:
-        - *AUTOGEN-AS-PassGFW
-    # redistribute:
-    #   pre-accept:
-    #     - action: permit
-    #       match: ipv6 address prefix-list AUTOGEN-BACKBONE-TunnelEndpoint
-    #       set: large-community add 27523:1101:21167
+
+    defines:
+      as-sets:
+        AUTOGEN-AS-PassGFW: *passgfw
+
     protocols:
       rpki:
         - server: 172.65.0.2
           port: 8282
           preference: 10
+
+      kernel:
+        ipv4:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 103.147.22.125;
+            if source = RTS_STATIC then krt_prefsrc = 103.147.22.125;
+        ipv6:
+          pre-export-accept: |
+            if source = RTS_BGP then krt_prefsrc = 2602:f93b:141::1;
+            if source = RTS_STATIC then krt_prefsrc = 2602:f93b:141::1;
+
       bgp:
         ibgp: []
+
         upstream:
           - asn: 6939
             description: HE Upstream
             neighbor-address: 2a0f:5707:ffe3::30
-            soft-reconfiguration-inbound: false
-            update-source: eth1
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: *gfw_import
           - asn: 18041
             neighbor-address: 10.101.10.254
-            update-source: eth2
-            soft-reconfiguration-inbound: false
-            # holdtime: 600
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
+            # was update-source: eth2
+            pre-import-accept: *gfw_import
           - asn: 44324
             neighbor-address: 103.158.187.113
-            soft-reconfiguration-inbound: false
-            update-source: eth1
-            pre-import-accept:
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: |
+              reject;
           - asn: 44324
             neighbor-address: 2a0f:5707:ffe3::113
-            soft-reconfiguration-inbound: false
-            update-source: eth1
-            pre-export-accept:
-              - action: deny
-            pre-import-accept:
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: |
+              reject;
+            pre-export-accept: |
+              reject;
+
         routeserver:
           - asn: 38855
             description: STUIX IPv4 RS1
             neighbor-address: 103.158.187.1
-            update-source: eth1
-            soft-reconfiguration-inbound: false
-            pre-import-accept:
-              - action: deny
-                match: as-path AUTOGEN-AS-Tier1
-              - action: permit
-                match: as-path AUTOGEN-AS-ALL
-                on-match-next: false
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: |
+              # deny routes traversing a Tier-1; accept everything else.
+              if is_tier1_as_path() then reject;
           - asn: 38855
             description: STUIX IPv4 RS2
             neighbor-address: 103.158.187.2
-            update-source: eth1
-            soft-reconfiguration-inbound: false
-            pre-import-accept:
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: |
+              reject;
           - asn: 38855
             description: STUIX IPv6 RS1
-            soft-reconfiguration-inbound: false
             neighbor-address: 2a0f:5707:ffe3::1
-            update-source: eth1
-            pre-import-accept:
-              - action: deny
-                match: as-path AUTOGEN-AS-Tier1
-              - action: permit
-                match: as-path AUTOGEN-AS-ALL
-                on-match-next: false
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: |
+              if is_tier1_as_path() then reject;
           - asn: 38855
             description: STUIX IPv6 RS2
-            soft-reconfiguration-inbound: false
             neighbor-address: 2a0f:5707:ffe3::2
-            update-source: eth1
-            pre-import-accept:
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: |
+              reject;
+
         peer:
           - asn: 6939
             description: HE Peer
             neighbor-address: 103.158.187.30
-            update-source: eth1
-            soft-reconfiguration-inbound: false
-            pre-import-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
+            # was update-source: eth1
+            pre-import-accept: *gfw_import
           - asn: 13335
             neighbor-address:
               - 103.158.187.34
               - 2a0f:5707:ffe3::34
-            update-source: eth1
+            # was update-source: eth1
           - asn: 16509
             neighbor-address:
               - 103.158.187.36
               - 103.158.187.45
               - 2a0f:5707:ffe3::36
               - 2a0f:5707:ffe3::45
-            update-source: eth1
+            # was update-source: eth1
           - asn: 24482
             neighbor-address:
               - 103.158.187.133
               - 2a0f:5707:ffe3::133
-            update-source: eth1
+            # was update-source: eth1
+
         downstream:
-          # - asn: 212232
-          #   neighbor-address: 103.158.187.165
-          #   update-source: 103.158.187.111
-          #   addpath: true
-          # - asn: 212232
-          #   neighbor-address: 2a0f:5707:ffe3::165
-          #   update-source: 2a0f:5707:ffe3::111
-          #   addpath: true
+          # Unnumbered WireGuard downstreams; replace each fe80::1 PLACEHOLDER
+          # link-local with the real peer LL.
           - asn: 395909
             passive: true
             extended-nexthop: true
-            neighbor-address: wg1241
-            pre-import-accept:
-              - action: deny
-            pre-export-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
-                match: as-path AUTOGEN-AS-China
-              - action: permit
-                match: large-community large-community-list AUTOGEN-FROM-PEER
-                on-match-next: false
-              - action: permit
-                match: large-community large-community-list AUTOGEN-FROM-ROUTESERVER
-                on-match-next: false
-              - action: deny
-            update-source: wg1241
+            neighbor-address: "fe80::1%wg1241"   # FIXME placeholder LL (was: wg1241)
+            pre-import-accept: |
+              reject;
+            pre-export-accept: *wg_export
           - asn: 395909
             passive: true
             extended-nexthop: true
-            neighbor-address: wg1341
-            pre-import-accept:
-              - action: deny
-            pre-export-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
-                match: as-path AUTOGEN-AS-China
-              - action: permit
-                match: large-community large-community-list AUTOGEN-FROM-PEER
-                on-match-next: false
-              - action: permit
-                match: large-community large-community-list AUTOGEN-FROM-ROUTESERVER
-                on-match-next: false
-              - action: deny
-            update-source: wg1341
+            neighbor-address: "fe80::1%wg1341"   # FIXME placeholder LL (was: wg1341)
+            pre-import-accept: |
+              reject;
+            pre-export-accept: *wg_export
           - asn: 395909
             passive: true
             extended-nexthop: true
-            neighbor-address: wg1141
-            pre-import-accept:
-              - action: deny
-            pre-export-accept:
-              - action: permit
-                match: as-path AUTOGEN-AS-PassGFW
-                on-match-next: false
-              - action: deny
-                match: as-path AUTOGEN-AS-China
-              - action: permit
-                match: large-community large-community-list AUTOGEN-FROM-PEER
-                on-match-next: false
-              - action: permit
-                match: large-community large-community-list AUTOGEN-FROM-ROUTESERVER
-                on-match-next: false
-              - action: deny
-            update-source: wg1141
+            neighbor-address: "fe80::1%wg1141"   # FIXME placeholder LL (was: wg1141)
+            pre-import-accept: |
+              reject;
+            pre-export-accept: *wg_export
