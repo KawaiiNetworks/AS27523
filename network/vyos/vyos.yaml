@@ -295,7 +295,6 @@ router:
 
   - name: core.mci.atlas.projectk.org
     router-id: 23.175.184.1
-    bird: 3
     service:
       sflow:
         agent-address: 2602:f93b:131::1
@@ -609,7 +608,6 @@ router:
 
   - name: core.tpe.atlas.projectk.org
     router-id: 103.147.22.125
-    bird: 3
     service:
       sflow:
         agent-address: 2602:f93b:141::1
