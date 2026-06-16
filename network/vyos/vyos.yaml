@@ -726,20 +726,20 @@ router:
           - asn: 6939
             description: HE Upstream
             neighbor-address: 2a0f:5707:ffe3::30
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: *gfw_import
           - asn: 18041
             neighbor-address: 10.101.10.254
-            # was update-source: eth2
+            keep-filtered: false
             pre-import-accept: *gfw_import
           - asn: 44324
             neighbor-address: 103.158.187.113
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: |
               reject;
           - asn: 44324
             neighbor-address: 2a0f:5707:ffe3::113
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: |
               reject;
             pre-export-accept: |
@@ -748,49 +748,49 @@ router:
           - asn: 38855
             description: STUIX IPv4 RS1
             neighbor-address: 103.158.187.1
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: |
               # deny routes traversing a Tier-1; accept everything else.
               if is_tier1_as_path() then reject;
           - asn: 38855
             description: STUIX IPv4 RS2
             neighbor-address: 103.158.187.2
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: |
               reject;
           - asn: 38855
             description: STUIX IPv6 RS1
             neighbor-address: 2a0f:5707:ffe3::1
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: |
               if is_tier1_as_path() then reject;
           - asn: 38855
             description: STUIX IPv6 RS2
             neighbor-address: 2a0f:5707:ffe3::2
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: |
               reject;
         peer:
           - asn: 6939
             description: HE Peer
             neighbor-address: 103.158.187.30
-            # was update-source: eth1
+            keep-filtered: false
             pre-import-accept: *gfw_import
           - asn: 13335
             neighbor-address:
               - 103.158.187.34
               - 2a0f:5707:ffe3::34
-            # was update-source: eth1
+            keep-filtered: false
           - asn: 16509
             neighbor-address:
               - 103.158.187.36
               - 103.158.187.45
               - 2a0f:5707:ffe3::36
               - 2a0f:5707:ffe3::45
-            # was update-source: eth1
+            keep-filtered: false
           - asn: 24482
             neighbor-address:
               - 103.158.187.133
               - 2a0f:5707:ffe3::133
-            # was update-source: eth1
+            keep-filtered: false
         downstream: []
