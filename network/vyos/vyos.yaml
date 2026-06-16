@@ -646,11 +646,11 @@ router:
             description: HE Upstream
             neighbor-address: 2a0f:5707:ffe3::30
             keep-filtered: false
-            pre-import-accept: *gfw_import
+            pre-import-filter: *gfw_import
           - asn: 18041
             neighbor-address: 10.101.10.254
             keep-filtered: false
-            pre-import-accept: *gfw_import
+            pre-import-filter: *gfw_import
           - asn: 44324
             neighbor-address: 103.158.187.113
             keep-filtered: false
@@ -693,7 +693,7 @@ router:
             description: HE Peer
             neighbor-address: 103.158.187.30
             keep-filtered: false
-            pre-import-accept: *gfw_import
+            pre-import-filter: *gfw_import
           - asn: 13335
             neighbor-address:
               - 103.158.187.34
