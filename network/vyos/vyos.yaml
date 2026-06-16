@@ -690,6 +690,7 @@ router:
 
   - name: core.tpe.atlas.projectk.org
     router-id: 103.147.22.125
+    bird: 3
     service:
       sflow:
         agent-address: 2602:f93b:141::1
