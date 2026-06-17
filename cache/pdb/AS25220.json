@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "GlobalNOC",
+  "as_set": [
+    "AS-GLOBALNOC"
+  ],
+  "max_prefix": [
+    50,
+    10
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "OpenFiber",
+  "as_set": [
+    "AS-OPENFIBER"
+  ],
+  "max_prefix": [
+    25,
+    10
+  ]
+}

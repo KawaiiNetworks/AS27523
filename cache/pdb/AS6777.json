@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "AMS-IX",
+  "as_set": [
+    "AS6777:AS-AMS-IX-RS"
+  ],
+  "max_prefix": [
+    400000,
+    110000
+  ]
+}

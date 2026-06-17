@@ -1,0 +1,11 @@
+{
+  "type": "normal",
+  "name": "Etisalat",
+  "as_set": [
+    "AS-EMIX"
+  ],
+  "max_prefix": [
+    30000,
+    15000
+  ]
+}

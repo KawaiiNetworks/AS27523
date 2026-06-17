@@ -208,6 +208,17 @@
       10
     ]
   },
+  "207176": {
+    "type": "normal",
+    "name": "OpenFiber",
+    "as_set": [
+      "AS-OPENFIBER"
+    ],
+    "max_prefix": [
+      25,
+      10
+    ]
+  },
   "208223": {
     "type": "normal",
     "name": "fOxO Internet Service Provider",
@@ -339,6 +350,17 @@
     "max_prefix": [
       15000,
       4000
+    ]
+  },
+  "25220": {
+    "type": "normal",
+    "name": "GlobalNOC",
+    "as_set": [
+      "AS-GLOBALNOC"
+    ],
+    "max_prefix": [
+      50,
+      10
     ]
   },
   "25668": {
@@ -583,6 +605,17 @@
       100
     ]
   },
+  "6777": {
+    "type": "normal",
+    "name": "AMS-IX",
+    "as_set": [
+      "AS6777:AS-AMS-IX-RS"
+    ],
+    "max_prefix": [
+      400000,
+      110000
+    ]
+  },
   "6939": {
     "type": "normal",
     "name": "HE.net",
@@ -604,6 +637,17 @@
     "max_prefix": [
       10000,
       1000
+    ]
+  },
+  "8966": {
+    "type": "normal",
+    "name": "Etisalat",
+    "as_set": [
+      "AS-EMIX"
+    ],
+    "max_prefix": [
+      30000,
+      15000
     ]
   }
 }
