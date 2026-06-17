@@ -1,17 +1,19 @@
 local-asn: 27523
 
 as-set-limit:
-  member-limit: 250
-  prefix-limit: 50
+  member-limit: 1000
+  prefix-limit: 500
   large-as-list:
     - 714
     - 1828
+    - 8966
     - 6939
     - 13335
     - 15169
     - 16509
     - 20940
     - 24482
+    - 25220
     - 40929
     - 49544
     - 62246
