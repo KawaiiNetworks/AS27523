@@ -64,6 +64,7 @@ jobs:
         working-directory: scripts
         env:
           ARIN_API_KEY: ${{ secrets.ARIN_API_KEY }}
+          PYTHONUNBUFFERED: "1"
         run: pixi run python configure/save-cache.py "$GITHUB_WORKSPACE" ${{ steps.mode.outputs.flag }}
 
       - name: Commit and push
