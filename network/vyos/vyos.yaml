@@ -4,7 +4,6 @@ as-set-limit:
   member-limit: 1000
   prefix-limit: 500
   large-as-list:
-    - 714
     - 1828
     - 8966
     - 6939
@@ -14,13 +13,7 @@ as-set-limit:
     - 20940
     - 24482
     - 25220
-    - 40929
     - 49544
-    - 62246
-    - 199310
-    - 204539
-    - 205329
-    - 212635
 
 keepup-as-list:
   - 1828
