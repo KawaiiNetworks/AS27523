@@ -144,6 +144,7 @@ router:
           pre-export-accept: |
             if source = RTS_BGP then krt_prefsrc = 23.154.104.1;
             if source = RTS_STATIC then krt_prefsrc = 23.154.104.1;
+            if net = 82.22.26.0/24 then gw = 185.1.184.189;
         ipv6:
           pre-export-accept: |
             if source = RTS_BGP then krt_prefsrc = 2a0b:71c0:171::1;
