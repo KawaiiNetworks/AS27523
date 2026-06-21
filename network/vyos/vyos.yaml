@@ -103,8 +103,8 @@ router:
           port: 10179
       sflow:
         agent-address: 192.168.233.2
-        interface: [eth0, eth7, eth8, eth11, eth12]
-        vpp-interface: [eth1, eth2, eth3, eth4, eth5, eth6, eth9, eth10]
+        interface: [eth100, eth107, eth108, eth111, eth112]
+        vpp-interface: [eth101, eth102, eth103, eth104, eth105, eth106, eth109, eth110]
         server:
           - address: 192.168.233.240
             port: 6343
