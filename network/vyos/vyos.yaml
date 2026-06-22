@@ -575,6 +575,11 @@ router:
           - asn: 135671
             passive: true
             neighbor-address: 2602:f93b:131:ffff::13:5671:1
+          - asn: 135671
+            passive: true
+            neighbor-address:
+              - 23.175.184.153
+              - 2602:f93b:131:c001::106b
           - asn: 150289
             passive: true
             neighbor-address: 2602:f93b:131:ffff::15:289:1
