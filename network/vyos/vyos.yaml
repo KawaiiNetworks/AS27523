@@ -110,6 +110,8 @@ router:
             port: 6343
           - address: 162.159.65.1
             port: 6343
+          - address: 127.0.0.1
+            port: 6343
       snmp:
         listen-address: 192.168.233.2
         location: AMS
