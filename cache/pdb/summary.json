@@ -253,14 +253,14 @@
     ]
   },
   "209557": {
-    "type": "not_found",
-    "name": "Nonexistent AS209557",
+    "type": "normal",
+    "name": "GEELINX-AS",
     "as_set": [
       "AS209557"
     ],
     "max_prefix": [
-      100,
-      100
+      1,
+      1
     ]
   },
   "209574": {
