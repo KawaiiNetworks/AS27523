@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "Akamai Technologies",
   "as_set": [
-    "AS-AKAMAI"
+    "RIPE::AS-AKAMAI"
   ],
   "max_prefix": [
     12000,
