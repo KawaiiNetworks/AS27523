@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "QFLink",
   "as_set": [
-    "AS199310:AS-QFNET"
+    "AS-QFLINK"
   ],
   "max_prefix": [
     1000,
