@@ -118,7 +118,7 @@ router:
       snmp:
         listen-address: 192.168.233.2
         location: AMS
-        encrypted-password: d200010e2fed6258d4d978cde2e3e6ec8d4f600d
+        encrypted-password: 68eee052cbb17b3d30ee44eed3888cfa9b897641
     defines:
       as-sets:
         # contains-semantics (old FRR `_asn_` regex) -> path_contains_asn_set()
