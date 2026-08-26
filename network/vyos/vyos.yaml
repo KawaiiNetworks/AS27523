@@ -141,7 +141,7 @@ router:
         AUTOGEN-AS-ChinaTelecom: [4134, 4809, 23764]
     protocols:
       rpki:
-        - server: 127.0.0.1
+        - server: 2606:4700:60::2
           port: 8282
           preference: 10
       kernel:
