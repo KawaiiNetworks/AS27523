@@ -202,6 +202,8 @@ router:
               if path_contains_asn_set(autogen_as_chinatelecom) then bgp_local_pref = 210;
         routeserver:
           - asn: 6777
+            out-prepend: "27523 27523 27523"
+            in-prepend: "6777 6777 6777"
             neighbor-address:
               - 80.249.208.255
               - 2001:7f8:1::a500:6777:1
@@ -240,6 +242,8 @@ router:
             neighbor-address: 185.1.160.154
             metric: "-5"
           - asn: 6939
+            out-prepend: "27523 27523 27523"
+            in-prepend: "6939 6939 6939"
             neighbor-address: 80.249.209.150
           - asn: 8966
             neighbor-address:
