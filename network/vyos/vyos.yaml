@@ -140,6 +140,7 @@ router:
           ]
         AUTOGEN-AS-ChinaUnicom: [4837, 9929, 10099]
         AUTOGEN-AS-ChinaTelecom: [4134, 4809, 23764]
+        AUTOGEN-AS-CERNET: [4538]
     protocols:
       rpki:
         - server: 2606:4700:60::2
@@ -150,6 +151,7 @@ router:
           pre-export-accept: |
             if source = RTS_BGP then krt_prefsrc = 23.154.104.1;
             if source = RTS_STATIC then krt_prefsrc = 23.154.104.1;
+            if path_contains_asn_set(autogen_as_cernet) then gw = 185.1.184.189;
             if net = 82.22.26.0/24 then gw = 185.1.184.189;
         ipv6:
           pre-export-accept: |
