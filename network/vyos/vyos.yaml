@@ -161,6 +161,9 @@ router:
       # communities so upstreams steer/limit them.
       direct:
         pre-import-accept: |
+          if net = 131.143.240.0/24 then {
+            bgp_path.prepend(203023);
+          }
           if net ~ autogen_local_asn_prefix4 then {
             bgp_community.add((3491, 62230));   # Stop announcements to AS58453
             bgp_community.add((1299, 5889));    # Do not announce to China Telecom in NA
