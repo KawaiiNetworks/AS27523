@@ -163,6 +163,7 @@ router:
         pre-import-accept: |
           if net = 131.143.240.0/24 then {
             bgp_path.prepend(203023);
+            bgp_large_community.add((27523, 2005, 6204));  # Prepend x4 to ZET
           }
           if net ~ autogen_local_asn_prefix4 then {
             bgp_community.add((3491, 62230));   # Stop announcements to AS58453
@@ -174,7 +175,7 @@ router:
             bgp_community.add((1299, 5889));    # Do not announce to China Telecom in NA
             bgp_community.add((1299, 5879));    # Do not announce to China Unicom in NA
             bgp_community.add((1299, 5009));    # Do not announce in NA
-            bgp_large_community.add((27523, 2001, 6939));  # Prepend x2 to HE
+            bgp_large_community.add((27523, 2001, 6939));  # Prepend x1 to HE
           }
       bgp:
         ibgp: []
@@ -246,7 +247,7 @@ router:
             metric: "-10"
           - asn: 6939
             neighbor-address: 185.1.160.154
-            metric: "-5"
+            metric: "-10"
           - asn: 6939
             out-prepend: "27523 27523 27523"
             in-prepend: "6939 6939 6939"
