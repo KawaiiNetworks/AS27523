@@ -164,7 +164,7 @@ router:
         pre-import-accept: |
           if net = 131.143.240.0/24 then {
             bgp_path.prepend(203023);
-            bgp_large_community.add((27523, 2003, 6204));  # Prepend x4 to ZET
+            bgp_large_community.add((27523, 2002, 6204));  # Prepend x4 to ZET
           }
           if net ~ autogen_local_asn_prefix4 then {
             bgp_community.add((3491, 62230));   # Stop announcements to AS58453
