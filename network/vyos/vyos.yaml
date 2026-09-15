@@ -107,6 +107,7 @@ router:
           port: 10179
       sflow:
         agent-address: 192.168.233.2
+        sampling-rate: 10000
         interface: [eth100]
         vpp-interface: [eth103, eth104, eth105, eth106, eth107, eth108]
         server:
