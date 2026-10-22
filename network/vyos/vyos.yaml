@@ -338,7 +338,7 @@ router:
               # - 23.154.104.104
               - 2a0b:71c0:171:1500:c201::1003
           - asn: 395909
-            neighbor-address: 2a0b:71c0:171:1513::23
+            neighbor-address: 2a0b:71c0:171:ffff:1511::52
             default-originate: true
           - asn: 395909
             neighbor-address: 2a0b:71c0:171:1500:c201::1001
