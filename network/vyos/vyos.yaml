@@ -177,7 +177,7 @@ router:
             bgp_community.add((1299, 5889));    # Do not announce to China Telecom in NA
             bgp_community.add((1299, 5879));    # Do not announce to China Unicom in NA
             bgp_community.add((1299, 5009));    # Do not announce in NA
-            bgp_large_community.add((27523, 2001, 6939));  # Prepend x1 to HE
+            # bgp_large_community.add((27523, 2001, 6939));  # Prepend x1 to HE
           }
       bgp:
         ibgp: []
