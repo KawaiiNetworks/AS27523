@@ -554,7 +554,7 @@
     "type": "normal",
     "name": "ZET.NET",
     "as_set": [
-      "AS-ZETNET"
+      "RIPE::AS-ZETNET"
     ],
     "max_prefix": [
       8000,
@@ -587,7 +587,7 @@
     "type": "normal",
     "name": "alt.net",
     "as_set": [
-      "AS-ALTOPIA"
+      "ARIN::AS-ALTOPIA"
     ],
     "max_prefix": [
       6,

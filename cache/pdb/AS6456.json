@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "alt.net",
   "as_set": [
-    "AS-ALTOPIA"
+    "ARIN::AS-ALTOPIA"
   ],
   "max_prefix": [
     6,
