@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "Cato Networks",
   "as_set": [
-    "AS-CATONETWORKS-ASNS"
+    "RIPE::AS-CATONETWORKS-ASNS"
   ],
   "max_prefix": [
     800,

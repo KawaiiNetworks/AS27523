@@ -14,7 +14,7 @@
     "type": "normal",
     "name": "Cato Networks",
     "as_set": [
-      "AS-CATONETWORKS-ASNS"
+      "RIPE::AS-CATONETWORKS-ASNS"
     ],
     "max_prefix": [
       800,
@@ -25,7 +25,7 @@
     "type": "normal",
     "name": "Cloudflare",
     "as_set": [
-      "AS13335:AS-CLOUDFLARE"
+      "ARIN::AS13335:AS-CLOUDFLARE"
     ],
     "max_prefix": [
       80000,
@@ -91,7 +91,7 @@
     "type": "normal",
     "name": "Amazon.com",
     "as_set": [
-      "AS16509:AS-AMAZON"
+      "ARIN::AS16509:AS-AMAZON"
     ],
     "max_prefix": [
       16000,
@@ -643,7 +643,7 @@
     "type": "normal",
     "name": "Etisalat",
     "as_set": [
-      "AS-EMIX"
+      "RADB::AS-EMIX"
     ],
     "max_prefix": [
       30000,

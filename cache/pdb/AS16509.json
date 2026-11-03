@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "Amazon.com",
   "as_set": [
-    "AS16509:AS-AMAZON"
+    "ARIN::AS16509:AS-AMAZON"
   ],
   "max_prefix": [
     16000,

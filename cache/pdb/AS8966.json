@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "Etisalat",
   "as_set": [
-    "AS-EMIX"
+    "RADB::AS-EMIX"
   ],
   "max_prefix": [
     30000,
