@@ -329,10 +329,6 @@ router:
             passive: true
             neighbor-address: 2a0b:71c0:171:ffff:1051:20:4539:1
             extended-nexthop: true
-          - asn: 209557
-            passive: true
-            neighbor-address: 2a0b:71c0:171:ffff:1512:20:9557:1
-            extended-nexthop: true
           - asn: 209574
             passive: true
             neighbor-address:
