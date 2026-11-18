@@ -397,11 +397,11 @@ router:
           - asn: 6939
             out-prepend: "27523 27523"
             neighbor-address: 2001:504:16::1b1b
-            metric: "-10"
+            metric: "+10"
           - asn: 6939
             out-prepend: "27523 27523"
             neighbor-address: 2001:504:16:1::1b1b
-            metric: "-5"
+            metric: "+5"
           - asn: 13737
             neighbor-address: 74.80.181.233
             pre-export-filter: |
@@ -481,7 +481,7 @@ router:
             neighbor-address:
               - 206.81.80.36
               - 2001:504:16::724
-            metric: "-5"
+            metric: "+5"
           - asn: 6456
             neighbor-address:
               - 206.81.80.10
@@ -490,11 +490,11 @@ router:
               - 2001:504:16::297:0:1938
           - asn: 6939
             neighbor-address: 206.81.80.40
-            metric: "-5"
+            metric: "+10"
           - asn: 6939
             neighbor-address:
               - 149.112.96.40
-            metric: "-10"
+            metric: "+5"
           - asn: 6939
             neighbor-address: 206.51.7.5
           - asn: 13150
@@ -510,20 +510,21 @@ router:
               - 206.81.81.58
               - 2001:504:16::3417
               - 2001:504:16::314:0:3417
-            metric: "-5"
+            metric: "+5"
           - asn: 15169
             description: Google SIX
             out-prepend: "27523"
             neighbor-address:
               - 206.81.80.17
               - 2001:504:16::3b41
-            metric: "-5"
+            metric: "+5"
             password: jutran7dEbUwr6c9
           - asn: 15169
             description: Google SIX
             neighbor-address:
               - 206.81.80.69
               - 2001:504:16::69:0:3b41
+            metric: "+5"
             password: jutran7dEbUwr6c9
           - asn: 16509
             description: Amazon KCIX
@@ -534,7 +535,7 @@ router:
               - 2001:504:1b:1::194
           - asn: 16509
             description: Amazon SIX
-            metric: "-10"
+            metric: "+10"
             neighbor-address:
               - 206.81.80.147
               - 206.81.80.248
@@ -551,6 +552,7 @@ router:
               - 2001:504:1b:1::99
           - asn: 20940
             description: Akamai SIX
+            metric: "+10"
             neighbor-address:
               - 206.81.80.113
               - 206.81.80.168
@@ -566,6 +568,7 @@ router:
               - 2001:504:16::6444
           - asn: 49544
             description: i3D SIX
+            metric: "+10"
             neighbor-address:
               - 206.81.80.117
               - 2001:504:16::c188
